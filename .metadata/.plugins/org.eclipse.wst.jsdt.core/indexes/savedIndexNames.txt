@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+/home/angus/Programming/Java/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+3266548078.index
+4281791059.index
+284329935.index
+2708312840.index
+3897005798.index
+95524809.index
+2240195086.index
