@@ -7,14 +7,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="./resources/css/styles/background.css" />
+	<!-- inicia o style css do background -->
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/styles/background.css" />
+	<!-- Seta o titulo na guia -->
 	<title><ui:insert name="title">Entrar no SIGEAS</ui:insert></title>
 </h:head>
 
+
 <h:body id="body-login">
-
-
+	<p:inputText id="login" value="#{caminho.caminho}" />
+	<p:password id="password" value="#{caminho.caminho}" />
 </h:body>
-
 </html>

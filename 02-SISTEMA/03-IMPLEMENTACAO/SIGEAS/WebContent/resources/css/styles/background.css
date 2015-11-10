@@ -1,9 +1,11 @@
 @CHARSET "UTF-8";
 
+/* Background usado apenas na tela de login */
 body#body-login {
 	background-color: #39a575;
 }
 
+/*Background default do sistema*/
 body {
 	color: #ddd;
 }
