@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+body#body-login {
+	background-color: #39a575;
+}
+
+body {
+	color: #ddd;
+}
+
