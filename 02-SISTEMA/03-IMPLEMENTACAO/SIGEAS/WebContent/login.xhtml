@@ -15,7 +15,9 @@
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/styles/button.css" />
 
-
+	<!-- inicia o style css dos paineis -->
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/styles/panel.css" />
 
 	<!-- Seta o titulo na guia -->
 	<title><ui:insert name="title">Entrar no SIGEAS</ui:insert></title>
@@ -26,12 +28,12 @@
 
 
 	<h:form id="form-login">
-		<h:panelGrid columns="1" cellpadding="1"
-			style="top:30%; left:43%; position:absolute;">
+		<h:panelGrid columns="1" cellpadding="1" styleClass="panel-login">
 
 			<!-- Icone principal da janela de Login -->
-			<img id="icon-sigeas-login" height="10%" width="10%" style="position:relative; left:4.5%"
-				src="./resources/images/sigeas-icon.png" />
+			<img id="icon-sigeas-login" height="10%" width="10%"
+				class="img-login" src="./resources/images/sigeas-icon.png"
+				style="position: relative; left: 4.5%;" />
 
 			<!-- InputText Login -->
 			<p:inputText id="login" required="true" placeholder="Login"
@@ -44,8 +46,8 @@
 			<p:password id="password" required="true" placeholder="Senha"
 				value="#{#.#}" />
 
-			<!-- InputText Password -->
-			<p:button id="button-enter" value="Entrar" styleClass="button-enter" style="position:relative; left:6.5%"/>
+			<!-- Butão entrar -->
+			<p:button id="button-enter" value="Entrar" styleClass="button-enter" />
 
 		</h:panelGrid>
 	</h:form>
