@@ -26,8 +26,10 @@
 
 <h:body id="body-login">
 
-
+	<!-- Formulário contendo todos os elementos do login -->
 	<h:form id="form-login">
+
+		<p:growl showDetail="true" />
 		<h:panelGrid columns="1" cellpadding="1" styleClass="panel-login">
 
 			<!-- Icone principal da janela de Login -->
@@ -42,14 +44,15 @@
 				<f:validateLength minimum="3" maximum="50" />
 			</p:inputText>
 
-			<!-- InputText Password -->
-			<p:password id="password" required="true" placeholder="Senha"
-				value="#{#.#}" />
-
-			<!-- Butão entrar -->
-			<p:button id="button-enter" value="Entrar" styleClass="button-enter" />
-
+			<!-- InputText senha -->
+			<p:password id="password" required="true" placeholder="Senha" />
+			
+			<!-- TODO : Ficou faltando as verificações -->
+			<!-- Botão entrar -->
+			<p:commandButton id="button-enter" action="/index?" value="Entrar" 
+				styleClass="button-enter" />
 		</h:panelGrid>
 	</h:form>
+	
 </h:body>
 </html>
