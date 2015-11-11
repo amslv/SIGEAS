@@ -1,0 +1,20 @@
+/*Imagem usada na tela de login*/
+img#icon-sigeas-login {
+	width: 5%;
+	height: 10%;
+	top: 30%;
+	left: 48%;
+	position: fixed;
+}
+
+/*Imagem usada no menu principal*/
+img#icon-sigeas-menu {
+	width: 20%;
+	height: 20%;
+}
+
+/*Imagem default*/
+img#icon-sigeas-menu {
+	width: 20%;
+	height: 20%;
+}

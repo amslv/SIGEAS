@@ -10,14 +10,22 @@
 	<!-- inicia o style css do background -->
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/styles/background.css" />
+
+	<!-- inicia o style css do background -->
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/styles/image.css" />
+
 	<!-- Seta o titulo na guia -->
 	<title><ui:insert name="title">Entrar no SIGEAS</ui:insert></title>
 </h:head>
 
 
 <h:body id="body-login">
-	<figure> <img src="./resources/images/SIGEAS_B.png" /></figure>
-	<p:inputText id="login" value="#{caminho.caminho}" />
+	<img id="icon-sigeas-login" position="center"
+		src="./resources/images/SIGEAS_B.png" />
+
+
+	<p:inputText id="login" position="center" value="#{caminho.caminho}" />
 	<p:password id="password" value="#{caminho.caminho}" />
 </h:body>
 </html>
