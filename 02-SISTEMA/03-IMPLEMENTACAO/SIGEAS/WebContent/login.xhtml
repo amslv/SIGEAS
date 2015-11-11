@@ -11,9 +11,11 @@
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/styles/background.css" />
 
-	<!-- inicia o style css do background -->
+	<!-- inicia o style css dos botoes -->
 	<link rel="stylesheet" type="text/css"
-		href="./resources/css/styles/image.css" />
+		href="./resources/css/styles/button.css" />
+
+
 
 	<!-- Seta o titulo na guia -->
 	<title><ui:insert name="title">Entrar no SIGEAS</ui:insert></title>
@@ -21,11 +23,31 @@
 
 
 <h:body id="body-login">
-	<img id="icon-sigeas-login" position="center"
-		src="./resources/images/SIGEAS_B.png" />
 
 
-	<p:inputText id="login" position="center" value="#{caminho.caminho}" />
-	<p:password id="password" value="#{caminho.caminho}" />
+	<h:form id="form-login">
+		<h:panelGrid columns="1" cellpadding="1"
+			style="top:30%; left:43%; position:absolute;">
+
+			<!-- Icone principal da janela de Login -->
+			<img id="icon-sigeas-login" height="10%" width="10%" style="position:relative; left:4.5%"
+				src="./resources/images/sigeas-icon.png" />
+
+			<!-- InputText Login -->
+			<p:inputText id="login" required="true" placeholder="Login"
+				label="login" size="20">
+				<!-- Validar tamanho do input -->
+				<f:validateLength minimum="3" maximum="50" />
+			</p:inputText>
+
+			<!-- InputText Password -->
+			<p:password id="password" required="true" placeholder="Senha"
+				value="#{#.#}" />
+
+			<!-- InputText Password -->
+			<p:button id="button-enter" value="Entrar" styleClass="button-enter" style="position:relative; left:6.5%"/>
+
+		</h:panelGrid>
+	</h:form>
 </h:body>
 </html>
