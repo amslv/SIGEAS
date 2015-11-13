@@ -33,26 +33,27 @@
 		<h:panelGrid columns="1" cellpadding="1" styleClass="panel-login">
 
 			<!-- Icone principal da janela de Login -->
-			<img id="icon-sigeas-login" height="10%" width="10%"
-				class="img-login" src="./resources/images/sigeas-icon.png"
-				style="position: relative; left: 4.5%;" />
+			<img id="icon-sigeas-login"
+				src="./resources/images/icon/sigeas-icon-117x158.png"
+				style="position: relative; left: 23%;" />
 
 			<!-- InputText Login -->
-			<p:inputText id="login" required="true" requiredMessage="Login inválido" placeholder="Login"
-				label="login" size="20">
+			<p:inputText id="login" required="true"
+				requiredMessage="Login inválido" placeholder="Login" label="login"
+				size="20">
 				<!-- Validar tamanho do input -->
 				<f:validateLength minimum="3" maximum="50" />
 			</p:inputText>
 
 			<!-- InputText senha -->
-			<p:password id="password" requiredMessage="Senha inválida" required="true" placeholder="Senha" />
-			
-			<!-- TODO : Ficou faltando as verificações -->
+			<p:password id="password" requiredMessage="Senha inválida"
+				required="true" placeholder="Senha" />
+
 			<!-- Botão entrar -->
-			<p:commandButton id="button-enter" action="/index?redirect=true" value="Entrar" 
-				styleClass="button-enter" update="form-login"/>
+			<p:commandButton id="button-enter" action="/index?redirect=true"
+				value="Entrar" styleClass="button-enter" update="form-login" />
 		</h:panelGrid>
 	</h:form>
-	
+
 </h:body>
 </html>

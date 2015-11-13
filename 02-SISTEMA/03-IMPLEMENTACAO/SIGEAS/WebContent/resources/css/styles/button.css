@@ -1,8 +1,10 @@
+@charset "UTF-8";
+
 /*Imagem usada no menu principal*/
 .button-enter {
+	position: relative;
 	width: 70px;
 	height: 30px;
 	font-size: 80%;
-	position: relative;
-	left: 6.5%
+	left: 33.5%
 }
