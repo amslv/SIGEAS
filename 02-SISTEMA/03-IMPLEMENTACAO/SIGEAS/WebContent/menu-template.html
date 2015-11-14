@@ -1,53 +1,74 @@
-
 <!doctype html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<title>Menu do site do Maujor &#8212; Etapa 5</title>
+<title>Menu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- inicia o style css dos paineis -->
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/styles/menu.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
+<script src="./resources/javascript/script.js"></script>
 </head>
 
 <body>
 
 
-	<div id="lateral" onclick="return true" aria-haspopup="true">
-	
+	<div id="side" onclick="return true" aria-haspopup="true">
+
 		<!-- Icone do SIGEAS expandido no menu-->
 		<img id="icon-sigeas-login"
 			src="./resources/images/icon/sigeas-icon-117x158.png"
-			style="position: relative; left: 23%;" />
+			style="position: relative; top: 20px; left: 51%;" />
 
-		<div id="menu">
+		<div id='cssmenu' style="left: 37%; top: 5%;">
+			<ul>
+				<li class='has-sub'><a href='#'>Atividades</a>
+					<ul>
+						<li><a href='#'>Entrevista</a></li>
+						<li><a href='#'>Visita Domiciliar</a></li>
+					</ul></li>
+				<li class='has-sub'><a href='#'>Programas</a>
+					<ul>
+						<li><a href='#'>Editais</a></li>
+						<li><a href='#'>Auxílios</a></li>
+					</ul></li>
+				<li class='has-sub'><a href='#'>Concessões</a>
+					<ul>
+						<li><a href='#'>Editais</a></li>
+						<li><a href='#'>Doações</a></li>
+						<li><a href='#'>Materiais</a></li>
+					</ul></li>
+				<li class='has-sub'><a href='#'>Usuários</a>
+					<ul>
+						<li><a href='#'>Aluno</a></li>
+						<li><a href='#'>Assistente Social</a></li>
+						<li><a href='#'>Controle Financeiro</a></li>
+					</ul></li>
+				<li class='has-sub'><a href='#'>Relatórios</a>
+					<ul>
+						<li><a href='#'>Orçamentário</a></li>
+						<li><a href='#'>Histórico Global de Alunos</a></li>
+						<li><a href='#'>Histórico Individual de Aluno</a></li>
+					</ul></li>
 
-			<h3 class="link-titulo">Teste Guia</h3>
-			<ul class="box">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
+				<li style="top: 70%;"><a href='#'></a>
+					<ul>
+						<li><a href='#'>Orçamentário</a></li>
+						<li><a href='#'>Histórico Global de Alunos</a></li>
+						<li><a href='#'>Histórico Individual de Aluno</a></li>
+					</ul></li>
 			</ul>
-			<h3 class="link-titulo">Teste Guia</h3>
-			<ul class="box">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-			</ul>
-			<h3 class="link-titulo">Teste Guia</h3>
-			<ul class="box">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-			</ul>
-
-
 		</div>
-		<!-- /#menu -->
+		<div id='cssmenu' style="left: 37%; top: 44%;">
+			<ul>
+
+				<li class='has-sub'><a href='#'>Ajuda</a>
+				<li class='has-sub'><a href='#'>Sobre Nós</a>
+			</ul>
+		</div>
 	</div>
-	<!-- /#lateral -->
 </body>
+
 </html>

@@ -2,11 +2,7 @@
 
 /* Background usado apenas na tela de login */
 body#body-login {
-	background-color: #39a575;
+	background: #0d8650; 
 }
 
-/*Background default do sistema*/
-body {
-	color: #ddd;
-}
 
