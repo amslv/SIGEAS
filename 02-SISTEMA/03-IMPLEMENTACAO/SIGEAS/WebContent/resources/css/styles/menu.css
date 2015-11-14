@@ -52,6 +52,8 @@ body {
 	top: 50px;
 }
 
+
+
 #side:hover:before, #side:focus:before {
 	left: -300px
 }
@@ -72,7 +74,7 @@ body {
 
 /*#########*/
 
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
+
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -96,9 +98,11 @@ body {
 #cssmenu ul ul {
   display: none;
 }
+
 #cssmenu > ul > li.active > ul {
   display: block;
 }
+
 .align-right {
   float: right;
 }
@@ -117,6 +121,7 @@ body {
 #cssmenu > ul > li > a:hover {
   color: #d8f3f0;
 }
+
 #cssmenu ul > li.has-sub > a:after {
   position: absolute;
   right: 26px;
@@ -127,12 +132,8 @@ body {
   width: 2px;
   background: #ffffff;
   content: "";
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
 }
+
 #cssmenu ul > li.has-sub > a:before {
   position: absolute;
   right: 22px;
@@ -148,6 +149,9 @@ body {
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
 }
+
+/*
+animacao rodar o bagulho
 #cssmenu ul > li.has-sub.open > a:after,
 #cssmenu ul > li.has-sub.open > a:before {
   -webkit-transform: rotate(45deg);
@@ -155,7 +159,9 @@ body {
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-}
+}*/
+
+/*Estilo subitens*/
 #cssmenu ul ul li a {
   padding: 14px 22px;
   cursor: pointer;
