@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt-br">
+<head>
+<title>Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- inicia o style css dos paineis -->
+<link rel="stylesheet" type="text/css"
+	href="./resources/css/styles/menu-lateral-social-worker.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
+<script src="./resources/javascript/menu-lateral-social-worker.js"></script>
+</head>
+
+<body>
+	<canvas id="rectangle" width="1346" height="120"></canvas>
+	<script>
+		var canvas = document.getElementById('rectangle');
+		var context = canvas.getContext('2d');
+		
+		/*retangulo*/
+		context.beginPath();
+		context.rect(0, -1, 1500, 100);
+		context.fillStyle = '#eeeeee';
+		context.fill();
+		context.lineWidth = 2;
+		context.strokeStyle = '#0d8650';
+		context.stroke();
+		
+		/*Texto*/
+	    var x = canvas.width / 2;
+	    var y = canvas.height / 2;
+	    context.font = 'bold 25pt Arial sans-serif';
+	    context.textAlign = 'center';
+	    context.fillStyle = '#0d8650';
+	    context.fillText('Funcionalidade', x, y);
+	</script>
+
+	<div id="side" onclick="return true">
+
+		<!-- Icone do SIGEAS expandido no menu-->
+		<img id="icon-sigeas-login"
+			src="./resources/images/icon/logo/sigeas-icon-117x158.png"
+			style="position: relative; top: 20px; left: 51%;" />
+
+		<div id='cssmenu' style="left: 37%; top: 5%;">
+			<ul>
+				<li class='activities'><a href='#'>Atividades</a>
+					<ul>
+						<li><a href='#'>Entrevista <img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_interview.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Visita Domiciliar <img
+								id="icon-sigeas-login"
+								src="./resources/images/icon/icon_visit.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+					</ul></li>
+
+				<li class='programs'><a href='#'>Programas</a>
+					<ul>
+						<li><a href='#'>Editais<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_notice.png"
+								style="position: absolute; left: 84%; top: 9px;" />
+						</a></li>
+						<li><a href='#'>Auxílios <img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_assistance.png"
+								style="position: absolute; left: 83%; top: 9px;" />
+						</a></li>
+					</ul></li>
+
+
+				<li class='concessions'><a href='#'>Concessões</a>
+					<ul>
+						<li><a href='#'>Editais<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_notice.png"
+								style="position: absolute; left: 84%; top: 9px;" /></a></li>
+						<li><a href='#'>Doações<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_donation_material.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Materiais<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_material.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+					</ul></li>
+
+				<li class='users'><a href='#'>Usuários</a>
+					<ul>
+						<li><a href='#'>Aluno<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_student.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Assistente Social<img
+								id="icon-sigeas-login"
+								src="./resources/images/icon/icon_social_worker.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Controle Financeiro<img
+								id="icon-sigeas-login"
+								src="./resources/images/icon/icon_financial.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+					</ul></li>
+
+				<li class='reports'><a href='#'>Relatórios</a>
+					<ul>
+						<li><a href='#'>Orçamentário<img id="icon-sigeas-login"
+								src="./resources/images/icon/icon_budget_report.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Global de Alunos<img
+								id="icon-sigeas-login"
+								src="./resources/images/icon/icon_reports.png"
+								style="heigh: 20px; width: 20px; position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Individual de Aluno<img
+								id="icon-sigeas-login"
+								src="./resources/images/icon/icon_individual_report.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+					</ul></li>
+
+			</ul>
+		</div>
+		<div id='cssmenu' style="left: 37%; top: 34%;">
+			<ul>
+
+				<li class='help'><a href='#'>Ajuda</a></li>
+				<li class='about'><a href='#'>Sobre Nós</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>
