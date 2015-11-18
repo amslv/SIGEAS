@@ -277,6 +277,7 @@ body {
 	background: #dddddd;
 }
 
+
 /*
 # About/Sobre Nós
 */
@@ -329,3 +330,28 @@ body {
 	background: #dddddd;
 }
 
+/*
+# Help/Ajuda 
+*/
+#cssmenu ul>li.inscriptions>a:after {
+	position: absolute;
+	content: url(../../images/icon/icon_help.png);
+	left: 82%;
+	top: 6px;
+}
+
+#cssmenu ul>li.inscriptions>a:before {
+	/*Quando clica*/
+	
+}
+
+#cssmenu ul ul>li.inscriptions>a:after {
+	top: 16px;
+	right: 26px;
+	background: #dddddd;
+}
+
+#cssmenu ul ul>li.inscriptions>a:before {
+	top: 20px;
+	background: #dddddd;
+}
