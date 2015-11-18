@@ -79,7 +79,7 @@ body {
 ### MENU COM OPÇÕES
 
 */
-#cssmenu1, #cssmenu1 ul, #cssmenu1 ul li, #cssmenu1 ul li a {
+#cssmenu2, #cssmenu2 ul, #cssmenu2 ul li, #cssmenu2 ul li a {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -89,17 +89,17 @@ body {
 	position: relative;
 }
 
-#cssmenu1 {
+#cssmenu2 {
 	width: 235px;
 	font-family: Raleway, sans-serif;
 	color: #ffffff;
 }
 
-#cssmenu1 ul ul {
+#cssmenu2 ul ul {
 	display: none;
 }
 
-#cssmenu1>ul>li.active>ul {
+#cssmenu2>ul>li.active>ul {
 	display: block;
 }
 
@@ -107,7 +107,7 @@ body {
 	float: right;
 }
 
-#cssmenu1>ul>li>a {
+#cssmenu2>ul>li>a {
 	padding: 16px 22px;
 	cursor: pointer;
 	z-index: 2;
@@ -117,12 +117,12 @@ body {
 	background: #0d8650;
 }
 
-#cssmenu1>ul>li>a:hover {
+#cssmenu2>ul>li>a:hover {
 	color: #d8f3f0;
 }
 
 /*Estilo subitens*/
-#cssmenu1 ul ul li a {
+#cssmenu2 ul ul li a {
 	padding: 14px 22px;
 	cursor: pointer;
 	z-index: 2;
@@ -133,11 +133,11 @@ body {
 	/*Icon*/
 }
 
-#cssmenu1 ul ul ul li a {
+#cssmenu2 ul ul ul li a {
 	padding-left: 32px;
 }
 
-#cssmenu1 ul ul li a:hover {
+#cssmenu2 ul ul li a:hover {
 	color: #ffffff;
 }
 
@@ -150,25 +150,25 @@ body {
 /*
 # About/Sobre Nós
 */
-#cssmenu1 ul>li.about>a:after {
+#cssmenu2 ul>li.about>a:after {
 	position: absolute;
 	content: url(../../images/icon/icon_about.png);
 	left: 82%;
 	top: 6px;
 }
 
-#cssmenu1 ul>li.about>a:before {
+#cssmenu2 ul>li.about>a:before {
 	/*Quando clica*/
 	
 }
 
-#cssmenu1 ul ul>li.about>a:after {
+#cssmenu2 ul ul>li.about>a:after {
 	top: 16px;
 	right: 26px;
 	background: #dddddd;
 }
 
-#cssmenu1 ul ul>li.about>a:before {
+#cssmenu2 ul ul>li.about>a:before {
 	top: 20px;
 	background: #dddddd;
 }
@@ -176,25 +176,25 @@ body {
 /*
 # Help/Ajuda 
 */
-#cssmenu1 ul>li.help>a:after {
+#cssmenu2 ul>li.help>a:after {
 	position: absolute;
 	content: url(../../images/icon/icon_help.png);
 	left: 82%;
 	top: 6px;
 }
 
-#cssmenu1 ul>li.help>a:before {
+#cssmenu2 ul>li.help>a:before {
 	/*Quando clica*/
 	
 }
 
-#cssmenu1 ul ul>li.help>a:after {
+#cssmenu2 ul ul>li.help>a:after {
 	top: 16px;
 	right: 26px;
 	background: #dddddd;
 }
 
-#cssmenu1 ul ul>li.help>a:before {
+#cssmenu2 ul ul>li.help>a:before {
 	top: 20px;
 	background: #dddddd;
 }
@@ -202,25 +202,25 @@ body {
 /*
 # Help/Ajuda 
 */
-#cssmenu1 ul>li.inscriptions>a:after {
+#cssmenu2 ul>li.pay>a:after {
 	position: absolute;
-	content: url(../../images/icon/icon_sign_up.png);
+	content: url(../../images/icon/icon_pay.png);
 	left: 82%;
 	top: 6px;
 }
 
-#cssmenu1 ul>li.inscriptions>a:before {
+#cssmenu2 ul>li.pay>a:before {
 	/*Quando clica*/
 	
 }
 
-#cssmenu1 ul ul>li.inscriptions>a:after {
+#cssmenu2 ul ul>li.pay>a:after {
 	top: 16px;
 	right: 26px;
 	background: #dddddd;
 }
 
-#cssmenu1 ul ul>li.inscriptions>a:before {
+#cssmenu2 ul ul>li.pay>a:before {
 	top: 20px;
 	background: #dddddd;
 }

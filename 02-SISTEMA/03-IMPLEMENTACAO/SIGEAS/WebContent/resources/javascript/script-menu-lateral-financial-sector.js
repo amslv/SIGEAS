@@ -1,10 +1,10 @@
 (function($) {
 	$(document).ready(function() {
 
-		$('#cssmenu1 li.active').addClass('open').children('ul').show();
+		$('#cssmen2 li.active').addClass('open').children('ul').show();
 
 
-		$('#cssmenu1 li.inscriptions>a').on('click', function() {
+		$('#cssmenu2 li.pay>a').on('click', function() {
 			$(this).removeAttr('href');
 			var element = $(this).parent('li');
 
