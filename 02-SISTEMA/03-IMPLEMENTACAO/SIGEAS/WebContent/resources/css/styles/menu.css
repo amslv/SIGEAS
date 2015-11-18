@@ -44,7 +44,7 @@ body {
 
 #side:before {
 	z-index: 1000;
-	content: url(../../images/icon/sigeas-icon-39x52.png);
+	content: url(../../images/icon/logo/sigeas-icon-39x52.png);
 	font-size: 4em;
 	color: white;
 	position: fixed;
