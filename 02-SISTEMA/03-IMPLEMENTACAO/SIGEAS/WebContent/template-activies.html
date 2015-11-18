@@ -17,7 +17,7 @@
 	<script>
 		var canvas = document.getElementById('rectangle');
 		var context = canvas.getContext('2d');
-		
+
 		/*retangulo*/
 		context.beginPath();
 		context.rect(0, -1, 1500, 100);
@@ -26,14 +26,14 @@
 		context.lineWidth = 2;
 		context.strokeStyle = '#0d8650';
 		context.stroke();
-		
+
 		/*Texto*/
-	    var x = canvas.width / 2;
-	    var y = canvas.height / 2;
-	    context.font = 'bold 25pt Arial sans-serif';
-	    context.textAlign = 'center';
-	    context.fillStyle = '#0d8650';
-	    context.fillText('Funcionalidade', x, y);
+		var x = canvas.width / 2;
+		var y = canvas.height / 2;
+		context.font = 'bold 25pt Arial sans-serif';
+		context.textAlign = 'center';
+		context.fillStyle = '#0d8650';
+		context.fillText('Funcionalidade', x, y);
 	</script>
 
 	<div id="side" onclick="return true">
