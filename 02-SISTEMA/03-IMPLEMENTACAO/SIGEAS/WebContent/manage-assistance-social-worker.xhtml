@@ -28,16 +28,38 @@
 			context.font = 'bold 25pt Arial sans-serif';
 			context.textAlign = 'center';
 			context.fillStyle = '#5a7d60';
-			context.fillText('Funcionalidade', x, y);
+			context.fillText('Auxílios', x, y);
 		</script>
 	</ui:define>
 
 	<ui:define name="content">
 		<div>
 			<p:breadCrumb>
-				<p:menuitem value="Tela Principal" url="#" />
+				<p:menuitem value="Tela Principal" url="index-social-worker.xhtml" />
 				<p:menuitem value="Auxílios" url="#" />
 			</p:breadCrumb>
+		</div>
+		<div>
+			<p:dataTable>
+				<p:column headerText="Nome">
+					<h:outputText value="dsadsa" />
+					<h:outputText value="dsadsa" />
+					<h:outputText value="dsadsa" />
+					<h:outputText value="dsadsa" />
+				</p:column>
+				<p:column headerText="Endereço">
+					<h:outputText value="dadas" />
+				</p:column>
+				<p:column headerText="Idade">
+					<h:outputText value="dasdad" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="dasda" />
+				</p:column>
+				<p:column headerText="Telefone">
+					<h:outputText value="dasdad" />
+				</p:column>
+			</p:dataTable>
 		</div>
 	</ui:define>
 
