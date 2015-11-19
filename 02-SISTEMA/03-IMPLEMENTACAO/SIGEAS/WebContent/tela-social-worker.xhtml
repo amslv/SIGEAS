@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="menu-template-social-worker.xhtml">
+
+	<ui:define name="header">
+		<canvas id="rectangle" width="1900" height="120"></canvas>
+		<script>
+			var canvas = document.getElementById('rectangle');
+			var context = canvas.getContext('2d');
+
+			/*retangulo*/
+			context.beginPath();
+			context.rect(0, -1, 1900, 100);
+			context.fillStyle = '#d9d9d9';
+			context.fill();
+			context.lineWidth = 2;
+			context.strokeStyle = '#5a7d60';
+			context.stroke();
+
+			/*Texto*/
+			var x = canvas.width / 2;
+			var y = canvas.height / 2;
+			context.font = 'bold 25pt Arial sans-serif';
+			context.textAlign = 'center';
+			context.fillStyle = '#5a7d60';
+			context.fillText('Funcionalidade', x, y);
+		</script>
+	</ui:define>
+
+	<ui:define name="content">
+		<div>
+			<p:breadCrumb>
+				<p:menuitem value="Tela Principal" url="#" />
+				<p:menuitem value="Auxílios" url="#" />
+			</p:breadCrumb>
+		</div>
+	</ui:define>
+
+</ui:composition>
