@@ -1,0 +1,5 @@
+package br.edu.ifpb.sigeas.legacy;
+
+public class DataRecoveryHttp {
+
+}

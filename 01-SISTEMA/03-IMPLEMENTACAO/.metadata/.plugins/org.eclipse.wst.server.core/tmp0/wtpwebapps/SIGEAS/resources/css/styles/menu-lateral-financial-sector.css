@@ -1,0 +1,226 @@
+@charset "UTF-8";
+/*
+
+##MENU LATERAL
+
+*/
+*, html, body {
+	margin: 0;
+	padding: 0;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.cf:before, .cf:after {
+	content: " ";
+	display: table;
+}
+
+.cf:after {
+	clear: both;
+}
+
+body {
+	margin-left: 20px;
+	font: 62.5%/1.2 Arial, sans-serif, bold;
+}
+
+#side { /
+	padding: 0 50px 0 0;
+	-moz-transition: all 0.15s ease;
+	-webkit-transition: all 0.15s ease;
+	-o-transition: all 0.15s ease;
+	transition: all 0.15s ease; /*Tempo que a janela abre*/
+	font-size: 1.2em;
+	background: #0d8650; /*Muda a cor do menu*/
+	background-image: #0d8650;
+	height: 100%;
+	overflow: hidden;
+	width: 370px;
+	position: fixed;
+	top: 0;
+	left: -320px;
+}
+
+#side:before {
+	z-index: 1000;
+	content: url(../../images/icon/logo/sigeas-icon-39x52.png);
+	font-size: 4em;
+	color: white;
+	position: fixed;
+	left: 4px;
+	top: 50px;
+}
+
+#side:hover:before, #side:focus:before {
+	left: -300px
+}
+
+#side:hover, #side:focus, #side:active { /*Tamanho Menu extendido*/
+	-moz-transform: translate(180px, 0);
+	-webkit-transform: translate(180px, 0);
+	-o-transform: translate(180px, 0);
+	transform: translate(180px, 0);
+	padding-right: 0;
+}
+
+#side .box {
+	list-style-type: none;
+	margin-bottom: 1em;;
+	padding-bottom: 1em;
+}
+
+/*
+
+### MENU COM OPÇÕES
+
+*/
+#cssmenu2, #cssmenu2 ul, #cssmenu2 ul li, #cssmenu2 ul li a {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	line-height: 1;
+	display: block;
+	position: relative;
+}
+
+#cssmenu2 {
+	width: 235px;
+	font-family: Raleway, sans-serif;
+	color: #ffffff;
+}
+
+#cssmenu2 ul ul {
+	display: none;
+}
+
+#cssmenu2>ul>li.active>ul {
+	display: block;
+}
+
+.align-right {
+	float: right;
+}
+
+#cssmenu2>ul>li>a {
+	padding: 16px 22px;
+	cursor: pointer;
+	z-index: 2;
+	font-size: 16px;
+	text-decoration: none;
+	color: #ffffff;
+	background: #0d8650;
+}
+
+#cssmenu2>ul>li>a:hover {
+	color: #d8f3f0;
+}
+
+/*Estilo subitens*/
+#cssmenu2 ul ul li a {
+	padding: 14px 22px;
+	cursor: pointer;
+	z-index: 2;
+	font-size: 14px;
+	text-decoration: none;
+	color: #dddddd;
+	background: #49505a;
+	/*Icon*/
+}
+
+#cssmenu2 ul ul ul li a {
+	padding-left: 32px;
+}
+
+#cssmenu2 ul ul li a:hover {
+	color: #ffffff;
+}
+
+/*
+
+## ICONES E STULYES DOS SUBITENS
+
+*/
+
+/*
+# About/Sobre Nós
+*/
+#cssmenu2 ul>li.about>a:after {
+	position: absolute;
+	content: url(../../images/icon/icon_about.png);
+	left: 82%;
+	top: 6px;
+}
+
+#cssmenu2 ul>li.about>a:before {
+	/*Quando clica*/
+	
+}
+
+#cssmenu2 ul ul>li.about>a:after {
+	top: 16px;
+	right: 26px;
+	background: #dddddd;
+}
+
+#cssmenu2 ul ul>li.about>a:before {
+	top: 20px;
+	background: #dddddd;
+}
+
+/*
+# Help/Ajuda 
+*/
+#cssmenu2 ul>li.help>a:after {
+	position: absolute;
+	content: url(../../images/icon/icon_help.png);
+	left: 82%;
+	top: 6px;
+}
+
+#cssmenu2 ul>li.help>a:before {
+	/*Quando clica*/
+	
+}
+
+#cssmenu2 ul ul>li.help>a:after {
+	top: 16px;
+	right: 26px;
+	background: #dddddd;
+}
+
+#cssmenu2 ul ul>li.help>a:before {
+	top: 20px;
+	background: #dddddd;
+}
+
+/*
+# Help/Ajuda 
+*/
+#cssmenu2 ul>li.pay>a:after {
+	position: absolute;
+	content: url(../../images/icon/icon_pay.png);
+	left: 82%;
+	top: 6px;
+}
+
+#cssmenu2 ul>li.pay>a:before {
+	/*Quando clica*/
+	
+}
+
+#cssmenu2 ul ul>li.pay>a:after {
+	top: 16px;
+	right: 26px;
+	background: #dddddd;
+}
+
+#cssmenu2 ul ul>li.pay>a:before {
+	top: 20px;
+	background: #dddddd;
+}
