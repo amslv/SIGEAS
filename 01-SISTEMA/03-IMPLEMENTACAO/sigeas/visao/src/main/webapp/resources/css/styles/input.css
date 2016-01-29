@@ -1,0 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito:300);
+
+#j_username {
+	margin-top: 5px;
+	border-radius: 10px;
+	border-style: inset;
+}
+
+#j_password {
+	margin-top: 5px;
+	border-radius: 10px;
+	border-style: inset;
+}
+
+/* Fonte do placeholder */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	font-family: "Nunito", sans-serif;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	font-family: "Nunito", sans-serif;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	font-family: "Nunito", sans-serif;
+}
+:placeholder-shown {
+	font-family: "Nunito", sans-serif;
+}
