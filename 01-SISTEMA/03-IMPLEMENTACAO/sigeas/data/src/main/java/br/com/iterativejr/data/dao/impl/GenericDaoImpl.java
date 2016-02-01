@@ -3,14 +3,14 @@
  */
 package br.com.iterativejr.data.dao.impl;
 
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
+import javax.persistence.Query;
 import br.com.iterativejr.data.dao.GenericDao;
 
 /**
@@ -81,9 +81,9 @@ public class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 	 */
 	public List<T> buscarTodos() {
 
-		TypedQuery<T> query = entityManager.createQuery("select t from "
-				+ tipo.getName() + " t", tipo);
-	
+		Query query = entityManager.createQuery("select t from "
+				+ tipo.getName() + " t");
+
 		return query.getResultList();
 	}
 
@@ -97,5 +97,4 @@ public class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 		T apagar = this.entityManager.merge(entidade);
 		this.entityManager.remove(apagar);
 	}
-
 }
