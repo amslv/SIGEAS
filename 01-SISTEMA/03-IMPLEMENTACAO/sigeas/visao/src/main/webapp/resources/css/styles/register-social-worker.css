@@ -1,0 +1,13 @@
+.ui-breadcrumb {
+	display: block;
+	border-top: 17px solid transparent;
+	border-bottom: 17px solid transparent;
+	border-left: 10px solid white;
+	position: absolute;
+	background-color: none;
+	width: 920px;
+	margin-left: 200px;
+	border-bottom: 17px solid transparent;
+	border-left: 10px solid white;
+	position: absolute;
+}
