@@ -24,11 +24,11 @@
 			logout-url="/logout.html" />
 	</http>
 
-	<authentication-manager>
-		<authentication-provider ref="customAuthenticationProvider" />
-	</authentication-manager>
-	
 	<!-- <authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager> -->
+	
+	 <authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="jimi" password="123" authorities="ROLE_STUDENT" />
@@ -36,6 +36,6 @@
 				<user name="gabi" password="123" authorities="ROLE_FINANCIAL_WORKER" />
 			</user-service>
 		</authentication-provider>
-	</authentication-manager>  -->
+	</authentication-manager> 
 
 </beans:beans>
