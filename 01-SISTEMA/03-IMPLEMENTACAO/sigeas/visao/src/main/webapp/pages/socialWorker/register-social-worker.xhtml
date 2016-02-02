@@ -8,6 +8,9 @@
 	template="/pages/socialWorker/menu-template-social-worker.xhtml">
 
 
+	<ui:define name="title">Novo Assistente Social</ui:define>
+
+
 	<ui:define name="header">
 		<canvas id="rectangle" width="1900" height="120"></canvas>
 		<script>
@@ -29,7 +32,7 @@
 			context.font = 'bold 28pt Arial';
 			context.textAlign = 'center';
 			context.fillStyle = '#5a7d60';
-			context.fillText('Novo Assistente', x, y);
+			context.fillText('Novo Assistente Social', x, y);
 		</script>
 	</ui:define>
 
@@ -48,7 +51,7 @@
 				
 				<br />
 				
-				<p:panel header="Assistentes com acesso" id="panel-assistentes" style="width:920px; margin-left: 210px">
+				<p:panel header="Assistentes com acesso" id="panel-assistences" style="width:920px; margin-left: 210px">
 				
 					<br />
 					
@@ -62,8 +65,8 @@
 							<p:outputLabel value="Nome" />
 						</p:column>
 
-						<p:column headerText="Remover Acesso" style="width: 180px">
-							<p:commandButton id="btRemover" icon="ui-icon ui-icon-trash"/>
+						<p:column headerText="Remover Acesso" style="width: 160px">
+							<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"/>
 						</p:column>
 					</p:dataTable>
 				</p:panel>
@@ -73,7 +76,7 @@
 				
 				<p:panel header="Novo Acesso" id="panel-new-acess" style="width:920px; margin-left: 210px">
 				
-					<br />
+					<br/>
 
 					<h:panelGrid columns="5" border="0">
 
