@@ -16,14 +16,14 @@
 	<tx:annotation-driven />
 
 	<!-- Provides access to the JNDI datasource -->
-	<!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/screamtoolds" /> -->
-	<bean id="dataSource"
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/sigeasds" />
+	<!--<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
 		<property name="url" value="jdbc:hsqldb:mem:paging" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
-	</bean>
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>-->
 
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
@@ -39,7 +39,7 @@
 
 
 	<!-- ENTITYMANAGER -->
-	<!-- <bean id="entityManagerFactory"
+	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitManager" ref="persistenceUnitManager" />
 		<property name="jpaVendorAdapter">
@@ -56,9 +56,9 @@
 			</props>
 		</property>
 		<property name="persistenceUnitName" value="sigeas" />
-	</bean> -->
+	</bean> 
 	
-	<!-- ENTITYMANAGER -->
+	<!-- ENTITYMANAGER 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitManager" ref="persistenceUnitManager" />
@@ -71,7 +71,7 @@
 			</bean>
 		</property>
 		<property name="persistenceUnitName" value="sigeas" />
-	</bean>
+	</bean>-->
 
 	<!-- EXCEPTION TRANSLATION -->
 	<bean

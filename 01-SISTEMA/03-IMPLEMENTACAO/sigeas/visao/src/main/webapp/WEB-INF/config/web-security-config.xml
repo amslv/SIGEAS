@@ -24,11 +24,11 @@
 			logout-url="/logout.html" />
 	</http>
 
-	<!-- <authentication-manager>
+	 <!-- <authentication-manager>
 		<authentication-provider ref="customAuthenticationProvider" />
-	</authentication-manager> -->
+	</authentication-manager>  -->
 	
-	 <authentication-manager>
+	<authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="jimi" password="123" authorities="ROLE_STUDENT" />

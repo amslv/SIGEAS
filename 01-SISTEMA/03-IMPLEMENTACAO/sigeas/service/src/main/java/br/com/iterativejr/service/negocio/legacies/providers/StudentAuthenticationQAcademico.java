@@ -38,23 +38,60 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
  */
 public class StudentAuthenticationQAcademico extends IAuthenticator {
 
+	/**
+	 * 
+	 */
 	private static StudentAuthenticationQAcademico instance = null;
 
+	/**
+	 * 
+	 */
 	private HtmlPage currentPage;
+	/**
+	 * 
+	 */
 	private HtmlPage homePage;
 
+	/**
+	 * 
+	 */
 	private static final String LOGIN_PAGE_URL = "https://academico.ifpb.edu.br/qacademico/index.asp?t=1001";
+	/**
+	 * 
+	 */
 	private static final String LOGIN_PAGE_TITLE = "Q-Acadêmico Web para IF-PBBem Vindo!";
+	/**
+	 * 
+	 */
 	private static final String AUTH_FORM_NAME = "frmLogin";
+	/**
+	 * 
+	 */
 	private static final String SUBMIT_ELEM_NAME = "Submit";
+	/**
+	 * 
+	 */
 	private static final String USERNAME_ELEM_NAME = "LOGIN";
+	/**
+	 * 
+	 */
 	private static final String PASSWORD_ELEM_NAME = "SENHA";
 
+	/**
+	 * 
+	 */
 	private final String HOMEPAGE_URL = "https://academico.ifpb.edu.br/qacademico/index.asp?t=2071";
+	/**
+	 * 
+	 */
 	private final String HOMEPAGE_TITLE = "Q-Acadêmico Web para IF-PBMinhas "
 			+ "Disciplinas Atualmente em Curso";
 
-	// construtor privado para recuperar a conexão
+	/**
+	 * construtor privado para recuperar a conexão
+	 * @param login
+	 * @param password
+	 */
 	private StudentAuthenticationQAcademico(String login, String password) {
 		super.setLogin(login);
 		super.setPassword(password);

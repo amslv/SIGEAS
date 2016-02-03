@@ -1,6 +1,11 @@
+/**
+ * 
+ */
 package br.com.iterativejr.domains.entidade;
 
 import org.springframework.security.core.GrantedAuthority;
+
+import br.com.iterativejr.domains.entidade.enums.RoleName;
 
 /**
  * <p>
@@ -20,21 +25,51 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class Role implements GrantedAuthority {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * serial
+	 */
+    private static final long serialVersionUID = 1L;
 
-	private String name;
+    /**
+     * name
+     */
+    private RoleName name;
 
-	public Role(String name) {
-		super();
-		this.name = name;
-	}
+    /**
+     * construtor
+     */
+    public Role() {
+    }
 
-	public Role() {
-	}
+    /**
+     * construtor com parametro nome
+     * @param name
+     */
+    public Role(String name) {
+        this.name = RoleName.valueOf(name);
+    }
 
-	@Override
-	public String getAuthority() {
+    /**
+     * pega authority
+     */
+    @Override
+    public String getAuthority() {
+        return this.getName().name();
+    }
+
+    /**
+     * 
+     * @return
+     */
+	public RoleName getName() {
 		return name;
 	}
 
+	/**
+	 * 
+	 * @param name
+	 */
+	public void setName(RoleName name) {
+		this.name = name;
+	}
 }

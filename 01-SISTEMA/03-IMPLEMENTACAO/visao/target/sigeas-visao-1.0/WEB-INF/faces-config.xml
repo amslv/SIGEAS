@@ -9,8 +9,18 @@
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>main</from-outcome>
-			<to-view-id>/pages/main.xhtml</to-view-id>
+			<from-outcome>ROLE_STUDENT</from-outcome>
+			<to-view-id>/pages/student/index-student.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>ROLE_SOCIAL_WORKER</from-outcome>
+			<to-view-id>/pages/socialWorker/index-social-worker.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>ROLE_FINANCIAL_WORKER</from-outcome>
+			<to-view-id>/pages/financialWorker/index-financial-worker.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>

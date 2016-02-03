@@ -12,17 +12,17 @@ import java.io.Serializable;
 public abstract class EntidadeBasica implements Serializable {
 
 	/**
-	 * 
+	 * serial
 	 */
 	private static final long serialVersionUID = 3347012291986207784L;
 
 	/**
+	 * pega id
 	 * @return
 	 */
 	public abstract Long getId();
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -39,10 +39,10 @@ public abstract class EntidadeBasica implements Serializable {
 		return resultado;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @return resultado da igualdade
 	 */
 	@Override
 	public boolean equals(Object obj) {

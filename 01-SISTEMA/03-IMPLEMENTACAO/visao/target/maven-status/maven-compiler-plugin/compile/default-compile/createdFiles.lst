@@ -1,2 +1,5 @@
-br/com/iterativejr/visao/controller/LoginController.class
-br/com/iterativejr/visao/handler/ExceptionHandler.class
+br/com/iterativejr/visao/exeption/ExceptionHandler.class
+br/com/iterativejr/visao/handler/LoginSuccessHandler.class
+br/com/iterativejr/visao/controller/PermissionEmployeeController.class
+br/com/iterativejr/visao/controller/util/JsfUtil.class
+br/com/iterativejr/visao/controller/AccessController.class

@@ -7,28 +7,45 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
+ * 
+ * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
- * @author Vanderlan Gomes
- *   - Vlw!
  */
 public class JsfUtil {
-    
+
+	/**
+	 * Contrutor de classe vazio
+	 */
     private JsfUtil(){
-        
     }
 
+    /**
+     * Adciona uma mesagem de sucesso
+     * @param message
+     * 		mesagem de sucesso
+     */
     public static void addSuccessMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
                         message, message));
     }
 
+    /**
+     * Adciona uma mesagem de erro
+     * @param message
+     * 		mesagem de erro
+     */
     public static void addErrorMessage(String message) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR,
                         message, message));
     }
 
+    /**
+     * Redirecionar para determinado local
+     * 
+     * @param locate
+     */
     public static void redirect(String locate) {
 
         try {

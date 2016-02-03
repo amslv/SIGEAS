@@ -4,8 +4,21 @@ import br.com.iterativejr.domains.entidade.enums.RoleName;
 import br.com.iterativejr.service.negocio.legacies.requests.RequestJobUserSUAP;
 import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
+/**
+ * @author
+ *
+ */
 public class LoginProvider {
 	
+	/**
+	 * 
+	 * @param matricula
+	 * 		Matrícula
+	 * @param senha
+	 * 		Senha
+	 * @return
+	 * @throws SigeasException
+	 */
 	public String login(String matricula, String senha) throws SigeasException {
 		if (matricula.length() == 7) {
 			EmployeeAuthenticationSUAP instance = EmployeeAuthenticationSUAP

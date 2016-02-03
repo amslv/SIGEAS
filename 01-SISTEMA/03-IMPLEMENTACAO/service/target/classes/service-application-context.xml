@@ -14,9 +14,9 @@
 
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-		
-	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
-		<property name="validator" ref="validator"/>
+	<bean
+		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+		<property name="validator" ref="validator" />
 	</bean>
 
 </beans>

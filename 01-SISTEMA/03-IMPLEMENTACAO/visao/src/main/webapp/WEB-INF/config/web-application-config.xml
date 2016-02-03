@@ -27,4 +27,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 	
+	<!-- <bean id="customAuthenticationProvider" class="br.com.iterativejr.service.negocio.CustomAuthenticationProvider" />
+	<bean id="customLoginSuccessHandler" class="br.com.iterativejr.visao.handler.LoginSuccessHandler" /> -->
+	
 </beans>

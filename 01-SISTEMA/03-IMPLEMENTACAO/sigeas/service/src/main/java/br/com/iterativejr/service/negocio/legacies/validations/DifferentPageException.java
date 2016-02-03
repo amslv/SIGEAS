@@ -17,8 +17,13 @@ package br.com.iterativejr.service.negocio.legacies.validations;
  */
 public class DifferentPageException extends SigeasException {
 
+	/**
+	 */
 	private static final long serialVersionUID = 4001968279264501283L;
 
+	/**
+	 * Construtor
+	 */
 	public DifferentPageException(String mensagem) {
 		super(mensagem);
 	}

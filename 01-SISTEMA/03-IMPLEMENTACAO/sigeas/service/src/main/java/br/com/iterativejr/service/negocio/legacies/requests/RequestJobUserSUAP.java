@@ -17,14 +17,33 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
  *
  */
 public class RequestJobUserSUAP {
+
+	/**
+	 * 
+	 */
 	private EmployeeAuthenticationSUAP empAuth;
 
+	/**
+	 * 
+	 */
 	private static final String ASSISTENTE_EM_ADMINISTRACAO = "ASSISTENTE EM ADMINISTRACAO";
+	/**
+	 * 
+	 */
 	private static final String ASSISTENTE_SOCIAL_PCIFE = "ASSISTENTE SOCIAL (PCIFE)";
+	/**
+	 * 
+	 */
 	private HtmlPage currentPage;
 
+	/**
+	 * 
+	 */
 	private WebClient webClient;
 
+	/**
+	 * 
+	 */
 	public RequestJobUserSUAP(EmployeeAuthenticationSUAP empAuth) {
 		this.empAuth = empAuth;
 	}
@@ -63,5 +82,4 @@ public class RequestJobUserSUAP {
 							+ "solicitado!");
 		}
 	}
-
 }

@@ -8,18 +8,6 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-	<!-- inicia o style css do background -->
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/styles/background.css" />
-
-	<!-- inicia o style css dos botoes -->
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/styles/button.css" />
-
-	<!-- inicia o style css dos paineis -->
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/styles/panel.css" />
-
 	<!-- Seta o titulo na guia -->
 	<title><ui:insert name="title">Acesso Negado</ui:insert></title>
 </h:head>
@@ -27,8 +15,10 @@
 
 <h:body id="body-denied-acess">
 
-	<p:outputLabel>Acesso Negado! Volte a </p:outputLabel>
-	<p:link onclick="history.go(-1)">página anterior.</p:link>
+	<p:outputLabel id="alertAccessDenied">Acesso Negado!</p:outputLabel>
+	<p:outputLabel id="alertAccessDenied2">Volte a <p:link
+			id="alertAccessDeniedLink" onclick="history.go(-1)">página anterior.</p:link>
+	</p:outputLabel>
 
 </h:body>
 </html>

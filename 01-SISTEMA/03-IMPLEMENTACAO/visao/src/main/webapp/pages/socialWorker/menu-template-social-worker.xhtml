@@ -7,19 +7,21 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- inicia o style css dos paineis -->
-<link rel="stylesheet" type="text/css"
-	href="../../resources/css/styles/menu-lateral-social-worker.css" />
-<link rel="stylesheet" type="text/css"
-	href="../../resources/css/styles/background.css" />
-<script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
-<script
-	src="../../resources/javascript/script-menu-lateral-social-worker.js"></script>
-<title><ui:insert name="title">Menu</ui:insert></title>
-</head>
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- inicia o style css dos paineis -->
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/styles/menu-lateral-social-worker.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/styles/background.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/styles/register-social-worker.css" />
+	<script src="http://code.jquery.com/jquery-latest.min.js"
+		type="text/javascript"></script>
+	<script
+		src="../../resources/javascript/script-menu-lateral-social-worker.js"></script>
+	<title><ui:insert name="title">Menu</ui:insert></title>
+</h:head>
 
 <body id="body-init">
 	<div id="side" onclick="return true">
@@ -73,7 +75,7 @@
 						<li><a href='#'>Aluno<img id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_student.png"
 								style="position: absolute; left: 83%; top: 9px;" /></a></li>
-						<li><a href='#'>Assistente Social<img
+						<li><a href='register-social-worker.html'>Assistente Social<img
 								id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_social_worker.png"
 								style="position: absolute; left: 83%; top: 9px;" /></a></li>
@@ -97,7 +99,7 @@
 								src="../../resources/images/icon/icon_individual_report.png"
 								style="position: absolute; left: 83%; top: 9px;" /></a></li>
 					</ul></li>
-				<li><form action="../../logout" method="post">
+				<li><form action="../../logout.html" method="post">
 						<input type="submit" value="Log out" />
 					</form></li>
 			</ul>
@@ -112,9 +114,7 @@
 	</div>
 	<div id="header">
 		<ui:insert name="header">
-			<p:panel columns="1" style="width : 100%; text-align:center">
-				<h:outputLabel value="" />
-			</p:panel>
+
 		</ui:insert>
 	</div>
 

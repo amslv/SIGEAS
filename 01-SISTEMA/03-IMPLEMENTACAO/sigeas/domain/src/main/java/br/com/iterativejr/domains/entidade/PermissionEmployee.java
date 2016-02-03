@@ -68,7 +68,7 @@ public class PermissionEmployee extends EntidadeBasica {
 	 * 
 	 */
 	@NotNull
-	@Column(name = "matricula")
+	@Column(name = "matricula", unique=true)
 	private String matricula;
 
 	@NotNull
@@ -127,9 +127,4 @@ public class PermissionEmployee extends EntidadeBasica {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-
 }

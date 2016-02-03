@@ -1,1 +1,35 @@
-@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Nunito:300);
+
+#input_enter {
+	font-family: "Nunito", sans-serif;
+	font-size: 95%;
+}
+
+#alertLogin {
+    font-family: "Nunito", sans-serif;
+    font-size: 15pt;
+}
+
+#alertSuccess {
+    font-family: "Nunito", sans-serif;
+    font-size: 15pt;
+}
+
+#alertInput {
+    font-family: "Nunito", sans-serif;
+    font-size: 15pt;
+}
+
+/* Fonte do placeholder */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	font-family: "Nunito", sans-serif;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	font-family: "Nunito", sans-serif;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	font-family: "Nunito", sans-serif;
+}
+:placeholder-shown {
+	font-family: "Nunito", sans-serif;
+}

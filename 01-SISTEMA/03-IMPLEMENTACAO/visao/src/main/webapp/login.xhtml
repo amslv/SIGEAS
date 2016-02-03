@@ -19,8 +19,8 @@
 	<!-- inicia o style css dos paineis -->
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/styles/panel.css" />
-
-	<!-- inicia o style css dos paineis -->
+		
+		<!-- inicia o style css dos paineis -->
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/styles/input.css" />
 
@@ -29,44 +29,61 @@
 </h:head>
 
 
-
-
 <h:body id="body-login">
-	<h:form id="login" prependId="false">
-		<p:growl id="growl" showDetail="true" />
 
-		<h:panelGroup>
-			<p:messages id="messages"></p:messages>
-		</h:panelGroup>
-		<h:panelGrid columns="1" cellpadding="1" styleClass="panel-login" id="grid">
+	<form id="form-login" action="j_spring_security_check" method="post">
+		<p:growl id="growl" showDetail="true" />
+		<h:panelGrid columns="1" cellpadding="1" styleClass="panel-login">
 
 			<img id="icon-sigeas-login"
 				src="./resources/images/icon/logo/sigeas-icon-117x158.png"
 				style="position: relative; left: 23%;" />
 
 			<div id="target" />
-			<p:inputText id="username" required="true"
-				value="#{loginController.login}" placeholder="Matrícula" requiredMessage="Login inválido" />
+			<p:inputText id="j_username" placeholder="Matrícula" />
 
-			<p:password id="password" required="true"
-				value="#{loginController.senha}" 
-				placeholder="********" requiredMessage="Senha inválida"/>
+			<p:password id="j_password" requiredMessage="Senha inválida"
+				required="true" placeholder="********" />
 
 			<p:outputPanel style="width: 100%; text-align:center" layout="block">
-				<p:commandButton id="entrarButton" value="Entrar"
-					update="messages, grid" action="#{loginController.executarLogin}" />
+				<input id="input_enter" name="submit" type="submit" value="Entrar"
+					onclick="display_alert();" />
 			</p:outputPanel>
 		</h:panelGrid>
+	</form>
 
-	</h:form>
+	<p id="alertSuccess" class="message">${messageSuccess}</p>
+	<p id="alertLogin" class="message">${message}</p>
+	<p id="alertInput" class="message"></p>
+
+	<script type="text/javascript">
+		function display_alert() {
+			if (document.getElementById('j_username').value == "") {
+				var target = document.getElementById('alertInput');
+				target.appendChild(document.createTextNode('Matrícula Inválida.'));
+				var element = document.querySelector("form");
+				element.addEventListener("submit", function(event) {
+					event.preventDefault();
+				});
+				setTimeout(function() {
+					window.location.replace("login.html");
+				}, 1000);
+			} else {
+				if (document.getElementById('j_password').value == "") {
+					var target = document.getElementById('alertInput');
+					target.appendChild(document
+							.createTextNode('Senha Inválida.'));
+					var element = document.querySelector("form");
+					element.addEventListener("submit", function(event) {
+						event.preventDefault();
+					});
+					setTimeout(function() {
+						window.location.replace("login.html");
+					}, 1000);
+				}
+			}
+		}
+	</script>
+
 </h:body>
-
-
-
-
-
-
-
-
-
 </html>

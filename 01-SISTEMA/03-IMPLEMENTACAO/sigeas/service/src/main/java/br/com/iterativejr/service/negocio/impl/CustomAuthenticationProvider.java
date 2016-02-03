@@ -18,22 +18,9 @@ import br.com.iterativejr.domains.entidade.enums.RoleName;
 import br.com.iterativejr.service.negocio.legacies.providers.LoginProvider;
 
 /**
- * <p>
- * <b> Título </b>
- * </p>
- *
- * <p>
- * Descrição
- * </p>
- * 
- * <pre>
- * @see <a href="http://www.linkreferencia.com">Link de Referencia</a>
- * </pre>
- * 
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
  */
-
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 

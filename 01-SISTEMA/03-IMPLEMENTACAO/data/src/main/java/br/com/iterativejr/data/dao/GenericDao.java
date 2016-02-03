@@ -6,7 +6,7 @@ package br.com.iterativejr.data.dao;
 import java.util.List;
 
 /**
- * @author edsf
+ * @author edsf (Dumbledore)
  *
  */
 public interface GenericDao<T, K> {

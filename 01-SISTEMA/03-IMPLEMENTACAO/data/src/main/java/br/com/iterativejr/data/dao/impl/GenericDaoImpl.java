@@ -9,23 +9,26 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
+import javax.persistence.Query;
 import br.com.iterativejr.data.dao.GenericDao;
 
 /**
- * @author edsf
- *
+ * @author edsf (Dumbledore)
  */
 public class GenericDaoImpl<T, K> implements GenericDao<T, K> {
-
+	/**
+	 * Inicia entityManager pelo persistentContext
+	 */
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	/**
+	 * Classe do DAO
+	 */
 	private Class<T> tipo;
 
 	/**
-	 * 
+	 * Inicia Variaveis
 	 */
 	public GenericDaoImpl() {
 		Type t = getClass().getGenericSuperclass();
@@ -33,10 +36,9 @@ public class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 		tipo = (Class) pt.getActualTypeArguments()[0];
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.edu.ifpb.screamtool.data.dao.GenericDao#criar(java.lang.Object)
+	/**
+	 * cria nova entidade
+	 * @return nova entidade
 	 */
 	public T criar(T entidade) {
 
@@ -46,56 +48,49 @@ public class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * br.edu.ifpb.screamtool.data.dao.GenericDao#buscarPorId(java.lang.Object)
+	/**
+	 * busca entidade
+	 * @return entidade
 	 */
 	public T buscarPorId(K id) {
 
 		return (T) this.entityManager.find(tipo, id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * br.edu.ifpb.screamtool.data.dao.GenericDao#atualizar(java.lang.Object)
+	/**
+	 * atualiza entidade
+	 * @return entidade
 	 */
 	public T atualizar(T entidade) {
 
 		T resultado = this.entityManager.merge(entidade);
 
 		this.entityManager.flush();
-		
+
 		this.entityManager.detach(resultado);
 
 		return resultado;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.edu.ifpb.screamtool.data.dao.GenericDao#buscarTodos()
+	/**
+	 * busca todas entidades
+	 * @return entidades
 	 */
 	public List<T> buscarTodos() {
 
-		TypedQuery<T> query = entityManager.createQuery("select t from "
-				+ tipo.getName() + " t", tipo);
-	
+		Query query = entityManager.createQuery("select t from "
+				+ tipo.getName() + " t");
+
 		return query.getResultList();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.edu.ifpb.screamtool.data.dao.GenericDao#apagar(java.lang.Object)
+	/**
+	 * apaga entidade
+	 * @return entidade
 	 */
 	public void apagar(T entidade) {
 
 		T apagar = this.entityManager.merge(entidade);
 		this.entityManager.remove(apagar);
 	}
-
 }

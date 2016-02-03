@@ -18,16 +18,40 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  */
 public class EmployeeAuthenticationSUAP extends IAuthenticator {
-
+	
+	/**
+	 * 
+	 */
 	private static EmployeeAuthenticationSUAP instance = null;
 
+	/**
+	 * 
+	 */
 	private HtmlPage currentPage;
 
+	/**
+	 * 
+	 */
 	private static final String LOGIN_PAGE_URL = "https://suap.ifpb.edu.br/accounts/login/?next=/";
-	public static String HOME_PAGE_URL = "https://suap.ifpb.edu.br/rh/servidor/{matricula}/?tab=0";	
+	/**
+	 * 
+	 */
+	public static String HOME_PAGE_URL = "https://suap.ifpb.edu.br/rh/servidor/{matricula}/?tab=0";
+	/**
+	 * 
+	 */
 	private static final String LOGIN_PAGE_TITLE = "SUAP: Sistema Unificado de Administração Pública - Login";
+	/**
+	 * 
+	 */
 	private static final String SUBMIT_ELEM_NAME = "Acessar";
+	/**
+	 * 
+	 */
 	private static final String USERNAME_ELEM_NAME = "username";
+	/**
+	 * 
+	 */
 	private static final String PASSWORD_ELEM_NAME = "password";
 
 	// construtor privado para recuperar a conexão

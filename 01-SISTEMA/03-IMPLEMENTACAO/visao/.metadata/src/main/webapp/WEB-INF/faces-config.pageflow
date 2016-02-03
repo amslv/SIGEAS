@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14537410604570" configfile="/sigeas-visao/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14537417621564" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14537417621565" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/main.xhtml" id="pf14537417621566" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14537417621565" path="/pages/main.xhtml"/>
-  <links id="pf14537417621565" target="pf14537417621566" source="pf14537417621564" outcome="main" redirect="true"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14537417621564" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14539188650992 pf14539188792524 pf14539189207868" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/student/index-student.xhtml" id="pf14539188650993" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14539188650992" path="/pages/student/index-student.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/socialWorker/index-social-worker.xhtml" id="pf14539188792525" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14539188792524" path="/pages/socialWorker/index-social-worker.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/financialWorker/index-financial-worker.xhtml" id="pf14539189207869" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14539189207868" path="/pages/financialWorker/index-financial-worker.xhtml"/>
+  <links id="pf14539188650992" target="pf14539188650993" source="pf14537417621564" outcome="ROLE_STUDENT" redirect="true"/>
+  <links id="pf14539188792524" target="pf14539188792525" source="pf14537417621564" outcome="ROLE_SOCIAL_WORKER" redirect="true"/>
+  <links id="pf14539189207868" target="pf14539189207869" source="pf14537417621564" outcome="ROLE_FINANCIAL_WORKER" redirect="true"/>
 </pageflow:Pageflow>

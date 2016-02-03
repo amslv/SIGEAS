@@ -1,12 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Nunito:300);
 
 #input_enter {
 	background-color: #F3F3F3;
 	border: 1px solid #5B7F62;
 	margin-top: 10px;
 	border-radius: 5px;
-	font-family: "Nunito", sans-serif;
-	font-size: 95%;
 	text-align: center;
 	transition: all 0.3s;
 	padding-top: 2%;

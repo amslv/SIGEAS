@@ -12,14 +12,29 @@ import com.gargoylesoftware.htmlunit.WebClient;
  */
 public abstract class IAuthenticator {
 
+	/**
+	 * 
+	 */
 	private final WebClient webClient = new WebClient(BrowserVersion.CHROME);
 
+	/**
+	 * 
+	 */
 	private String login;
 	
+	/**
+	 * 
+	 */
 	private String password;
 
+	/**
+	 * 
+	 */
 	abstract boolean login() throws SigeasException;
 
+	/**
+	 * 
+	 */
 	abstract void logout() throws SigeasException;
 
 	/**
@@ -32,22 +47,31 @@ public abstract class IAuthenticator {
 		return webClient;
 	}
 
+	/**
+	 * Retorna login
+	 */
 	public String getLogin() {
 		return login;
 	}
 
+	/**
+	 * Modifica login
+	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
+	/**
+	 * Retorna senha
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Modifica senha
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
-
 }

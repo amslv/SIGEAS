@@ -17,17 +17,6 @@ import org.springframework.stereotype.Component;
 import br.com.iterativejr.domains.entidade.Role;
 
 /**
- * <p>
- * <b> Título </b>
- * </p>
- *
- * <p>
- * Descrição
- * </p>
- * 
- * <pre>
- * @see <a href="http://www.linkreferencia.com">Link de Referencia</a>
- * </pre>
  * 
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
@@ -35,8 +24,14 @@ import br.com.iterativejr.domains.entidade.Role;
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
+	/**
+	 * Encapsula a lógica de redirecionamento.
+	 */
     RedirectStrategy redirect = new DefaultRedirectStrategy();
 
+    /**
+     * Chamado quando o usuário tem uma autenticação correta.
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)  
             throws IOException, ServletException {
