@@ -7,6 +7,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -32,6 +33,7 @@ import br.com.iterativejr.service.negocio.PermissionEmployeeService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/test/resource/service-application-context-test.xml" })
+@Ignore
 public class PermissionEmployeeServiceTest {
 
 	/**
