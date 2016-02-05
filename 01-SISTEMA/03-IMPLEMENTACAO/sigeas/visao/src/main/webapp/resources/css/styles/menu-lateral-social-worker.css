@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito:300);
+
 @charset "UTF-8";
 /*
 
@@ -26,7 +28,7 @@
 
 body {
 	margin-left: 20px;
-	font: 62.5%/1.2 Arial, sans-serif, bold;
+	font: 62.5%/1.2 "Nunito", sans-serif;
 }
 
 #side { /
@@ -36,8 +38,8 @@ body {
 	-o-transition: all 0.15s ease;
 	transition: all 0.15s ease; /*Tempo que a janela abre*/
 	font-size: 1.2em;
-	background: #0d8650; /*Muda a cor do menu*/
-	background-image: #0d8650;
+	background: #5B7F62; /*Muda a cor do menu #0d8650*/
+	background-image: #5B7F62;
 	height: 100%;
 	overflow: hidden;
 	width: 370px;
@@ -91,8 +93,30 @@ body {
 
 #cssmenu {
 	width: 235px;
-	font-family: Raleway, sans-serif;
+	font-family: "Nunito", sans-serif;
 	color: #ffffff;
+}
+
+#cssmenu ul>li.programs>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.activities>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.concessions>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.users>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.reports>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.help>a {
+	font-weight: bold;
+}
+#cssmenu ul>li.about>a {
+	font-weight: bold;
 }
 
 #cssmenu ul ul {
@@ -114,11 +138,11 @@ body {
 	font-size: 16px;
 	text-decoration: none;
 	color: #ffffff;
-	background: #0d8650;
+	background: #5B7F62;
 }
 
 #cssmenu>ul>li>a:hover {
-	color: #d8f3f0;
+	background: #53ba8c;
 }
 
 /*Estilo subitens*/
@@ -128,8 +152,8 @@ body {
 	z-index: 2;
 	font-size: 14px;
 	text-decoration: none;
-	color: #dddddd;
-	background: #49505a;
+	color: #ffffff;
+	background: #435e48;
 	/*Icon*/
 }
 
@@ -138,7 +162,7 @@ body {
 }
 
 #cssmenu ul ul li a:hover {
-	color: #ffffff;
+	background: #53ba8c;
 }
 
 /*
@@ -276,7 +300,6 @@ body {
 	top: 20px;
 	background: #dddddd;
 }
-
 
 /*
 # About/Sobre Nós
