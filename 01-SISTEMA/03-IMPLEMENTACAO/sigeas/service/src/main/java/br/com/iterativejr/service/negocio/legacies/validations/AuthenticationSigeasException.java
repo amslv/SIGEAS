@@ -16,12 +16,13 @@ package br.com.iterativejr.service.negocio.legacies.validations;
 public class AuthenticationSigeasException extends SigeasException {
 
 	/**
-	 * 
+	 * Serial da exception
 	 */
 	private static final long serialVersionUID = 2984251099836375722L;
 
 	/**
-	 * Construtor
+	 * Construtor da exception
+	 * @param mensagem mensagem de erro
 	 */
 	public AuthenticationSigeasException(String mensagem) {
 		super(mensagem);

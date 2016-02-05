@@ -3,58 +3,64 @@ package br.com.iterativejr.service.negocio.legacies.providers;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import br.com.iterativejr.service.negocio.legacies.validations.AuthenticationSigeasException;
-import br.com.iterativejr.service.negocio.legacies.validations.ConnectionException;
-import br.com.iterativejr.service.negocio.legacies.validations.DifferentPageException;
-import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
-
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
+import br.com.iterativejr.service.negocio.legacies.validations.AuthenticationSigeasException;
+import br.com.iterativejr.service.negocio.legacies.validations.DifferentPageException;
+import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
+
 /**
+ * Classe responsavel por autenticar usuario no SUAP
+ * 
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  */
 public class EmployeeAuthenticationSUAP extends IAuthenticator {
 	
 	/**
-	 * 
+	 * Instancia do SUAP
 	 */
 	private static EmployeeAuthenticationSUAP instance = null;
 
 	/**
-	 * 
+	 * Pagina do Suap
 	 */
 	private HtmlPage currentPage;
 
 	/**
-	 * 
+	 * URL do Login
 	 */
 	private static final String LOGIN_PAGE_URL = "https://suap.ifpb.edu.br/accounts/login/?next=/";
 	/**
-	 * 
+	 * URL da pagina
 	 */
-	public static String HOME_PAGE_URL = "https://suap.ifpb.edu.br/rh/servidor/{matricula}/?tab=0";
+	public static final String HOME_PAGE_URL = "https://suap.ifpb.edu.br/rh/servidor/{matricula}/?tab=0";
 	/**
-	 * 
+	 * titulo da Pagina
 	 */
 	private static final String LOGIN_PAGE_TITLE = "SUAP: Sistema Unificado de Administração Pública - Login";
 	/**
-	 * 
+	 * Nome do Submit
 	 */
 	private static final String SUBMIT_ELEM_NAME = "Acessar";
 	/**
-	 * 
+	 * Username
 	 */
 	private static final String USERNAME_ELEM_NAME = "username";
 	/**
-	 * 
+	 * Senha 
 	 */
-	private static final String PASSWORD_ELEM_NAME = "password";
+	private static final String SENHA_ELEM_NAME = "password";
 
-	// construtor privado para recuperar a conexão
+	/**
+	 * construtor privado para recuperar a conexão
+	 * 
+	 * @param login login do camarada
+	 * @param password password do camarada
+	 */
 	private EmployeeAuthenticationSUAP(String login, String password) {
 		super.setLogin(login);
 		super.setPassword(password);
@@ -82,6 +88,8 @@ public class EmployeeAuthenticationSUAP extends IAuthenticator {
 	/**
 	 * este método serve para estabelecer um login no sistema para que seja
 	 * possivel recuperar informações dentro da sessão do servidor.
+	 * @return true caso tenha efetuado login
+	 * @throws caso algo errado ocorrer
 	 */
 	public boolean login() throws SigeasException {
 		try {
@@ -103,7 +111,7 @@ public class EmployeeAuthenticationSUAP extends IAuthenticator {
 				final HtmlTextInput username = form
 						.getInputByName(USERNAME_ELEM_NAME);
 				final HtmlPasswordInput pass = form
-						.getInputByName(PASSWORD_ELEM_NAME);
+						.getInputByName(SENHA_ELEM_NAME);
 				final HtmlSubmitInput button = form.getInputByValue(SUBMIT_ELEM_NAME);
 				/*
 				 * a partir dos elementos Input recuperados são setados os
@@ -130,13 +138,13 @@ public class EmployeeAuthenticationSUAP extends IAuthenticator {
 				
 			}
 		} catch (DifferentPageException ex) {
-			throw new DifferentPageException("Pagina Diferente");
+			throw new SigeasException("Pagina Diferente");
 		} catch (UnknownHostException ex) {
-			throw new ConnectionException(
+			throw new SigeasException(
 					"Não foi possivel estabelecer uma conexão, "
 							+ "verifique sua internet");
 		} catch (IOException ex) {
-			throw new RuntimeException(
+			throw new SigeasException(
 					"Ocorreu algum problema em retornar o recurso "
 							+ "solicitado!");
 		}

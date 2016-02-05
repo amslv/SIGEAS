@@ -5,19 +5,24 @@ import br.com.iterativejr.service.negocio.legacies.requests.RequestJobUserSUAP;
 import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
 /**
- * @author
+ * <p>
+ * <b> Login provider </b>
+ * </p>
+ *
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
 public class LoginProvider {
 	
 	/**
+	 * Realiza o Login
 	 * 
 	 * @param matricula
-	 * 		Matrícula
+	 * 		Matrícula do camarada
 	 * @param senha
-	 * 		Senha
-	 * @return
-	 * @throws SigeasException
+	 * 		Senha do camarada
+	 * @return login
+	 * @throws SigeasException caso algo de errado aconteca
 	 */
 	public String login(String matricula, String senha) throws SigeasException {
 		if (matricula.length() == 7) {

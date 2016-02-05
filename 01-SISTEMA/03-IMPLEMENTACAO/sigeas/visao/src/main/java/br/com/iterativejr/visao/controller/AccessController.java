@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
  */
-
 @Controller
 public class AccessController {
 
 	/**
 	 * Método que retorna página de login para o requestMapping do Spring
 	 * 
-	 * @param model
-	 * @param message
+	 * @param model modelo
 	 * @return
 	 * 		referência à página de login
 	 */
@@ -31,8 +29,6 @@ public class AccessController {
 	/**
 	 * Método que retorna página de acesso negado para o requestMapping do Spring
 	 * 
-	 * @param model
-	 * @param message
 	 * @return
 	 * 		referência à página de acesso negado
 	 */
@@ -44,8 +40,7 @@ public class AccessController {
 	/**
 	 * Método que retorna página de falha no login para o requestMapping do Spring
 	 * 
-	 * @param model
-	 * @param message
+	 * @param model modelo
 	 * @return
 	 * 		referência à página de falha de login
 	 */
@@ -58,8 +53,7 @@ public class AccessController {
 	/**
 	 * Método que retorna página de logout com sucesso para o requestMapping do Spring
 	 * 
-	 * @param model
-	 * @param message
+	 * @param model modelo
 	 * @return
 	 * 		referência à página de logout com sucesso
 	 */

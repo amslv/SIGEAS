@@ -12,19 +12,32 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 
- * @author angus
+ * <p>
+ * <b> Permissao para Assitentes Sociais </b>
+ * </p>
+ *
+ * <p>
+ * Classe reponsavel por manter dados necessarios para o acesso
+ * </p>
+ * 
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "PermissionEmployee.verificarAcesso", query = "SELECT 1 FROM PermissionEmployee u where u.matricula = :matricula"),
-	@NamedQuery(name = "PermissionEmployee.buscaPorMatricula", query = "SELECT u FROM PermissionEmployee u where u.matricula = :matricula")})
+@NamedQueries({
+		@NamedQuery(name = "PermissionEmployee.verificarAcesso", query = "SELECT 1 FROM PermissionEmployee u where u.matricula = :matricula"),
+		@NamedQuery(name = "PermissionEmployee.buscaPorMatricula", query = "SELECT u FROM PermissionEmployee u where u.matricula = :matricula") })
 public class PermissionEmployee extends EntidadeBasica {
-		
+
 	/**
+	 * Construtor full
 	 * 
 	 * @param id
+	 *            id do camarada
 	 * @param matricula
+	 *            matricula do suap
 	 * @param nome
+	 *            nome ou apelido
 	 */
 	public PermissionEmployee(Long id, String matricula, String nome) {
 		super();
@@ -34,9 +47,12 @@ public class PermissionEmployee extends EntidadeBasica {
 	}
 
 	/**
+	 * Construtor matricula e nome
 	 * 
 	 * @param matricula
+	 *            matricula do suap
 	 * @param nome
+	 *            nome ou apelido
 	 */
 	public PermissionEmployee(String matricula, String nome) {
 		super();
@@ -45,18 +61,18 @@ public class PermissionEmployee extends EntidadeBasica {
 	}
 
 	/**
-	 * 
+	 * construstor default
 	 */
 	public PermissionEmployee() {
 	}
 
 	/**
-	 * 
+	 * serial da classe
 	 */
 	private static final long serialVersionUID = -4718749697624442411L;
 
 	/**
-	 * 
+	 * Id unico do usuario
 	 */
 	@Id
 	@SequenceGenerator(name = "PE_PRDID_GENERATOR", sequenceName = "seq_permissionemployee")
@@ -65,19 +81,24 @@ public class PermissionEmployee extends EntidadeBasica {
 	private Long id;
 
 	/**
-	 * 
+	 * Matricula nao nula e unica
 	 */
 	@NotNull
-	@Column(name = "matricula", unique=true)
+	@Column(name = "matricula", unique = true)
 	private String matricula;
 
+	/**
+	 * Nmoe do camarada
+	 */
 	@NotNull
 	@Column(name = "nome")
 	private String nome;
-	
+
 	/**
+	 * Construtor so com matricula
 	 * 
 	 * @param matricula
+	 *            do suap
 	 */
 	public PermissionEmployee(String matricula) {
 		super();
@@ -85,23 +106,28 @@ public class PermissionEmployee extends EntidadeBasica {
 	}
 
 	/**
+	 * pega matricula
 	 * 
-	 * @return
+	 * @return matricula pega matricula
 	 */
 	public String getMatricula() {
 		return matricula;
 	}
 
 	/**
+	 * seta matricula
 	 * 
 	 * @param matricula
+	 *            nova matricula
 	 */
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
 	/**
+	 * transforma em string
 	 * 
+	 * @return string do obj
 	 */
 	@Override
 	public String toString() {
@@ -109,21 +135,40 @@ public class PermissionEmployee extends EntidadeBasica {
 	}
 
 	/**
+	 * Pega id
 	 * 
+	 * @return id recuperado
 	 */
 	@Override
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * Pega nome
+	 * 
+	 * @return nome recuperado
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Seta nome
+	 * 
+	 * @param nome
+	 *            novo nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * Seta id
+	 * 
+	 * @param novo
+	 *            id
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}

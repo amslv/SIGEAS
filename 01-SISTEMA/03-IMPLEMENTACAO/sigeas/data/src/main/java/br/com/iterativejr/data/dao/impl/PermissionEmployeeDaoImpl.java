@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.iterativejr.data.dao.impl;
 
 import java.util.List;
@@ -14,17 +11,25 @@ import javax.persistence.Query;
 
 /**
  * 
- * @author angus
+ * <p>
+ * <b> Implementacao do DAO Permissao de Usuarios </b>
+ * </p>
+ *
+ * <p>
+ * Classe responsavel por adicionar novas funcoes no generico dao
+ * </p>
+ * 
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
 @Repository("permissionEmployeeDao")
 public class PermissionEmployeeDaoImpl extends GenericDaoImpl<PermissionEmployee, Long> implements PermissionEmployeeDao{
 
 	/**
-		UsuarioDao
+	 * Verifica acesso do usuario
 	 * 
-	 * @param login
-	 * @return
+	 * @param matricula matricula do usuario que sera verificado
+	 * @return true caso tenha acesso e false caso nao
 	 */
 	public boolean verificaAcesso(String matricula){
 		Query query = this.entityManager
@@ -35,7 +40,10 @@ public class PermissionEmployeeDaoImpl extends GenericDaoImpl<PermissionEmployee
 	}
 
 	/**
+	 * Busca por matricula
 	 * 
+	 * @param matricula matricula do usuario que sera buscado
+	 * @return usuario encontrado
 	 */
 	@Override
 	public PermissionEmployee buscaPorMatricula(String matricula) {

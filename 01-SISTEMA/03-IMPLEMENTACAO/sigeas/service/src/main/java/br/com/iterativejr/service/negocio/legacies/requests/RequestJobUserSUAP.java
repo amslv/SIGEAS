@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import br.com.iterativejr.service.negocio.legacies.providers.EmployeeAuthenticationSUAP;
-import br.com.iterativejr.service.negocio.legacies.validations.AuthenticationSigeasException;
-import br.com.iterativejr.service.negocio.legacies.validations.ConnectionException;
 import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
@@ -13,36 +11,39 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 /**
+ * Busca profissao do usuario
+ * 
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
 public class RequestJobUserSUAP {
 
 	/**
-	 * 
+	 * Autenticacao
 	 */
 	private EmployeeAuthenticationSUAP empAuth;
 
 	/**
-	 * 
+	 * Tipo assistente em adm
 	 */
 	private static final String ASSISTENTE_EM_ADMINISTRACAO = "ASSISTENTE EM ADMINISTRACAO";
 	/**
-	 * 
+	 * Tipo assistente Social
 	 */
 	private static final String ASSISTENTE_SOCIAL_PCIFE = "ASSISTENTE SOCIAL (PCIFE)";
 	/**
-	 * 
+	 * Pagina atual
 	 */
 	private HtmlPage currentPage;
 
 	/**
-	 * 
+	 * Webclient
 	 */
 	private WebClient webClient;
 
 	/**
-	 * 
+	 * Construtor para setar Auth
+	 * @param empAuth auth
 	 */
 	public RequestJobUserSUAP(EmployeeAuthenticationSUAP empAuth) {
 		this.empAuth = empAuth;
@@ -69,15 +70,15 @@ public class RequestJobUserSUAP {
 					.contains(ASSISTENTE_EM_ADMINISTRACAO)) {
 				return ASSISTENTE_EM_ADMINISTRACAO;
 			} else {
-				throw new AuthenticationSigeasException(
+				throw new SigeasException(
 						"Este tipo de cargo não é permitido no SIGEAS");
 			}
 		} catch (UnknownHostException ex) {
-			throw new ConnectionException(
+			throw new SigeasException(
 					"Não foi possivel estabelecer uma conexão, "
 							+ "verifique sua internet");
 		} catch (IOException ex) {
-			throw new RuntimeException(
+			throw new SigeasException(
 					"Ocorreu algum problema em retornar o recurso "
 							+ "solicitado!");
 		}

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import br.com.iterativejr.domains.entidade.Role;
 
 /**
+ * Login
  * 
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *

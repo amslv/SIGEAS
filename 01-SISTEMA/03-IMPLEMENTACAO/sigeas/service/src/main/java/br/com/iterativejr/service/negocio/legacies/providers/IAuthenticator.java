@@ -6,6 +6,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 
 /**
+ * Interface para autenticar
  * 
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
@@ -13,27 +14,28 @@ import com.gargoylesoftware.htmlunit.WebClient;
 public abstract class IAuthenticator {
 
 	/**
-	 * 
+	 * Web client
 	 */
 	private final WebClient webClient = new WebClient(BrowserVersion.CHROME);
 
 	/**
-	 * 
+	 * Login
 	 */
 	private String login;
 	
 	/**
-	 * 
+	 * senha
 	 */
 	private String password;
 
 	/**
-	 * 
+	 * Loga no sistema
+	 * @return se deu tudo certo true
 	 */
 	abstract boolean login() throws SigeasException;
 
 	/**
-	 * 
+	 * Logout no sistema
 	 */
 	abstract void logout() throws SigeasException;
 
@@ -49,6 +51,7 @@ public abstract class IAuthenticator {
 
 	/**
 	 * Retorna login
+	 * @return login recuperado
 	 */
 	public String getLogin() {
 		return login;
@@ -56,6 +59,7 @@ public abstract class IAuthenticator {
 
 	/**
 	 * Modifica login
+	 * @param login que sera setado
 	 */
 	public void setLogin(String login) {
 		this.login = login;
@@ -63,6 +67,7 @@ public abstract class IAuthenticator {
 
 	/**
 	 * Retorna senha
+	 * @return password do cara
 	 */
 	public String getPassword() {
 		return password;
@@ -70,6 +75,7 @@ public abstract class IAuthenticator {
 
 	/**
 	 * Modifica senha
+	 * @param password seta password
 	 */
 	public void setPassword(String password) {
 		this.password = password;

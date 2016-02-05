@@ -18,12 +18,20 @@ import br.com.iterativejr.domains.entidade.enums.RoleName;
 import br.com.iterativejr.service.negocio.legacies.providers.LoginProvider;
 
 /**
+ * <p>
+ * <b> Custom Authentication </b>
+ * </p>
+ *
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
  */
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+	/**
+	 * Construtor do AuthenticationProvider
+	 * @param authentication autenticacao
+	 */
 	@Override
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
@@ -43,7 +51,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	 * @param role
 	 *            the numerical role
 	 * @return a collection of {@link GrantedAuthority
-
 	 */
 	public Collection<GrantedAuthority> getAuthorities(String role) {
 		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
@@ -86,6 +93,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		return authorities;
 	}
 
+	/**
+	 * Recupera supports
+	 * @return suporte true, sempre 
+	 */
 	@Override
 	public boolean supports(Class<?> arg0) {
 		return true;

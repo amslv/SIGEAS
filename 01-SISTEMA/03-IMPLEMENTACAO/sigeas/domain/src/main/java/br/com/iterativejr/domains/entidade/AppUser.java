@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.iterativejr.domains.entidade;
 
 import java.util.Collection;
@@ -10,16 +7,13 @@ import org.springframework.security.core.userdetails.User;
 
 /**
  * <p>
- * <b> Título </b>
+ * <b> Usuario do Sistema </b>
  * </p>
  *
  * <p>
- * Descrição
+ * Usuario do sistema utilizado no spring
  * </p>
  * 
- * <pre>
- * @see <a href="http://www.linkreferencia.com">Link de Referencia</a>
- * </pre>
  * 
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
@@ -27,10 +21,28 @@ import org.springframework.security.core.userdetails.User;
 public class AppUser extends User {
 
 	/**
-	 * 
+	 * Serial do user
 	 */
 	private static final long serialVersionUID = -8767815443695778266L;
 
+	/**
+	 * Construtor do User do Spring
+	 * 
+	 * @param username
+	 *            login
+	 * @param password
+	 *            senha
+	 * @param enabled
+	 *            liberado
+	 * @param accountNonExpired
+	 *            accountNonExpired
+	 * @param credentialsNonExpired
+	 *            credenciais
+	 * @param accountNonLocked
+	 *            accountNonLocked
+	 * @param authorities
+	 *            permissoes
+	 */
 	public AppUser(String username, String password, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,
 			boolean accountNonLocked, Collection<GrantedAuthority> authorities) {

@@ -9,36 +9,61 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author edsf
+ * 
+ * <p>
+ * <b> Service Generico </b>
+ * </p>
  *
+ * <p>
+ * Service Generico para todos os services
+ * </p>
+ * 
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
+ *
+ * @param <T>
+ *            Tipo da Classe
+ * @param <K>
+ *            Tipo do ID
  */
 public interface GenericService<T, K> {
 
 	/**
+	 * Cria Objeto
+	 * 
 	 * @param entidade
-	 * @return
+	 *            entidade que sera salva
+	 * @return retorna entidade
 	 */
 	T criar(@Valid @NotNull T entidade);
 
 	/**
+	 * Busca por ID
+	 * 
 	 * @param id
-	 * @return
+	 *            id do objeto buscado
+	 * @return retorna o objeto
 	 */
 	T buscarPorId(@NotNull K id);
 
 	/**
+	 * Atualiza entidade
+	 * 
 	 * @param entidade
-	 * @return
+	 *            entidade que sera atualizada
+	 * @return entidade
 	 */
 	T atualizar(@NotNull @Valid T entidade);
 
 	/**
-	 * @return
+	 * Busca todas entidades
+	 * @return retorna entidades
 	 */
 	List<T> buscarTodos();
 
 	/**
-	 * @param entidade
+	 * Apaga entidades
+	 * 
+	 * @param entidade entidade que sera apagada
 	 */
 	void apagar(@NotNull T entidade);
 }

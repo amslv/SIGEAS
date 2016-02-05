@@ -14,8 +14,15 @@ import br.com.iterativejr.data.dao.GenericDao;
 import br.com.iterativejr.service.negocio.GenericService;
 
 /**
- * @author edsf
+ * 
+ * <p>
+ * <b> Implementacao do Service Generico </b>
+ * </p>
  *
+ * @author <a href="https://github.com/edsf80">edsf</a>
+ *
+ * @param <T> Tipo da classe
+ * @param <K> Tipo do ID
  */
 public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 
@@ -25,8 +32,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * br.edu.ifpb.screamtool.service.negocio.GenericService#criar(java.lang
-	 * .Object)
+	 * br.com.iterativejr.service.negocio.GenericService#criar(java.lang.Object)
 	 */
 	@Transactional
 	@Override
@@ -39,7 +45,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * br.edu.ifpb.screamtool.service.negocio.GenericService#buscarPorId(java
+	 * br.com.iterativejr.service.negocio.GenericService#buscarPorId(java
 	 * .lang.Object)
 	 */
 	@Override
@@ -52,7 +58,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * br.edu.ifpb.screamtool.service.negocio.GenericService#atualizar(java.
+	 * br.com.iterativejr.service.negocio.GenericService#atualizar(java.
 	 * lang.Object)
 	 */
 	@Transactional
@@ -65,7 +71,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	/**
 	 * (non-Javadoc)
 	 * 
-	 * @see br.edu.ifpb.screamtool.service.negocio.GenericService#buscarTodos()
+	 * @see br.com.iterativejr.service.negocio.GenericService#buscarTodos()
 	 */
 	@Override
 	public List<T> buscarTodos() {
@@ -76,7 +82,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * br.edu.ifpb.screamtool.service.negocio.GenericService#apagar(java.lang
+	 * br.com.iterativejr.service.negocio.GenericService#apagar(java.lang
 	 * .Object)
 	 */
 	@Transactional

@@ -1,28 +1,36 @@
-/**
- * 
- */
 package br.com.iterativejr.domains.entidade;
 
 import java.io.Serializable;
 
 /**
- * @author edsf
+ * 
+ * <p>
+ * <b> Entidade basica do sistema </b>
+ * </p>
+ *
+ * <p>
+ * Entidade contendo dados basicos de classes
+ * </p>
+ * 
+ * @author <a href="https://github.com/edsf80">edsf</a>
  *
  */
 public abstract class EntidadeBasica implements Serializable {
 
 	/**
-	 * 
+	 * Serial da classe
 	 */
 	private static final long serialVersionUID = 3347012291986207784L;
 
 	/**
-	 * @return
+	 * Pegar ID
+	 * 
+	 * @return Id recuperado
 	 */
 	public abstract Long getId();
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Mais informacoes em
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -39,8 +47,8 @@ public abstract class EntidadeBasica implements Serializable {
 		return resultado;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Mais informacoes em
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

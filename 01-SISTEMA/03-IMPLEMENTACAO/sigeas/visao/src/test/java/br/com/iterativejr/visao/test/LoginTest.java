@@ -22,6 +22,15 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * 
+ * <p>
+ * <b> Teste de aceitacao Login </b>
+ * </p>
+
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
+ *
+ */
 @RunWith(BlockJUnit4ClassRunner.class)
 public class LoginTest extends TestCase {
 

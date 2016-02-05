@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
+ * Mostra mensagens
  * 
  * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
  *
@@ -44,7 +45,7 @@ public class JsfUtil {
     /**
      * Redirecionar para determinado local
      * 
-     * @param locate
+     * @param locate locate
      */
     public static void redirect(String locate) {
 

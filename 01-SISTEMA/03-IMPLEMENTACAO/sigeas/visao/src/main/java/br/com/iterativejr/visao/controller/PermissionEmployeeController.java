@@ -1,6 +1,5 @@
 package br.com.iterativejr.visao.controller;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,13 +12,22 @@ import org.springframework.stereotype.Controller;
 import br.com.iterativejr.domains.entidade.PermissionEmployee;
 import br.com.iterativejr.service.negocio.PermissionEmployeeService;
 
+/**
+ * 
+ * <p>
+ * <b> Controller Permissao da assistente</b>
+ * </p>
+ *
+ * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
+ *
+ */
 @Controller
 @ManagedBean
 @RequestScoped
-public class PermissionEmployeeController implements Serializable{
+public class PermissionEmployeeController {
 
 	/**
-	 * 
+	 * Serial da classe
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -44,6 +52,9 @@ public class PermissionEmployeeController implements Serializable{
 	@Autowired
 	private PermissionEmployeeService employeeService;
 		
+	/**
+	 * Inicia dados
+	 */
 	@PostConstruct
 	public void init() {
 		permissionsEmployee=findAll();
@@ -52,7 +63,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Apagar Employee
 	 * 
-	 * @param employee
+	 * @param employee funcao
 	 */
 	public void removeEmployee(PermissionEmployee employee){
 		employeeService.apagar(employee);
@@ -71,7 +82,7 @@ public class PermissionEmployeeController implements Serializable{
 
 	/**
 	 * Retorna PermissionEmployee
-	 * 
+	 * @return service
 	 */
 	public PermissionEmployeeService getEmployeeService() {
 		return employeeService;
@@ -80,7 +91,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Modifica EmployeeService
 	 * 
-	 * @param employeeService
+	 * @param employeeService seta service
 	 */
 	public void setEmployeeService(PermissionEmployeeService employeeService) {
 		this.employeeService = employeeService;
@@ -90,7 +101,7 @@ public class PermissionEmployeeController implements Serializable{
 	 * Retorna Serialversionuid
 	 * 
 	 * @return
-	 * 		Serialversionuid
+	 * 		Serialversionuid serial
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -99,7 +110,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Retorna PermissionsEmployee
 	 * @return
-	 * 		PermissionsEmployee
+	 * 		PermissionsEmployee todos os emp
 	 */
 	public List<PermissionEmployee> getPermissionsEmployee() {
 		return permissionsEmployee;
@@ -108,7 +119,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Modifica PermissionsEmployee
 	 * 
-	 * @param permissionsEmployee
+	 * @param permissionsEmployee seta employ
 	 */
 	public void setPermissionsEmployee(List<PermissionEmployee> permissionsEmployee) {
 		this.permissionsEmployee = permissionsEmployee;
@@ -117,7 +128,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Retorna nome
 	 * @return
-	 * 		nome
+	 * 		nome nome do camarada
 	 */
 	public String getNome() {
 		return nome;
@@ -125,14 +136,14 @@ public class PermissionEmployeeController implements Serializable{
 
 	/**
 	 * Modifica nome
-	 * @param nome
+	 * @param nome nome do camarada
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * Adciona Employee
+	 * Adciona Employee e valida
 	 */
 	public void addEmployee(){
 		boolean contem= false;
@@ -150,7 +161,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Retorna matrícula
 	 * 
-	 * @param matricula
+	 * @param matricula matricula recuperada
 	 */
 	public String getMatricula() {
 		return matricula;
@@ -159,7 +170,7 @@ public class PermissionEmployeeController implements Serializable{
 	/**
 	 * Modifica matrícula
 	 * 
-	 * @param matricula
+	 * @param matricula nova matricula
 	 */
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;

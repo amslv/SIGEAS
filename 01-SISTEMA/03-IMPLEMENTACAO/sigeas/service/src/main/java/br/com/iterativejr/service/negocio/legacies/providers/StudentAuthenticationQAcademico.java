@@ -3,17 +3,16 @@ package br.com.iterativejr.service.negocio.legacies.providers;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import br.com.iterativejr.service.negocio.legacies.validations.AuthenticationSigeasException;
-import br.com.iterativejr.service.negocio.legacies.validations.ConnectionException;
-import br.com.iterativejr.service.negocio.legacies.validations.DifferentPageException;
-import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
-
 import com.gargoylesoftware.htmlunit.html.DomText;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+
+import br.com.iterativejr.service.negocio.legacies.validations.AuthenticationSigeasException;
+import br.com.iterativejr.service.negocio.legacies.validations.DifferentPageException;
+import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
 /**
  * 
@@ -39,58 +38,58 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 public class StudentAuthenticationQAcademico extends IAuthenticator {
 
 	/**
-	 * 
+	 * Instancia do Qacademico
 	 */
 	private static StudentAuthenticationQAcademico instance = null;
 
 	/**
-	 * 
+	 * Pagina atual
 	 */
 	private HtmlPage currentPage;
 	/**
-	 * 
+	 * Homepage
 	 */
 	private HtmlPage homePage;
 
 	/**
-	 * 
+	 * Pagina de login
 	 */
 	private static final String LOGIN_PAGE_URL = "https://academico.ifpb.edu.br/qacademico/index.asp?t=1001";
 	/**
-	 * 
+	 * Titulo da pagina
 	 */
 	private static final String LOGIN_PAGE_TITLE = "Q-Acadêmico Web para IF-PBBem Vindo!";
 	/**
-	 * 
+	 * Author
 	 */
 	private static final String AUTH_FORM_NAME = "frmLogin";
 	/**
-	 * 
+	 * Nome
 	 */
 	private static final String SUBMIT_ELEM_NAME = "Submit";
 	/**
-	 * 
+	 * Login
 	 */
 	private static final String USERNAME_ELEM_NAME = "LOGIN";
 	/**
-	 * 
+	 * Senha
 	 */
-	private static final String PASSWORD_ELEM_NAME = "SENHA";
+	private static final String SENHA_ELEM_NAME = "SENHA";
 
 	/**
-	 * 
+	 * Homepage
 	 */
 	private final String HOMEPAGE_URL = "https://academico.ifpb.edu.br/qacademico/index.asp?t=2071";
 	/**
-	 * 
+	 * Titulo homepage
 	 */
 	private final String HOMEPAGE_TITLE = "Q-Acadêmico Web para IF-PBMinhas "
 			+ "Disciplinas Atualmente em Curso";
 
 	/**
 	 * construtor privado para recuperar a conexão
-	 * @param login
-	 * @param password
+	 * @param login do camarada
+	 * @param password do camarada
 	 */
 	private StudentAuthenticationQAcademico(String login, String password) {
 		super.setLogin(login);
@@ -119,6 +118,7 @@ public class StudentAuthenticationQAcademico extends IAuthenticator {
 	/**
 	 * este método serve para estabelecer um login no sistema para que seja
 	 * possivel recuperar informações dentro da sessão do aluno.
+	 * @return true caso dê tudo certo
 	 */
 	public boolean login() throws SigeasException {
 		try {
@@ -142,7 +142,7 @@ public class StudentAuthenticationQAcademico extends IAuthenticator {
 				final HtmlTextInput username = form
 						.getInputByName(USERNAME_ELEM_NAME);
 				final HtmlPasswordInput pass = form
-						.getInputByName(PASSWORD_ELEM_NAME);
+						.getInputByName(SENHA_ELEM_NAME);
 
 				/*
 				 * a partir dos elementos Input recuperados são setados os
@@ -167,13 +167,13 @@ public class StudentAuthenticationQAcademico extends IAuthenticator {
 				}
 			}
 		} catch (DifferentPageException ex) {
-			throw new DifferentPageException("Pagina Diferente");
+			throw new SigeasException("Pagina Diferente");
 		} catch (UnknownHostException ex) {
-			throw new ConnectionException(
+			throw new SigeasException(
 					"Não foi possivel estabelecer uma conexão, "
 							+ "verifique sua internet");
 		} catch (IOException ex) {
-			throw new RuntimeException(
+			throw new SigeasException(
 					"Ocorreu algum problema em retornar o recurso "
 							+ "solicitado!");
 		}
