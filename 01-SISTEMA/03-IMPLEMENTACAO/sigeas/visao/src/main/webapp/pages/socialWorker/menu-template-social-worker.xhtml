@@ -16,8 +16,10 @@
 		href="../../resources/css/styles/background.css" />
 	<link rel="stylesheet" type="text/css"
 		href="../../resources/css/styles/register-social-worker.css" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"
-		type="text/javascript"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+		target="head" />
 	<script
 		src="../../resources/javascript/script-menu-lateral-social-worker.js"></script>
 	<title><ui:insert name="title">Menu</ui:insert></title>
@@ -46,7 +48,8 @@
 
 				<li class='programs'><a href='#'>Programas</a>
 					<ul>
-						<li><a href='questionnaires.html'>Editais<img id="icon-sigeas-login"
+						<li><a href='questionnaires.html'>Editais<img
+								id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_notice.png"
 								style="position: absolute; left: 84%; top: 9px;" />
 						</a></li>

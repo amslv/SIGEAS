@@ -6,17 +6,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- inicia o style css dos paineis -->
 <link rel="stylesheet" type="text/css"
 	href="../../resources/css/styles/menu-lateral-financial-sector.css" />
 <link rel="stylesheet" type="text/css"
-	href="../../resources/css/styles/background.css" />	
-<script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
-<script src="../../resources/javascript/menu-lateral-financial-sector.js"></script>
+	href="../../resources/css/styles/background.css" />
+<h:outputScript library="primefaces" name="jquery/jquery.js"
+	target="head" />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+	target="head" />
+<script
+	src="../../resources/javascript/menu-lateral-financial-sector.js"></script>
 <title><ui:insert name="title">Menu</ui:insert></title>
 </head>
 
@@ -32,7 +35,7 @@
 			<ul>
 				<li class='pay'><a href='#'>Pagamentos</a></li>
 				<li><form action="../../logout.html" method="post">
-						<input type="submit" value="Log out"/>
+						<input type="submit" value="Log out" />
 					</form></li>
 			</ul>
 		</div>
