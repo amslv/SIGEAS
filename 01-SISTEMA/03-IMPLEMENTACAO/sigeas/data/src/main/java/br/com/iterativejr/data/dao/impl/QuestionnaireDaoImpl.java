@@ -5,7 +5,8 @@ package br.com.iterativejr.data.dao.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.iterativejr.data.dao.QuestionnaireDao;
@@ -36,37 +37,21 @@ public class QuestionnaireDaoImpl extends GenericDaoImpl<Questionnaire, Long> im
 	 * @see br.com.iterativejr.data.dao.QuestionnaireDao#deleteQuestion(java.lang.Long)
 	 */
 	@Override
-	public void deleteQuestion(Long id) {
-		
-		System.out.println(this.entityManager!=null);
-		
-	}
+	public void deleteQuestion(Long id) {}
 
-	/* (non-Javadoc)
-	 * @see br.com.iterativejr.data.dao.QuestionnaireDao#addQuestion(br.com.iterativejr.domains.entidade.Question)
-	 */
-	@Override
-	public void addQuestion(Question question) {
-		System.out.println("addQuestion");
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see br.com.iterativejr.data.dao.QuestionnaireDao#updateQuestion(br.com.iterativejr.domains.entidade.Question)
-	 */
-	@Override
-	public Question updateQuestion(Question question) {
-		System.out.println("updateQuestion");
-		return null;
-	}
 
 	/* (non-Javadoc)
 	 * @see br.com.iterativejr.data.dao.QuestionnaireDao#searchAllQuestions()
 	 */
 	@Override
 	public List<Question> searchAllQuestions() {
-		System.out.println();
-		return null;
+		Query query = this.entityManager
+				.createNamedQuery("Question.searchAllQuestions");
+
+		@SuppressWarnings("unchecked")
+		List<Question> resultado = query.getResultList();
+
+		return resultado;
 	}
 
 	/* (non-Javadoc)
@@ -75,8 +60,14 @@ public class QuestionnaireDaoImpl extends GenericDaoImpl<Questionnaire, Long> im
 	@Override
 	public List<Question> searchAllQuestionsFromQuestionnaire(
 			Long idQuestionnaire) {
-		System.out.println("searchAllQuestionsFromQuestionnaire");
-		return null;
+		Query query = this.entityManager
+				.createNamedQuery("Questionnaire.searchAllQuestionsFromQuestionnaire");
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+
+		@SuppressWarnings("unchecked")
+		List<Question> resultado = query.getResultList();
+
+		return resultado;
 	}
 
 	/* (non-Javadoc)
@@ -84,8 +75,14 @@ public class QuestionnaireDaoImpl extends GenericDaoImpl<Questionnaire, Long> im
 	 */
 	@Override
 	public List<Option> searchOptionsByQuesting(Long id) {
-		System.out.println("searchOptionsByQuesting");
-		return null;
+		Query query = this.entityManager
+				.createNamedQuery("Option.searchOptionsByQuesting");
+		query.setParameter("idQuestao", id);
+
+		@SuppressWarnings("unchecked")
+		List<Option> resultado = query.getResultList();
+
+		return resultado;
 	}
 
 	

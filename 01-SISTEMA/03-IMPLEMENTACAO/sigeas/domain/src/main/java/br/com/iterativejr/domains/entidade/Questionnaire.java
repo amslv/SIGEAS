@@ -17,9 +17,10 @@ import javax.validation.constraints.NotNull;
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
-@Entity
+@Entity 
+@NamedQueries({@NamedQuery(name = "Questionnaire.searchAllQuestionsFromQuestionnaire", query = "SELECT questao from Questionnaire questionario inner join questionario.questions questao where questionario.id = :idQuestionnaire")})
 public class Questionnaire extends EntidadeBasica {
-
+// = 202
 	/**
 	 * Serial default do questionario
 	 */

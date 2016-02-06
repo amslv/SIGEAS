@@ -36,42 +36,23 @@ import br.com.iterativejr.service.negocio.QuestionnaireService;
 public class QuestionnaireServiceImpl extends GenericServiceImpl<Questionnaire, Long> implements QuestionnaireService{
 
 	
+	/**
+	 * Inicia dao
+	 * @param dao dao de acordo do Autowired
+	 */
 	@Autowired
 	public QuestionnaireServiceImpl(QuestionnaireDao dao) {
 		this.dao = dao;
 	}
 	
-	/** (non-Javadoc)
-	 * @see br.com.iterativejr.service.negocio.QuestionnaireService#deleteQuestion(java.lang.Long)
-	 */
-	@Override
-	public void deleteQuestion(Long id) {
-		QuestionnaireDao questionnaireDao= (QuestionnaireDao) this.dao;
-		questionnaireDao.deleteQuestion(id);
-	}
-
-	/** (non-Javadoc)
-	 * @see br.com.iterativejr.service.negocio.QuestionnaireService#addQuestion(br.com.iterativejr.domains.entidade.Question)
-	 */
-	@Override
-	public void addQuestion(Question question) {
-	}
-
-	/** (non-Javadoc)
-	 * @see br.com.iterativejr.service.negocio.QuestionnaireService#updateQuestion(br.com.iterativejr.domains.entidade.Question)
-	 */
-	@Override
-	public Question updateQuestion(Question question) {
-		return null;
-	}
-
+	
 	/** (non-Javadoc)
 	 * @see br.com.iterativejr.service.negocio.QuestionnaireService#searchAllQuestions()
 	 */
 	@Override
 	public List<Question> searchAllQuestions() {
-		System.out.println("Entrou");
-		return null;
+		QuestionnaireDao questionnaireDao= (QuestionnaireDao) this.dao;
+		return questionnaireDao.searchAllQuestions();
 	}
 
 	/** (non-Javadoc)
@@ -80,7 +61,8 @@ public class QuestionnaireServiceImpl extends GenericServiceImpl<Questionnaire, 
 	@Override
 	public List<Question> searchAllQuestionsFromQuestionnaire(
 			Long idQuestionnaire) {
-		return null;
+		QuestionnaireDao questionnaireDao= (QuestionnaireDao) this.dao;
+		return questionnaireDao.searchAllQuestionsFromQuestionnaire(idQuestionnaire);
 	}
 
 	
@@ -89,7 +71,8 @@ public class QuestionnaireServiceImpl extends GenericServiceImpl<Questionnaire, 
 	 */
 	@Override
 	public List<Option> searchOptionsByQuesting(Long id) {
-		return null;
+		QuestionnaireDao questionnaireDao= (QuestionnaireDao) this.dao;
+		return questionnaireDao.searchOptionsByQuesting(id);
 	}
 
 	/** (non-Javadoc)

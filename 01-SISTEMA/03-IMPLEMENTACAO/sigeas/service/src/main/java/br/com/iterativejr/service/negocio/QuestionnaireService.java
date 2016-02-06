@@ -5,7 +5,6 @@ package br.com.iterativejr.service.negocio;
 
 import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import br.com.iterativejr.data.dao.QuestionnaireDao;
@@ -38,22 +37,7 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 	 *            dao que sera setado
 	 */
 	void setDao(QuestionnaireDao dao);
-	/**
-	 * 
-	 * @param id
-	 */
-	void deleteQuestion (@NotNull Long id);
-	/**
-	 * 
-	 * @param question
-	 */
-	void addQuestion (@NotNull @Valid Question question);
-	/**
-	 * 
-	 * @param question
-	 * @return
-	 */
-	Question updateQuestion (@NotNull @Valid Question question);
+	
 	/**
 	 * 
 	 * @return

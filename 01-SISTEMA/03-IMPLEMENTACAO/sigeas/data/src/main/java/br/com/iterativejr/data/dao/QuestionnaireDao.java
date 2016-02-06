@@ -35,17 +35,7 @@ public interface QuestionnaireDao extends GenericDao<Questionnaire, Long>{
 	 * @param id
 	 */
 	void deleteQuestion (@NotNull Long id);
-	/**
-	 * 
-	 * @param question
-	 */
-	void addQuestion (@NotNull @Valid Question question);
-	/**
-	 * 
-	 * @param question
-	 * @return
-	 */
-	Question updateQuestion (@NotNull @Valid Question question);
+	
 	/**
 	 * 
 	 * @return
