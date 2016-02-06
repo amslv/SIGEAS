@@ -1,12 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Nunito:300);
 
-/*Usando apenas no painel principal do login*/
-.panel-login {
-	top: 30%;
-	left: 43%;
-	position: absolute;
-}
-
 #rectangle {
 	border-bottom: 5px solid;
 	border-color: #5a7d60;

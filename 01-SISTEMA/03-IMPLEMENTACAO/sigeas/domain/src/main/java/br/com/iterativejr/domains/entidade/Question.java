@@ -281,4 +281,11 @@ public class Question extends EntidadeBasica {
 		options.add(option);
 	}
 
+	public QuestionTypeEnum getType() {
+		return type;
+	}
+
+	public void setType(QuestionTypeEnum type) {
+		this.type = type;
+	}
 }

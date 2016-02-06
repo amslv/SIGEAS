@@ -12,50 +12,40 @@
 
 
 	<ui:define name="header">
-		<canvas id="rectangle" width="1900" height="120"></canvas>
-		<script>
-			var canvas = document.getElementById('rectangle');
-			var context = canvas.getContext('2d');
-
-			/*retangulo*/
-			context.beginPath();
-			context.rect(0, -1, 1900, 100);
-			context.fillStyle = '#d9d9d9';
-			context.fill();
-			context.lineWidth = 2;
-			context.strokeStyle = '#5a7d60';
-			context.stroke();
-
-			/*Texto*/
-			var x = canvas.width / 2;
-			var y = canvas.height / 2;
-			context.font = 'bold 28pt Arial';
-			context.textAlign = 'center';
-			context.fillStyle = '#5a7d60';
-			context.fillText('Novo Assistente Social', x, y);
-		</script>
+		<link rel="stylesheet" type="text/css"
+			href="../../resources/css/styles/new-questionnaire.css" />
+		<div id="rectangle">
+			<h:outputLabel id="textRectangle">Assistentes Sociais</h:outputLabel>
+		</div>
 	</ui:define>
 
 	<ui:define name="content">
 		<h:body>
-		
-			<p:growl id="growl" autoUpdate="true" showDetail="true" showSummary="true"/>
-		
+
+			<p:growl id="growl" autoUpdate="true" showDetail="true"
+				showSummary="true" />
+
 			<h:form id="form-register-social">
-			
-				<p:breadCrumb style="width:920px; margin-left: 200px;  position: relative; background: transparent;
+
+				<p:breadCrumb
+					style="width:920px; margin-left: 200px;  position: relative; background: transparent;
 				 border-top: transparent; border-left: transparent; border-right: transparent; transparent; border-bottom:transparent">
 					<p:menuitem value="Tela Principal" url="index-social-worker.html" />
-					<p:menuitem value="Novo Assistente Social" url="register-social-worker.html" />
+					<p:menuitem value="Novo Assistente Social"
+						url="register-social-worker.html" />
 				</p:breadCrumb>
-				
+
 				<br />
-				
-				<p:panel header="Assistentes com acesso" id="panel-assistences" style="width:920px; margin-left: 210px">
-				
+
+				<p:panel header="Assistentes com acesso" id="panel-assistences"
+					style="width:920px; margin-left: 210px">
+
 					<br />
-					
-					<p:dataTable id="table-assistences" emptyMessage="Nenhum assistente" value="#{permissionEmployeeController.permissionsEmployee}" var="socialWorker">
+
+					<p:dataTable id="table-assistences"
+						emptyMessage="Nenhum assistente"
+						value="#{permissionEmployeeController.permissionsEmployee}"
+						var="socialWorker">
 
 						<p:column headerText="Matrícula" style="width: 200px">
 							<p:outputLabel value="#{socialWorker.matricula}" />
@@ -66,27 +56,36 @@
 						</p:column>
 
 						<p:column headerText="Remover Acesso" style="width: 160px">
-							<p:commandButton id="btRemove" update="table-assistences" icon="ui-icon ui-icon-trash"  actionListener="#{permissionEmployeeController.removeEmployee(socialWorker)}"
-                        ajax="false" style="width:32px; text-align:center "/>
+							<p:commandButton id="btRemove" update="table-assistences"
+								icon="ui-icon ui-icon-trash"
+								actionListener="#{permissionEmployeeController.removeEmployee(socialWorker)}"
+								ajax="false" style="width:32px; text-align:center " />
 						</p:column>
 					</p:dataTable>
 				</p:panel>
 
 				<br />
 				<br />
-				
-				<p:panel header="Novo Acesso" id="panel-new-acess" style="width:920px; margin-left: 210px">
-				
-					<br/>
+
+				<p:panel header="Novo Acesso" id="panel-new-acess"
+					style="width:920px; margin-left: 210px">
+
+					<br />
 
 					<h:panelGrid columns="5" border="0">
 
 						<p:outputLabel value="Nome:" />
-						<p:inputText id="i-name" value="#{permissionEmployeeController.nome}" required="true" requiredMessage="Nome inválido"/>
+						<p:inputText id="i-name"
+							value="#{permissionEmployeeController.nome}" required="true"
+							requiredMessage="Nome inválido" />
 
 						<p:outputLabel value="Matrícula:" />
-						<p:inputText id="i-registration" value="#{permissionEmployeeController.matricula}" required="true" requiredMessage="Matrícula Inválida"/>
-						<p:commandButton value="Adicionar" icon="ui-icon-disk" update="table-assistences" action="#{permissionEmployeeController.addEmployee()}"/>
+						<p:inputText id="i-registration"
+							value="#{permissionEmployeeController.matricula}" required="true"
+							requiredMessage="Matrícula Inválida" />
+						<p:commandButton value="Adicionar" icon="ui-icon-disk"
+							update="table-assistences"
+							action="#{permissionEmployeeController.addEmployee()}" />
 					</h:panelGrid>
 				</p:panel>
 

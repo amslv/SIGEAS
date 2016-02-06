@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css"
 		href="../../resources/css/styles/background.css" />
 	<link rel="stylesheet" type="text/css"
-		href="./resources/css/styles/register-social-worker.css" />
+		href="../../resources/css/styles/register-social-worker.css" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"
 		type="text/javascript"></script>
 	<script
@@ -46,7 +46,7 @@
 
 				<li class='programs'><a href='#'>Programas</a>
 					<ul>
-						<li><a href='#'>Editais<img id="icon-sigeas-login"
+						<li><a href='questionnaires.html'>Editais<img id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_notice.png"
 								style="position: absolute; left: 84%; top: 9px;" />
 						</a></li>
@@ -75,10 +75,11 @@
 						<li><a href='#'>Aluno<img id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_student.png"
 								style="position: absolute; left: 83%; top: 9px;" /></a></li>
-						<li><a href='register-social-worker.html'>Assistente Social<img
-								id="icon-sigeas-login"
+						<li><a href='register-social-worker.html'>Assistente
+								Social<img id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_social_worker.png"
-								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+								style="position: absolute; left: 83%; top: 9px;" />
+						</a></li>
 						<li><a href='#'>Controle Financeiro<img
 								id="icon-sigeas-login"
 								src="../../resources/images/icon/icon_financial.png"
@@ -112,13 +113,12 @@
 			</ul>
 		</div>
 	</div>
-	<div id="header">
-		<ui:insert name="header">
 
-		</ui:insert>
+	<div id="header">
+		<ui:insert name="header" />
 	</div>
 
-	<div id="content" style="position: relative; left: 14%;">
+	<div id="content">
 		<ui:insert name="content" />
 	</div>
 </body>
