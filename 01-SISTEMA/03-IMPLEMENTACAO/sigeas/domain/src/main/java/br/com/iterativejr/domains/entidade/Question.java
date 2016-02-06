@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -29,6 +31,7 @@ import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
  *
  */
 @Entity
+@NamedQueries({@NamedQuery(name = "Question.searchAllQuestions", query = "SELECT u FROM Question u")})
 public class Question extends EntidadeBasica {
 
 	/**
