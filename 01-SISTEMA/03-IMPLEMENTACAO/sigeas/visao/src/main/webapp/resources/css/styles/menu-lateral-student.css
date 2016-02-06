@@ -122,7 +122,7 @@ body {
 	padding: 16px 22px;
 	cursor: pointer;
 	z-index: 2;
-	font-size: 16px;
+	font-size: 14px;
 	text-decoration: none;
 	color: #ffffff;
 	background: #5B7F62;
@@ -137,7 +137,7 @@ body {
 	padding: 14px 22px;
 	cursor: pointer;
 	z-index: 2;
-	font-size: 14px;
+	font-size: 12px;
 	text-decoration: none;
 	color: #ffffff;
 	background: #435e48;
