@@ -45,6 +45,8 @@ public class QuestionnaireController {
 	private QuestionnaireService questionnaireService;
 
 	private List<Question> questions;
+	
+	private List<Question> filteredQuestions;
 
 	private Question question;
 
@@ -60,6 +62,7 @@ public class QuestionnaireController {
 	@PostConstruct
 	public void init() {
 		questions = new ArrayList<Question>();
+		filteredQuestions = new ArrayList<Question>();
 		question = new Question();
 		questionnaire = new Questionnaire();
 		typesQuestion = QuestionTypeEnum.values();
@@ -72,9 +75,8 @@ public class QuestionnaireController {
 	}
 
 	public void removeQuestion(Question question) {
-		System.out.println(question.getTitle());
 		questions.remove(question);
-		question = new Question();
+		this.question = new Question();
 	}
 
 	public void addQuestionnaire() {
@@ -129,5 +131,13 @@ public class QuestionnaireController {
 
 	public void setQuestionnaires(List<Questionnaire> questionnaires) {
 		this.questionnaires = questionnaires;
+	}
+
+	public List<Question> getFilteredQuestions() {
+		return filteredQuestions;
+	}
+
+	public void setFilteredQuestions(List<Question> filteredQuestions) {
+		this.filteredQuestions = filteredQuestions;
 	}
 }

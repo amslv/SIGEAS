@@ -20,7 +20,7 @@
 
 	<ui:define name="content">
 		<p:growl id="growl" autoUpdate="true" showSummary="true" />
-		<h:form id="form-register-social" style="font-size: 10pt">
+		<h:form id="form-new-questionnaire" style="font-size: 10pt">
 			<p:breadCrumb id="breadCrumb"
 				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
 				<p:menuitem value="Tela Principal" url="index-social-worker.html" />
@@ -42,9 +42,74 @@
 			</h:panelGrid>
 
 			<p:commandButton value="Nova Pergunta" icon="ui-icon-plus"
-				onclick="PF('dlg2').show();" style="margin-left: 1150px;" />
+				process="@this" onclick="PF('dlg2').show();"
+				style="margin-left: 1150px;" />
 
-			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true">
+			<p:panel header="Lista de Perguntas" id="panel-assistences"
+				style="width:1230px; margin-left: 70px; margin-top: 2px; background:transparent;">
+				<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
+					value="#{questionnaireController.questions}" var="question">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Perguntas" />
+						<!-- <p:outputPanel>
+							<h:outputText value="Search all fields:" />
+							<p:inputText id="globalFilter" onkeyup="PF('table-question').filter()"
+								style="width:150px" placeholder="Enter keyword" />
+						</p:outputPanel> -->
+					</f:facet>
+
+					<p:column headerText="Título" sortBy="#{question.title}"
+						filterBy="#{question.title}">
+						<p:outputLabel value="#{question.title}" />
+					</p:column>
+
+					<p:column headerText="Tipo" style="width: 150px"
+						filterBy="#{question.type}" sortBy="#{question.type}">
+						<p:outputLabel value="#{question.type}" />
+					</p:column>
+
+					<p:column headerText="Alternativas" style="width: 100px">
+						<p:commandButton icon="ui-icon-extlink"
+							onclick="PF('dlg2').show();" style="width:32px;" />
+					</p:column>
+
+					<p:column headerText="Obrigatória" style="width: 150px"
+						filterBy="#{question.obligatory}" sortBy="#{question.obligatory}">
+						<p:outputLabel value="#{question.obligatory}" />
+					</p:column>
+
+					<p:column headerText="Peso" style="width: 150px"
+						filterBy="#{question.weightOfQuestion}"
+						sortBy="#{question.weightOfQuestion}">
+						<p:outputLabel value="#{question.weightOfQuestion}" />
+					</p:column>
+
+					<p:column headerText="Remover?" style="width: 100px">
+						<p:commandButton actionListener="#{questionnaireController.removeQuestion(question)}"
+							update="table-questions" process="@this" icon="ui-icon-trash">
+							<p:confirm header="Confirmar Exclusão"
+								message="Deseja realmente excluir pergunta?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<br />
+			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
+				value="Salvar Questionário"
+				process="@this completionDate publicationDate title"
+				actionListener="#{questionnaireController.addQuestionnaire()}"
+				style="margin-left: 1115px;" />
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" style="font-size: 10pt">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true" showEffect="fade" hideEffect="fade">
 				<h:panelGrid columns="2" border="0">
 					<p:outputLabel value="Título: " />
 					<p:inputTextarea id="i-title" rows="5" cols="30"
@@ -73,7 +138,7 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Obrigatória: " />
-					<p:selectBooleanCheckbox
+					<p:selectBooleanCheckbox id="i-obligatory"
 						value="#{questionnaireController.question.obligatory}" />
 
 					<p:outputLabel value="Peso: " />
@@ -84,57 +149,9 @@
 				</h:panelGrid>
 				<p:commandButton value="Salvar" icon="ui-icon-disk"
 					update="table-questions"
+					process="@this i-weightOfQuestion i-obligatory i-type i-helpText i-title"
 					action="#{questionnaireController.addQuestion}" />
 			</p:dialog>
-
-			<p:panel header="Lista de Perguntas" id="panel-assistences"
-				style="width:1230px; margin-left: 70px; margin-top: 2px; background:transparent;">
-				<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
-					value="#{questionnaireController.questions}" var="question">
-
-					<p:column headerText="Título">
-						<p:outputLabel value="#{question.title}" />
-					</p:column>
-
-					<p:column headerText="Tipo" style="width: 150px">
-						<p:outputLabel value="#{question.type}" />
-					</p:column>
-
-					<p:column headerText="Alternativas" style="width: 100px">
-						<p:commandButton icon="ui-icon-extlink"
-							onclick="PF('dlg2').show();" style="width:32px;" />
-					</p:column>
-
-					<p:column headerText="Obrigatória" style="width: 100px">
-						<p:outputLabel value="#{question.obligatory}" />
-					</p:column>
-
-					<p:column headerText="Peso" style="width: 100px">
-						<p:outputLabel value="#{question.weightOfQuestion}" />
-					</p:column>
-
-					<p:column value="Remover?" style="width: 100px">
-						<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
-							onclick="PF('confExcluir').show();" style="width:32px;" />
-					</p:column>
-				</p:dataTable>
-			</p:panel>
-			<br />
-			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
-				value="Salvar Questionário"
-				actionListener="#{questionnaireController.addQuestionnaire()}"
-				style="margin-left: 1115px;" />
-				
-			<p:confirmDialog header="Confirma Exclusão" widgetVar="confExcluir"
-				severity="alert" message="Deseja realmente excluir pergunta?"
-				modal="true">
-				<p:commandButton id="btConfRemove" update="table-questions"
-					value="Sim" icon="ui-icon-check"
-					actionListener="#{questionnaireController.removeQuestion(question)}"
-					oncomplete="PF('confExcluir').hide();" />
-				<p:commandButton icon="ui-icon-closethick" value="Não"
-					onclick="PF('confExcluir').hide();" />
-			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

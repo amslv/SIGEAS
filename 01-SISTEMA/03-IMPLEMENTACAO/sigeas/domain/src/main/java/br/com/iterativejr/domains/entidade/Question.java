@@ -31,7 +31,7 @@ import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
  *
  */
 @Entity
-@NamedQueries({@NamedQuery(name = "Question.searchAllQuestions", query = "SELECT u FROM Question u")})
+@NamedQueries({ @NamedQuery(name = "Question.searchAllQuestions", query = "SELECT u FROM Question u") })
 public class Question extends EntidadeBasica {
 
 	/**
@@ -51,8 +51,8 @@ public class Question extends EntidadeBasica {
 	/**
 	 * questionario
 	 */
-	//private Questionnaire questionnaire;
-	
+	// private Questionnaire questionnaire;
+
 	/**
 	 * Titulo da questão
 	 */
@@ -67,7 +67,7 @@ public class Question extends EntidadeBasica {
 	/**
 	 * Tipo da questao
 	 */
-	
+
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum type;
 	/**
@@ -110,13 +110,13 @@ public class Question extends EntidadeBasica {
 	 * @param weightOfQuestion
 	 *            peso
 	 */
-	public Question(String title, String helpText, 
-			Boolean obligatory, Double weightOfQuestion) {
+	public Question(String title, String helpText, Boolean obligatory,
+			Double weightOfQuestion) {
 		super();
 		this.title = title;
 		this.helpText = helpText;
 		this.type = type;
-		//this.options = options;
+		// this.options = options;
 		this.obligatory = obligatory;
 		this.weightOfQuestion = weightOfQuestion;
 	}
@@ -133,8 +133,8 @@ public class Question extends EntidadeBasica {
 	 * @param weightOfQuestion
 	 *            peso
 	 */
-	public Question(String title, Boolean obligatory,
-			Double weightOfQuestion, QuestionTypeEnum type) {
+	public Question(String title, Boolean obligatory, Double weightOfQuestion,
+			QuestionTypeEnum type) {
 		super();
 		this.title = title;
 		this.type = type;
@@ -183,32 +183,32 @@ public class Question extends EntidadeBasica {
 	/**
 	 * @return the type
 	 */
-	//public QuestionTypeEnum getType() {
-	//	return type;
-	//}
+	// public QuestionTypeEnum getType() {
+	// return type;
+	// }
 
 	/**
 	 * @param type
 	 *            the type to set
 	 */
-	//public void setType(QuestionTypeEnum type) {
-	//	this.type = type;
-	//}
+	// public void setType(QuestionTypeEnum type) {
+	// this.type = type;
+	// }
 
 	/**
 	 * @return the options
 	 */
-	//public List<Option> getOptions() {
-	//	return options;
-	//}
+	public List<Option> getOptions() {
+		return options;
+	}
 
 	/**
 	 * @param options
 	 *            the options to set
 	 */
-	//public void setOptions(List<Option> options) {
-	//	this.options = options;
-	//}
+	public void setOptions(List<Option> options) {
+		this.options = options;
+	}
 
 	/**
 	 * @return the obligatory
@@ -251,18 +251,19 @@ public class Question extends EntidadeBasica {
 	/**
 	 * @return the questionnaire
 	 */
-	//@ManyToOne
-	//@JoinColumn(name="questionnaire_id")
-	//public Questionnaire getQuestionnaire() {
-	//	return questionnaire;
-	//}
+	// @ManyToOne
+	// @JoinColumn(name="questionnaire_id")
+	// public Questionnaire getQuestionnaire() {
+	// return questionnaire;
+	// }
 
 	/**
-	 * @param questionnaire the questionnaire to set
+	 * @param questionnaire
+	 *            the questionnaire to set
 	 */
-	//public void setQuestionnaire(Questionnaire questionnaire) {
-	//	this.questionnaire = questionnaire;
-	//}
+	// public void setQuestionnaire(Questionnaire questionnaire) {
+	// this.questionnaire = questionnaire;
+	// }
 
 	/**
 	 * (non-Javadoc)
@@ -290,5 +291,31 @@ public class Question extends EntidadeBasica {
 
 	public void setType(QuestionTypeEnum type) {
 		this.type = type;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof Question)) {
+			return false;
+		} else {
+			Question question = (Question) obj;
+			if (!title.equals(question.getTitle())) {
+				return false;
+			}
+			if (!type.equals(question.getType())) {
+				return false;
+			}
+			if (!obligatory.equals(question.getObligatory())) {
+				return false;
+			}
+			if (!weightOfQuestion.equals(question.getWeightOfQuestion())) {
+				return false;
+			}
+			return true;
+		}
+
 	}
 }
