@@ -55,4 +55,11 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 	 * @return
 	 */
 	List <Option> searchOptionsByQuesting (@NotNull Long id);
+
+	/**
+	 * Publica questionário antes do previsto.
+	 * @param id
+	 * @return
+	 */
+	void publicQuestionnaire(Questionnaire questionnaire);
 }

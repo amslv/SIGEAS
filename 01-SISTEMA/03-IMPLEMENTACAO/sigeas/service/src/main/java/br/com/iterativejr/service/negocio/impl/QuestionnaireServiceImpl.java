@@ -84,5 +84,13 @@ public class QuestionnaireServiceImpl extends GenericServiceImpl<Questionnaire, 
 		
 	}
 
+
+	@Override
+	public void publicQuestionnaire(Questionnaire questionnaire) {
+		QuestionnaireDao questionnaireDao= (QuestionnaireDao) this.dao;
+		questionnaire.setPublished(true);
+		questionnaireDao.atualizar(questionnaire);
+	}
+
 }
 

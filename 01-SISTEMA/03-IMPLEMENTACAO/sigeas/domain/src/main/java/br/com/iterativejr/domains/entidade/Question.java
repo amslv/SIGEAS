@@ -67,7 +67,7 @@ public class Question extends EntidadeBasica {
 	/**
 	 * Tipo da questao
 	 */
-
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum type;
 	/**

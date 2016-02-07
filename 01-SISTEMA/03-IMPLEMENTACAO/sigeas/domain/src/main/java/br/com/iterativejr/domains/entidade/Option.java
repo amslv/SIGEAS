@@ -159,8 +159,6 @@ public class Option extends EntidadeBasica {
 		this.marked = marked;
 	}
 	
-	//@ManyToOne
-	//@JoinColumn(name="quest_id")
 	/**
 	 * @return the question
 	 */

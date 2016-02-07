@@ -6,7 +6,18 @@ package br.com.iterativejr.domains.entidade;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -50,7 +61,7 @@ public class Questionnaire extends EntidadeBasica {
 	 */
 	@NotNull
 	@Column
-	private Boolean Published;
+	private Boolean published;
 	/**
 	 * Data De Publicacao
 	 */
@@ -69,6 +80,7 @@ public class Questionnaire extends EntidadeBasica {
 	 * Construtor Default
 	 */
 	public Questionnaire() {
+		published = false;
 	}
 
 	/**
@@ -83,10 +95,44 @@ public class Questionnaire extends EntidadeBasica {
 			Date completionDate) {
 		super();
 		this.title = title;
-		Published = published;
+		this.published = published;
 		this.publicationDate = publicationDate;
 		this.completionDate = completionDate;
-		//questions = new ArrayList<Question>();
+	}
+	
+	/**
+	 * Construtor sem published
+	 * 
+	 * @param title
+	 * @param published
+	 * @param publicationDate
+	 * @param completionDate
+	 */
+	public Questionnaire(String title, Date publicationDate,
+			Date completionDate) {
+		super();
+		this.title = title;
+		this.published = false;
+		this.publicationDate = publicationDate;
+		this.completionDate = completionDate;
+	}
+	
+	/**
+	 * Construtor
+	 * 
+	 * @param title
+	 * @param publicationDate
+	 * @param completionDate
+	 * @param questions
+	 */
+	public Questionnaire(String title, Date publicationDate,
+			Date completionDate, List<Question> questions) {
+		super();
+		this.title = title;
+		published = false;
+		this.publicationDate = publicationDate;
+		this.completionDate = completionDate;
+		this.questions = questions;
 	}
 
 	/**
@@ -102,7 +148,7 @@ public class Questionnaire extends EntidadeBasica {
 			Date completionDate, List<Question> questions) {
 		super();
 		this.title = title;
-		Published = published;
+		this.published = published;
 		this.publicationDate = publicationDate;
 		this.completionDate = completionDate;
 		this.questions = questions;
@@ -150,7 +196,7 @@ public class Questionnaire extends EntidadeBasica {
 	 * @return the published
 	 */
 	public Boolean getPublished() {
-		return Published;
+		return published;
 	}
 
 	/**
@@ -158,7 +204,7 @@ public class Questionnaire extends EntidadeBasica {
 	 *            the published to set
 	 */
 	public void setPublished(Boolean published) {
-		Published = published;
+		this.published = published;
 	}
 
 	/**
@@ -205,7 +251,7 @@ public class Questionnaire extends EntidadeBasica {
 	@Override
 	public String toString() {
 		return "Questionnaire [id=" + id + ", title=" + title + ", questions="
-				+ "" + ", Published=" + Published + ", publicationDate="
+				+ "" + ", Published=" + published + ", publicationDate="
 				+ publicationDate + ", completionDate=" + completionDate + "]";
 	}
 

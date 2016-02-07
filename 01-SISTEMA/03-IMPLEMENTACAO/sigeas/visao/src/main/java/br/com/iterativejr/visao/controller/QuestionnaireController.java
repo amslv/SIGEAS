@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
+import br.com.iterativejr.domains.entidade.Option;
 import br.com.iterativejr.domains.entidade.Question;
 import br.com.iterativejr.domains.entidade.Questionnaire;
 import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
@@ -46,8 +47,6 @@ public class QuestionnaireController {
 
 	private List<Question> questions;
 	
-	private List<Question> filteredQuestions;
-
 	private Question question;
 
 	private Questionnaire questionnaire;
@@ -62,7 +61,6 @@ public class QuestionnaireController {
 	@PostConstruct
 	public void init() {
 		questions = new ArrayList<Question>();
-		filteredQuestions = new ArrayList<Question>();
 		question = new Question();
 		questionnaire = new Questionnaire();
 		typesQuestion = QuestionTypeEnum.values();
@@ -70,6 +68,10 @@ public class QuestionnaireController {
 	}
 
 	public void addQuestion() {
+//		List<Option> options = new ArrayList<Option>();
+//		options.add(new Option("Body", 2.0, false, this.question));
+//		this.question.setOptions(options);
+//		System.out.println("Add options");
 		questions.add(question);
 		question = new Question();
 	}
@@ -80,10 +82,12 @@ public class QuestionnaireController {
 	}
 
 	public void addQuestionnaire() {
+		questionnaire.setQuestions(questions);
 		questionnaireService.criar(questionnaire);
+		restartQuestionnaire();
 		questionnaires = findAll();
 	}
-	
+
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		questionnaireService.apagar(questionnaire);
 		questionnaires = findAll();
@@ -132,12 +136,13 @@ public class QuestionnaireController {
 	public void setQuestionnaires(List<Questionnaire> questionnaires) {
 		this.questionnaires = questionnaires;
 	}
-
-	public List<Question> getFilteredQuestions() {
-		return filteredQuestions;
+	
+	public void publicQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaireService.publicQuestionnaire(questionnaire);
 	}
 
-	public void setFilteredQuestions(List<Question> filteredQuestions) {
-		this.filteredQuestions = filteredQuestions;
+	private void restartQuestionnaire() {
+		questionnaire = new Questionnaire();
+		questions = new ArrayList<Question>();
 	}
 }

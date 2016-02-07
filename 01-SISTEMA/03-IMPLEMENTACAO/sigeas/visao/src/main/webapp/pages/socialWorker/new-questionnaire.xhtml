@@ -29,7 +29,8 @@
 			</p:breadCrumb>
 			<h:panelGrid columns="2" style="margin-left: 70px; margin-top: 10px;">
 				<h:outputLabel for="title" value="Título de Questionário:" />
-				<p:inputText id="title"
+				<p:inputText id="title" required="true"
+					requiredMessage="Título Inválido"
 					value="#{questionnaireController.questionnaire.title}" />
 				<h:outputLabel for="publicationDate" value="Data de Publicação:" />
 				<p:calendar id="publicationDate" required="true"
@@ -45,56 +46,54 @@
 				process="@this" onclick="PF('dlg2').show();"
 				style="margin-left: 1150px;" />
 
-			<p:panel header="Lista de Perguntas" id="panel-assistences"
-				style="width:1230px; margin-left: 70px; margin-top: 2px; background:transparent;">
-				<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
-					value="#{questionnaireController.questions}" var="question">
+			<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
+				value="#{questionnaireController.questions}" var="question"
+				style="width:1230px; margin-left: 70px; margin-top: 2px;">
 
-					<f:facet name="header">
-						<h:outputText value="Lista de Perguntas" />
-						<!-- <p:outputPanel>
+				<f:facet name="header">
+					<h:outputText value="Lista de Perguntas" />
+					<!-- <p:outputPanel>
 							<h:outputText value="Search all fields:" />
 							<p:inputText id="globalFilter" onkeyup="PF('table-question').filter()"
 								style="width:150px" placeholder="Enter keyword" />
 						</p:outputPanel> -->
-					</f:facet>
+				</f:facet>
 
-					<p:column headerText="Título" sortBy="#{question.title}"
-						filterBy="#{question.title}">
-						<p:outputLabel value="#{question.title}" />
-					</p:column>
+				<p:column headerText="Título" sortBy="#{question.title}"
+					filterBy="#{question.title}">
+					<p:outputLabel value="#{question.title}" />
+				</p:column>
 
-					<p:column headerText="Tipo" style="width: 150px"
-						filterBy="#{question.type}" sortBy="#{question.type}">
-						<p:outputLabel value="#{question.type}" />
-					</p:column>
+				<p:column headerText="Tipo" style="width: 150px"
+					filterBy="#{question.type}" sortBy="#{question.type}">
+					<p:outputLabel value="#{question.type}" />
+				</p:column>
 
-					<p:column headerText="Alternativas" style="width: 100px">
-						<p:commandButton icon="ui-icon-extlink"
-							onclick="PF('dlg2').show();" style="width:32px;" />
-					</p:column>
+				<p:column headerText="Alternativas" style="width: 100px">
+					<p:commandButton icon="ui-icon-extlink"
+						onclick="PF('dlg2').show();" style="width:32px;" />
+				</p:column>
 
-					<p:column headerText="Obrigatória" style="width: 150px"
-						filterBy="#{question.obligatory}" sortBy="#{question.obligatory}">
-						<p:outputLabel value="#{question.obligatory}" />
-					</p:column>
+				<p:column headerText="Obrigatória" style="width: 150px"
+					filterBy="#{question.obligatory}" sortBy="#{question.obligatory}">
+					<p:outputLabel value="#{question.obligatory}" />
+				</p:column>
 
-					<p:column headerText="Peso" style="width: 150px"
-						filterBy="#{question.weightOfQuestion}"
-						sortBy="#{question.weightOfQuestion}">
-						<p:outputLabel value="#{question.weightOfQuestion}" />
-					</p:column>
+				<p:column headerText="Peso" style="width: 150px"
+					filterBy="#{question.weightOfQuestion}"
+					sortBy="#{question.weightOfQuestion}">
+					<p:outputLabel value="#{question.weightOfQuestion}" />
+				</p:column>
 
-					<p:column headerText="Remover?" style="width: 100px">
-						<p:commandButton actionListener="#{questionnaireController.removeQuestion(question)}"
-							update="table-questions" process="@this" icon="ui-icon-trash">
-							<p:confirm header="Confirmar Exclusão"
-								message="Deseja realmente excluir pergunta?"
-								icon="ui-icon-alert" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-			</p:panel>
+				<p:column headerText="Remover?" style="width: 100px">
+					<p:commandButton
+						actionListener="#{questionnaireController.removeQuestion(question)}"
+						update="table-questions" process="@this" icon="ui-icon-trash">
+						<p:confirm header="Confirmar Exclusão"
+							message="Deseja realmente excluir pergunta?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
 			<br />
 			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
 				value="Salvar Questionário"
@@ -102,14 +101,17 @@
 				actionListener="#{questionnaireController.addQuestionnaire()}"
 				style="margin-left: 1115px;" />
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" style="font-size: 10pt">
-				<p:commandButton value="Sim" type="button"
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				style="font-size: 10pt">
+				<p:commandButton value="Sim" type="button" style="margin-left:27%"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="Não" type="button"
+				<p:commandButton value="Não" type="button" style="position:center"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
 
-			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true" showEffect="fade" hideEffect="fade">
+
+			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true"
+				showEffect="fade" hideEffect="fade">
 				<h:panelGrid columns="2" border="0">
 					<p:outputLabel value="Título: " />
 					<p:inputTextarea id="i-title" rows="5" cols="30"
@@ -151,6 +153,13 @@
 					update="table-questions"
 					process="@this i-weightOfQuestion i-obligatory i-type i-helpText i-title"
 					action="#{questionnaireController.addQuestion}" />
+
+				<p:commandButton value="Adcionar Opção" icon="ui-icon-plus"
+					process="@this" onclick="PF('newOption').show();" />
+			</p:dialog>
+
+			<p:dialog header="Nova Opção" widgetVar="newOption" modal="true"
+				showEffect="fade" hideEffect="fade">
 			</p:dialog>
 		</h:form>
 	</ui:define>
