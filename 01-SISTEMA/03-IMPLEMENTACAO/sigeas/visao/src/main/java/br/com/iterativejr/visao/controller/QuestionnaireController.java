@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.iterativejr.domains.entidade.Question;
 import br.com.iterativejr.domains.entidade.Questionnaire;
+import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
 import br.com.iterativejr.service.negocio.QuestionnaireService;
 
 /**
@@ -34,35 +35,60 @@ import br.com.iterativejr.service.negocio.QuestionnaireService;
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
-@Controller 
-@ManagedBean (name="questionnaireController")
-@RequestScoped
+@Controller
+@ManagedBean(name = "questionnaireController")
+@ViewScoped
 public class QuestionnaireController {
-	
+
 	@Autowired
 	@Qualifier("questionnaireService")
 	private QuestionnaireService questionnaireService;
-	
+
 	private List<Question> questions;
-	
+
 	private Question question;
+
+	private Questionnaire questionnaire;
+
+	private QuestionTypeEnum[] typesQuestion;
 	
-	private Questionnaire questionnaire; 
-	
+	private List<Questionnaire> questionnaires;
+
 	/**
 	 * Inicia dados
 	 */
 	@PostConstruct
 	public void init() {
-		questions= new ArrayList<Question>();
+		questions = new ArrayList<Question>();
 		question = new Question();
 		questionnaire = new Questionnaire();
+		typesQuestion = QuestionTypeEnum.values();
+		questionnaires = findAll();
+	}
+
+	public void addQuestion() {
+		questions.add(question);
+		question = new Question();
+	}
+
+	public void removeQuestion(Question question) {
+		System.out.println(question.getTitle());
+		questions.remove(question);
+		question = new Question();
+	}
+
+	public void addQuestionnaire() {
+		questionnaireService.criar(questionnaire);
+		questionnaires = findAll();
 	}
 	
-	public void addQuestion() {
-		System.out.println("Passou");
-		System.out.println(question.getTitle());
-		questions.add(question);
+	public void removeQuestionnaire(Questionnaire questionnaire) {
+		questionnaireService.apagar(questionnaire);
+		questionnaires = findAll();
+	}
+	
+	private List<Questionnaire> findAll() {
+		return questionnaireService.buscarTodos();
 	}
 
 	public List<Question> getQuestions() {
@@ -87,5 +113,21 @@ public class QuestionnaireController {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public QuestionTypeEnum[] getTypesQuestion() {
+		return typesQuestion;
+	}
+
+	public void setTypesQuestion(QuestionTypeEnum[] typesQuestion) {
+		this.typesQuestion = typesQuestion;
+	}
+
+	public List<Questionnaire> getQuestionnaires() {
+		return questionnaires;
+	}
+
+	public void setQuestionnaires(List<Questionnaire> questionnaires) {
+		this.questionnaires = questionnaires;
 	}
 }

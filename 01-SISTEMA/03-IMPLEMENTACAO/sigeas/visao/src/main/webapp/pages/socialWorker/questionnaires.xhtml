@@ -20,6 +20,56 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<p:link href="new-questionnaire.html">Novo Questionário</p:link>
+		<p:growl id="growl" autoUpdate="true" showSummary="true" />
+		<h:form id="form-register-social" style="font-size: 10pt">
+			<p:breadCrumb id="breadCrumb"
+				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
+				<p:menuitem value="Tela Principal" url="index-social-worker.html" />
+				<p:menuitem value="Questionários" url="questionnaires.html" />
+				<p:menuitem value="Novo Questionário" url="new-questionnaire.html" />
+			</p:breadCrumb>
+			<p:commandButton value="Novo Questionário" icon="ui-icon-plus"
+				action="new-questionnaire.html" style="margin-left: 1091px;" />
+
+			<p:panel header="Lista de Questionários" id="panel-assistences"
+				style="width:1200px; margin-left: 70px; margin-top: 2px; background:transparent;">
+				<p:dataTable id="table-questions" emptyMessage="Nenhum questionário."
+					value="#{questionnaireController.questionnaires}" var="questionnaire">
+
+					<p:column headerText="Título">
+						<p:outputLabel value="#{questionnaire.title}" />
+					</p:column>
+
+					<p:column headerText="Publicado" style="width: 100px">
+						<p:outputLabel value="#{questionnaire.published}" />
+					</p:column>
+
+					<p:column headerText="Perguntas" style="width: 100px">
+						<p:commandButton icon="ui-icon-extlink"
+							onclick="PF('perguntas').show();" style="width:32px;" />
+					</p:column>
+
+					<p:column headerText="Data de Publicação" style="width: 100px">
+						<p:outputLabel value="#{questionnaire.publicationDate}" />
+					</p:column>
+
+					<p:column headerText="Data de Conclusão" style="width: 100px">
+						<p:outputLabel value="#{questionnaire.completionDate}" />
+					</p:column>
+					
+					<p:column headerText="Publicar?" style="width: 100px">
+						<p:commandButton icon="ui-icon-extlink"
+							onclick="PF('confPublicar').show();" style="width:32px;" />
+					</p:column>
+
+					<p:column headerText="Remover?" style="width: 100px">
+						<p:commandButton id="btRemove" update="table-questions"
+							icon="ui-icon ui-icon-trash"
+							actionListener="#{questionnaireController.removeQuestionnaire(questionnaire)}"
+							ajax="false" style="width:32px;" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>

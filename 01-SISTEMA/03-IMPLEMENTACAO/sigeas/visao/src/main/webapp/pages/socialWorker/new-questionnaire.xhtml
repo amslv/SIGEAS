@@ -5,11 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	template="/pages/socialWorker/menu-template-social-worker.xhtml">
 
-
 	<ui:define name="title">Novo Questionário</ui:define>
-
 
 	<ui:define name="header">
 		<link rel="stylesheet" type="text/css"
@@ -20,8 +19,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<p:growl id="growl" autoUpdate="true" showDetail="true"
-			showSummary="true" />
+		<p:growl id="growl" autoUpdate="true" showSummary="true" />
 		<h:form id="form-register-social" style="font-size: 10pt">
 			<p:breadCrumb id="breadCrumb"
 				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
@@ -29,67 +27,50 @@
 				<p:menuitem value="Questionários" url="questionnaires.html" />
 				<p:menuitem value="Novo Questionário" url="new-questionnaire.html" />
 			</p:breadCrumb>
-			<h:panelGrid columns="2" cellpadding="3"
-				style="margin-left: 70px; margin-top: 10px;">
+			<h:panelGrid columns="2" style="margin-left: 70px; margin-top: 10px;">
 				<h:outputLabel for="title" value="Título de Questionário:" />
 				<p:inputText id="title"
 					value="#{questionnaireController.questionnaire.title}" />
 				<h:outputLabel for="publicationDate" value="Data de Publicação:" />
-				<p:calendar id="publicationDate"
+				<p:calendar id="publicationDate" required="true"
+					requiredMessage="Data de Publicação Inválida"
 					value="#{questionnaireController.questionnaire.publicationDate}" />
 				<h:outputLabel for="completionDate" value="Data de Conclusão:" />
-				<p:inputText id="completionDate"
+				<p:calendar id="completionDate" required="true"
+					requiredMessage="Data de Conclusão Inválida"
 					value="#{questionnaireController.questionnaire.completionDate}" />
 			</h:panelGrid>
-			<p:panel header="Lista de Perguntas" id="panel-assistences"
-				style="width:1200px; margin-left: 70px; margin-top: 10px; background:transparent;">
-				<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
-					value="#{questionnaireController.questions}" var="question">
 
-					<p:column headerText="Título">
-						<p:outputLabel value="#{question.title}" />
-					</p:column>
+			<p:commandButton value="Nova Pergunta" icon="ui-icon-plus"
+				onclick="PF('dlg2').show();" style="margin-left: 1150px;" />
 
-					<p:column headerText="Tipo" style="width: 50px">
-						<p:outputLabel value="#{question.type}" />
-					</p:column>
-
-					<p:column headerText="Obrigatória" style="width: 100px">
-						<p:outputLabel value="#{question.obligatory}" />
-					</p:column>
-
-					<p:column headerText="Peso" style="width: 50px">
-						<p:outputLabel value="#{question.weightOfQuestion}" />
-					</p:column>
-
-					<p:column headerText="Remover Acesso" style="width: 160px">
-						<p:commandButton id="btRemove" update="table-questions"
-							icon="ui-icon ui-icon-trash"
-							actionListener="#{questionnaireController.removeQuestion(question)}"
-							ajax="false" style="width:32px; text-align:center " />
-					</p:column>
-				</p:dataTable>
-			</p:panel>
-			<br />
-			<p:panel header="Nova Pergunta" id="panel-new-question"
-				style="width:920px; margin-left: 70px;background:transparent;">
-				<h:panelGrid columns="12" border="0">
-
+			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true">
+				<h:panelGrid columns="2" border="0">
 					<p:outputLabel value="Título: " />
-					<p:inputText id="i-title"
+					<p:inputTextarea id="i-title" rows="5" cols="30"
+						counter="displayTitle"
 						value="#{questionnaireController.question.title}" required="true"
-						requiredMessage="Título inválido" />
+						requiredMessage="Título Inválido" maxlength="200"
+						counterTemplate="{0} caracteres restantes." autoResize="false" />
+					<br />
+					<h:outputText id="displayTitle" />
 
 					<p:outputLabel value="Texto de Ajuda: " />
-					<p:inputText id="i-helpText"
-						value="#{questionnaireController.question.helpText}" />
+					<p:inputTextarea id="i-helpText" rows="5" cols="30"
+						counter="display"
+						value="#{questionnaireController.question.helpText}"
+						maxlength="50" counterTemplate="{0} caracteres restantes."
+						autoResize="false" />
+					<br />
+					<h:outputText id="display" />
 
 					<p:outputLabel value="Tipo: " />
-					<p:selectOneListbox id="basic"
-						value="#{questionnaireController.question.type}" required="true"
-						requiredMessage="Tipo inválido">
-						<selectItem itemLabel="TExt" itemValue="Text" />
-					</p:selectOneListbox>
+					<p:selectOneMenu id="i-type" required="true"
+						requiredMessage="Tipo Inválido"
+						value="#{questionnaireController.question.type}">
+						<f:selectItem itemLabel="Selecione um tipo" itemValue="" />
+						<f:selectItems value="#{questionnaireController.typesQuestion}" />
+					</p:selectOneMenu>
 
 					<p:outputLabel value="Obrigatória: " />
 					<p:selectBooleanCheckbox
@@ -98,13 +79,62 @@
 					<p:outputLabel value="Peso: " />
 					<p:inputText id="i-weightOfQuestion" type="number"
 						value="#{questionnaireController.question.weightOfQuestion}"
-						required="true" requiredMessage="Título inválido" />
+						required="true" requiredMessage="Peso Inválido" />
 
-					<p:commandButton value="Adicionar" icon="ui-icon-disk"
-						update="table-questions"
-						action="#{questionnaireController.addQuestion}" />
 				</h:panelGrid>
+				<p:commandButton value="Salvar" icon="ui-icon-disk"
+					update="table-questions"
+					action="#{questionnaireController.addQuestion}" />
+			</p:dialog>
+
+			<p:panel header="Lista de Perguntas" id="panel-assistences"
+				style="width:1230px; margin-left: 70px; margin-top: 2px; background:transparent;">
+				<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
+					value="#{questionnaireController.questions}" var="question">
+
+					<p:column headerText="Título">
+						<p:outputLabel value="#{question.title}" />
+					</p:column>
+
+					<p:column headerText="Tipo" style="width: 150px">
+						<p:outputLabel value="#{question.type}" />
+					</p:column>
+
+					<p:column headerText="Alternativas" style="width: 100px">
+						<p:commandButton icon="ui-icon-extlink"
+							onclick="PF('dlg2').show();" style="width:32px;" />
+					</p:column>
+
+					<p:column headerText="Obrigatória" style="width: 100px">
+						<p:outputLabel value="#{question.obligatory}" />
+					</p:column>
+
+					<p:column headerText="Peso" style="width: 100px">
+						<p:outputLabel value="#{question.weightOfQuestion}" />
+					</p:column>
+
+					<p:column value="Remover?" style="width: 100px">
+						<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
+							onclick="PF('confExcluir').show();" style="width:32px;" />
+					</p:column>
+				</p:dataTable>
 			</p:panel>
+			<br />
+			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
+				value="Salvar Questionário"
+				actionListener="#{questionnaireController.addQuestionnaire()}"
+				style="margin-left: 1115px;" />
+				
+			<p:confirmDialog header="Confirma Exclusão" widgetVar="confExcluir"
+				severity="alert" message="Deseja realmente excluir pergunta?"
+				modal="true">
+				<p:commandButton id="btConfRemove" update="table-questions"
+					value="Sim" icon="ui-icon-check"
+					actionListener="#{questionnaireController.removeQuestion(question)}"
+					oncomplete="PF('confExcluir').hide();" />
+				<p:commandButton icon="ui-icon-closethick" value="Não"
+					onclick="PF('confExcluir').hide();" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>
