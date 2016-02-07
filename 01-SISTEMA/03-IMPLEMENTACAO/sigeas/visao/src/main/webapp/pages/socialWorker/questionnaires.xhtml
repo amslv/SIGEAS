@@ -23,7 +23,7 @@
 		<p:growl id="growl" autoUpdate="true" showSummary="true" />
 		<h:form id="form-register-social" style="font-size: 10pt">
 			<p:breadCrumb id="breadCrumb"
-				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
+				style="margin-left: 210px; background:transparent; border: transparent; position: relative;">
 				<p:menuitem value="Tela Principal" url="index-social-worker.html" />
 				<p:menuitem value="Questionários" url="questionnaires.html" />
 				<p:menuitem value="Novo Questionário" url="new-questionnaire.html" />
@@ -33,8 +33,10 @@
 
 			<p:panel header="Lista de Questionários" id="panel-assistences"
 				style="width:1200px; margin-left: 70px; margin-top: 2px; background:transparent;">
-				<p:dataTable id="table-questions" emptyMessage="Nenhum questionário."
-					value="#{questionnaireController.questionnaires}" var="questionnaire">
+				<p:dataTable id="table-questions"
+					emptyMessage="Nenhum questionário."
+					value="#{questionnaireController.questionnaires}"
+					var="questionnaire">
 
 					<p:column headerText="Título">
 						<p:outputLabel value="#{questionnaire.title}" />
@@ -56,18 +58,29 @@
 					<p:column headerText="Data de Conclusão" style="width: 100px">
 						<p:outputLabel value="#{questionnaire.completionDate}" />
 					</p:column>
-					
+
 					<p:column headerText="Publicar?" style="width: 100px">
 						<p:commandButton icon="ui-icon-extlink"
 							onclick="PF('confPublicar').show();" style="width:32px;" />
 					</p:column>
 
+					<!-- Dialog com confirmacao -->
 					<p:column headerText="Remover?" style="width: 100px">
-						<p:commandButton id="btRemove" update="table-questions"
-							icon="ui-icon ui-icon-trash"
+						<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
 							actionListener="#{questionnaireController.removeQuestionnaire(questionnaire)}"
-							ajax="false" style="width:32px;" />
+							update="table-questions">
+							<p:confirm header="Confirmation" message="Deseja mesmo excluir este questionário?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Sim" type="button" style="margin-left:27%"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Não" type="button" style="position:center"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
 					</p:column>
+					<!-- Fim Dialog -->
 				</p:dataTable>
 			</p:panel>
 		</h:form>
