@@ -74,6 +74,7 @@ public class Option extends EntidadeBasica {
 	 * Construtor Default
 	 */
 	public Option() {
+		marked = false;
 	}
 
 	/**
@@ -188,6 +189,24 @@ public class Option extends EntidadeBasica {
 		return "Option [body=" + body + ", punctuation=" + punctuation
 				+ ", marked=" + marked + ", id=" + id + "]";
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof Option)) {
+			return false;
+		} else {
+			Option option = (Option) obj;
+			if (!body.equals(option.getBody())) {
+				return false;
+			}
+			if (!punctuation.equals(option.getPunctuation())) {
+				return false;
+			}
+			return true;
+		}
+	}
 	
 }

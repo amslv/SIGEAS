@@ -284,6 +284,10 @@ public class Question extends EntidadeBasica {
 	public void addOption(Option option) {
 		options.add(option);
 	}
+	
+	public void removeOption(Option option) {
+		options.remove(option);
+	}
 
 	public QuestionTypeEnum getType() {
 		return type;
@@ -316,6 +320,5 @@ public class Question extends EntidadeBasica {
 			}
 			return true;
 		}
-
 	}
 }

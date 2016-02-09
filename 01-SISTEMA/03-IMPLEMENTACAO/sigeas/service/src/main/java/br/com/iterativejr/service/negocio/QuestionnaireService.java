@@ -11,6 +11,7 @@ import br.com.iterativejr.data.dao.QuestionnaireDao;
 import br.com.iterativejr.domains.entidade.Option;
 import br.com.iterativejr.domains.entidade.Question;
 import br.com.iterativejr.domains.entidade.Questionnaire;
+import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
 /**
  * <p>
@@ -58,8 +59,22 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 
 	/**
 	 * Publica questionário antes do previsto.
-	 * @param id
+	 * @param questionnaire
 	 * @return
 	 */
 	void publicQuestionnaire(Questionnaire questionnaire);
+	
+	/**
+	 * Adiciona opção em pergunta
+	 * @param id
+	 * @return
+	 */
+	Question addOptionInQuestion(Question question, Option option) throws SigeasException;
+
+	/**
+	 * Adiciona pergunta em questionário
+	 * @param id
+	 * @return
+	 */
+	Questionnaire addQuestionInQuestionnaire(Questionnaire questionnaire, Question question) throws SigeasException;
 }

@@ -37,7 +37,6 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	@Transactional
 	@Override
 	public T criar(@Valid @NotNull T entidade) {
-
 		return dao.criar(entidade);
 	}
 
@@ -48,9 +47,9 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * br.com.iterativejr.service.negocio.GenericService#buscarPorId(java
 	 * .lang.Object)
 	 */
+	@Transactional
 	@Override
 	public T buscarPorId(@NotNull K id) {
-
 		return dao.buscarPorId(id);
 	}
 
@@ -64,7 +63,6 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	@Transactional
 	@Override
 	public T atualizar(@NotNull @Valid T entidade) {
-
 		return dao.atualizar(entidade);
 	}
 
@@ -73,6 +71,7 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	 * 
 	 * @see br.com.iterativejr.service.negocio.GenericService#buscarTodos()
 	 */
+	@Transactional
 	@Override
 	public List<T> buscarTodos() {
 		return dao.buscarTodos();
@@ -88,7 +87,6 @@ public class GenericServiceImpl<T, K> implements GenericService<T, K> {
 	@Transactional
 	@Override
 	public void apagar(@NotNull T entidade) {
-		
 		dao.apagar(entidade);
 	}
 

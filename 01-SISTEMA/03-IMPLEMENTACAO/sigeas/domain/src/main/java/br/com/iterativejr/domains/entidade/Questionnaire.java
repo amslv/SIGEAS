@@ -3,6 +3,7 @@
  */
 package br.com.iterativejr.domains.entidade;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,6 +82,7 @@ public class Questionnaire extends EntidadeBasica {
 	 */
 	public Questionnaire() {
 		published = false;
+		questions = new ArrayList<Question>();
 	}
 
 	/**
@@ -98,6 +100,7 @@ public class Questionnaire extends EntidadeBasica {
 		this.published = published;
 		this.publicationDate = publicationDate;
 		this.completionDate = completionDate;
+		this.questions = new ArrayList<Question>();
 	}
 	
 	/**
@@ -115,6 +118,7 @@ public class Questionnaire extends EntidadeBasica {
 		this.published = false;
 		this.publicationDate = publicationDate;
 		this.completionDate = completionDate;
+		this.questions = new ArrayList<Question>();
 	}
 	
 	/**
@@ -187,9 +191,13 @@ public class Questionnaire extends EntidadeBasica {
 	/**
 	 * @param questions
 	 *            the questions to set
+	 * @throws Exception
 	 */
-	public void setQuestions(List<Question> questions) {
-	this.questions = questions;
+	public void setQuestions(List<Question> questions) throws Exception {
+		if (questions.size() == 0) {
+			throw new Exception("Insira ao menos uma pergunta");
+		}
+		this.questions = questions;
 	}
 
 	/**
@@ -243,6 +251,14 @@ public class Questionnaire extends EntidadeBasica {
 	 */
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public void addQuestion(Question question) {
+		questions.add(question);
+	}
+	
+	public void removeQuestion(Question question) {
+		questions.remove(question);
 	}
 
 	/**

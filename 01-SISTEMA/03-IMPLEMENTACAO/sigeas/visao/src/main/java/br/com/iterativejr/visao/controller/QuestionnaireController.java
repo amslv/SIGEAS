@@ -19,6 +19,8 @@ import br.com.iterativejr.domains.entidade.Question;
 import br.com.iterativejr.domains.entidade.Questionnaire;
 import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
 import br.com.iterativejr.service.negocio.QuestionnaireService;
+import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
+import br.com.iterativejr.visao.controller.util.JsfUtil;
 
 /**
  * <p>
@@ -48,6 +50,10 @@ public class QuestionnaireController {
 	private List<Question> questions;
 	
 	private Question question;
+	
+	private List<Option> optionsOfQuestion;
+	
+	private Option option;
 
 	private Questionnaire questionnaire;
 
@@ -61,31 +67,56 @@ public class QuestionnaireController {
 	@PostConstruct
 	public void init() {
 		questions = new ArrayList<Question>();
+		optionsOfQuestion = new ArrayList<Option>();
 		question = new Question();
+		option = new Option();
 		questionnaire = new Questionnaire();
 		typesQuestion = QuestionTypeEnum.values();
 		questionnaires = findAll();
 	}
 
 	public void addQuestion() {
-//		List<Option> options = new ArrayList<Option>();
-//		options.add(new Option("Body", 2.0, false, this.question));
-//		this.question.setOptions(options);
-//		System.out.println("Add options");
-		questions.add(question);
-		question = new Question();
+		try {
+			questionnaireService.addQuestionInQuestionnaire(questionnaire, question);
+			questions.add(question);
+			question = new Question();
+		} catch (SigeasException e) {
+			JsfUtil.addErrorMessage(e.getMessage());
+		}
+	}
+	
+	public void addOption() {
+		try {
+			questionnaireService.addOptionInQuestion(question, option);
+			option.setQuestion(question);
+			optionsOfQuestion.add(option);
+			option = new Option();
+		} catch (SigeasException e) {
+			JsfUtil.addErrorMessage(e.getMessage());
+		}
 	}
 
 	public void removeQuestion(Question question) {
 		questions.remove(question);
+		questionnaire.removeQuestion(question);
 		this.question = new Question();
+	}
+	
+	public void removeOption(Option option) {
+		optionsOfQuestion.remove(option);
+		question.removeOption(option);
+		this.option = new Option();
 	}
 
 	public void addQuestionnaire() {
-		questionnaire.setQuestions(questions);
-		questionnaireService.criar(questionnaire);
-		restartQuestionnaire();
-		questionnaires = findAll();
+		try {
+			questionnaire.setQuestions(questions);
+			questionnaireService.criar(questionnaire);
+			restartQuestionnaire();
+			questionnaires = findAll();
+		} catch (Exception e) {
+			JsfUtil.addErrorMessage(e.getMessage());
+		}
 	}
 
 	public void removeQuestionnaire(Questionnaire questionnaire) {
@@ -144,5 +175,24 @@ public class QuestionnaireController {
 	private void restartQuestionnaire() {
 		questionnaire = new Questionnaire();
 		questions = new ArrayList<Question>();
+		optionsOfQuestion = new ArrayList<Option>();
+		question = new Question();
+		option = new Option();
+	}
+
+	public Option getOption() {
+		return option;
+	}
+
+	public void setOption(Option option) {
+		this.option = option;
+	}
+
+	public List<Option> getOptions() {
+		return optionsOfQuestion;
+	}
+
+	public void setOptions(List<Option> options) {
+		this.optionsOfQuestion = options;
 	}
 }

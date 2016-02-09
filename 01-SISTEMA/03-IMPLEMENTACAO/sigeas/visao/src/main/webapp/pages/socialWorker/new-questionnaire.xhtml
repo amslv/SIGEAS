@@ -33,13 +33,21 @@
 					requiredMessage="Título Inválido"
 					value="#{questionnaireController.questionnaire.title}" />
 				<h:outputLabel for="publicationDate" value="Data de Publicação:" />
-				<p:calendar id="publicationDate" required="true"
+				<p:calendar locale="pt_BR" showButtonPanel="true" navigator="true"
+					id="publicationDate" required="true"
 					requiredMessage="Data de Publicação Inválida"
-					value="#{questionnaireController.questionnaire.publicationDate}" />
+					value="#{questionnaireController.questionnaire.publicationDate}"
+					pattern="dd/MM/yyyy">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
 				<h:outputLabel for="completionDate" value="Data de Conclusão:" />
-				<p:calendar id="completionDate" required="true"
+				<p:calendar locale="pt_BR" showButtonPanel="true" navigator="true"
+					id="completionDate" required="true"
 					requiredMessage="Data de Conclusão Inválida"
-					value="#{questionnaireController.questionnaire.completionDate}" />
+					value="#{questionnaireController.questionnaire.completionDate}"
+					pattern="dd/MM/yyyy">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
 			</h:panelGrid>
 
 			<p:commandButton value="Nova Pergunta" icon="ui-icon-plus"
@@ -52,11 +60,6 @@
 
 				<f:facet name="header">
 					<h:outputText value="Lista de Perguntas" />
-					<!-- <p:outputPanel>
-							<h:outputText value="Search all fields:" />
-							<p:inputText id="globalFilter" onkeyup="PF('table-question').filter()"
-								style="width:150px" placeholder="Enter keyword" />
-						</p:outputPanel> -->
 				</f:facet>
 
 				<p:column headerText="Título" sortBy="#{question.title}"
@@ -131,14 +134,6 @@
 					<br />
 					<h:outputText id="display" />
 
-					<p:outputLabel value="Tipo: " />
-					<p:selectOneMenu id="i-type" required="true"
-						requiredMessage="Tipo Inválido"
-						value="#{questionnaireController.question.type}">
-						<f:selectItem itemLabel="Selecione um tipo" itemValue="" />
-						<f:selectItems value="#{questionnaireController.typesQuestion}" />
-					</p:selectOneMenu>
-
 					<p:outputLabel value="Obrigatória: " />
 					<p:selectBooleanCheckbox id="i-obligatory"
 						value="#{questionnaireController.question.obligatory}" />
@@ -148,18 +143,71 @@
 						value="#{questionnaireController.question.weightOfQuestion}"
 						required="true" requiredMessage="Peso Inválido" />
 
+					<p:outputLabel value="Tipo: " />
+					<p:selectOneMenu id="i-type" required="true"
+						requiredMessage="Tipo Inválido"
+						value="#{questionnaireController.question.type}">
+						<f:selectItem itemLabel="Selecione um tipo" itemValue="" />
+						<f:selectItems value="#{questionnaireController.typesQuestion}" />
+					</p:selectOneMenu>
+
 				</h:panelGrid>
+
+				<p:dataTable id="table-options" emptyMessage="Nenhuma opção"
+					value="#{questionnaireController.options}" var="option"
+					style="width:500px; margin-top: 2px;">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Opções" />
+						<p:commandButton value="Adcionar Opção" icon="ui-icon-plus"
+							process="@this" onclick="PF('newOption').show();" />
+					</f:facet>
+
+					<p:column headerText="Corpo de Opção" sortBy="#{option.body}"
+						filterBy="#{option.body}">
+						<p:outputLabel value="#{option.body}" />
+					</p:column>
+
+					<p:column headerText="Pontuação" style="width: 150px"
+						filterBy="#{option.punctuation}" sortBy="#{option.punctuation}">
+						<p:outputLabel value="#{option.punctuation}" />
+					</p:column>
+
+					<p:column headerText="Remover?" style="width: 100px">
+						<p:commandButton
+							actionListener="#{questionnaireController.removeOption(option)}"
+							update="table-options" process="@this" icon="ui-icon-trash">
+							<p:confirm header="Confirmar Exclusão"
+								message="Deseja realmente excluir opção?" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
 				<p:commandButton value="Salvar" icon="ui-icon-disk"
 					update="table-questions"
 					process="@this i-weightOfQuestion i-obligatory i-type i-helpText i-title"
 					action="#{questionnaireController.addQuestion}" />
-
-				<p:commandButton value="Adcionar Opção" icon="ui-icon-plus"
-					process="@this" onclick="PF('newOption').show();" />
 			</p:dialog>
 
 			<p:dialog header="Nova Opção" widgetVar="newOption" modal="true"
 				showEffect="fade" hideEffect="fade">
+				<h:panelGrid columns="2" border="0">
+					<p:outputLabel value="Corpo de Questão: " />
+					<p:inputTextarea id="o-body" rows="5" cols="30"
+						counter="displayTitleOption"
+						value="#{questionnaireController.option.body}" required="true"
+						requiredMessage="Corpo Inválido" maxlength="100"
+						counterTemplate="{0} caracteres restantes." autoResize="false" />
+					<br />
+					<h:outputText id="displayTitleOption" />
+
+					<p:outputLabel value="Pontuação: " />
+					<p:inputText id="o-punctuation" type="number"
+						value="#{questionnaireController.option.punctuation}"
+						required="true" requiredMessage="Pontuação Inválido" />
+				</h:panelGrid>
+				<p:commandButton value="Salvar" icon="ui-icon-disk"
+					update="table-options" process="@this o-punctuation o-body"
+					action="#{questionnaireController.addOption}" />
 			</p:dialog>
 		</h:form>
 	</ui:define>
