@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,6 +36,7 @@ import br.com.iterativejr.visao.controller.util.JsfUtil;
  * </pre>
  * 
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
+ * @author <a href="https://github.com/LuizAntonioPS">Luiz Antonio</a>
  *
  */
 @Controller
@@ -80,18 +80,20 @@ public class QuestionnaireController {
 		try {
 			questionnaireService.addQuestionInQuestionnaire(questionnaire, question);
 			questions.add(question);
-			question = new Question();
+			restartQuestion();
+			JsfUtil.addSuccessMessage("Pergunta adicionada com sucesso");
 		} catch (SigeasException e) {
 			JsfUtil.addErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	public void addOption() {
 		try {
 			questionnaireService.addOptionInQuestion(question, option);
 			option.setQuestion(question);
 			optionsOfQuestion.add(option);
 			option = new Option();
+			JsfUtil.addSuccessMessage("Opção adicionada com sucesso");
 		} catch (SigeasException e) {
 			JsfUtil.addErrorMessage(e.getMessage());
 		}
@@ -101,23 +103,29 @@ public class QuestionnaireController {
 		questions.remove(question);
 		questionnaire.removeQuestion(question);
 		this.question = new Question();
+		JsfUtil.addSuccessMessage("Pergunta removida com sucesso");
 	}
 	
 	public void removeOption(Option option) {
 		optionsOfQuestion.remove(option);
 		question.removeOption(option);
 		this.option = new Option();
+		JsfUtil.addSuccessMessage("Opção removida com sucesso");
 	}
 
-	public void addQuestionnaire() {
+	public String addQuestionnaire() {
+		String pag = "";
 		try {
 			questionnaire.setQuestions(questions);
+			questionnaireService.validaDatas(questionnaire);
 			questionnaireService.criar(questionnaire);
-			restartQuestionnaire();
+			pag = restartQuestionnaire();
 			questionnaires = findAll();
+			JsfUtil.addSuccessMessage("Questionário adicionado com sucesso");
 		} catch (Exception e) {
 			JsfUtil.addErrorMessage(e.getMessage());
 		}
+		return pag;
 	}
 
 	public void setaObjeto (Questionnaire questionnaire){
@@ -136,6 +144,7 @@ public class QuestionnaireController {
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		questionnaireService.apagar(questionnaire);
 		questionnaires = findAll();
+		JsfUtil.addSuccessMessage("Questionário removido com sucesso");
 	}
 	
 	private List<Questionnaire> findAll() {
@@ -186,11 +195,18 @@ public class QuestionnaireController {
 		this.questionnaireService.publicQuestionnaire(questionnaire);
 	}
 
-	private void restartQuestionnaire() {
+	private String restartQuestionnaire() {
 		questionnaire = new Questionnaire();
 		questions = new ArrayList<Question>();
 		optionsOfQuestion = new ArrayList<Option>();
 		question = new Question();
+		option = new Option();
+		return "questionnaires.xhtml";
+	}
+	
+	private void restartQuestion() {
+		question = new Question();
+		optionsOfQuestion = new ArrayList<Option>();
 		option = new Option();
 	}
 

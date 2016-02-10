@@ -77,4 +77,11 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 	 * @return
 	 */
 	Questionnaire addQuestionInQuestionnaire(Questionnaire questionnaire, Question question) throws SigeasException;
+
+	/**
+	 * Valida datas adicionadas no questionário
+	 * @param id
+	 * @return
+	 */
+	void validaDatas(Questionnaire questionnaire);
 }

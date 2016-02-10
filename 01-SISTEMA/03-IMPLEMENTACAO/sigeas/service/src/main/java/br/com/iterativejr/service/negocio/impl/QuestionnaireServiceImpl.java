@@ -3,6 +3,7 @@
  */
 package br.com.iterativejr.service.negocio.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,4 +142,19 @@ public class QuestionnaireServiceImpl extends
 		return questionnaire;
 	}
 
+	@Override
+	public void validaDatas(Questionnaire questionnaire) {
+		System.out.println("passou");
+//		Calendar instance = Calendar.getInstance();
+//		if (instance.after(questionnaire.getPublicationDate())) {
+//			throw new SigeasException("Data de publicação inválida");
+//		}
+//		if (instance.after(questionnaire.getCompletionDate())) {
+//			throw new SigeasException("Data de conclusão inválida");
+//		}
+//		instance.setTime(questionnaire.getPublicationDate());
+//		if (instance.after(questionnaire.getCompletionDate())) {
+//			throw new SigeasException("Data de conclusão inválida");
+//		}
+	}
 }

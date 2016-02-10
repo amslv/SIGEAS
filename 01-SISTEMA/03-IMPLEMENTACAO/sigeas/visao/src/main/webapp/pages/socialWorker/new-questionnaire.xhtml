@@ -101,7 +101,7 @@
 			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
 				value="Salvar Questionário"
 				process="@this completionDate publicationDate title"
-				actionListener="#{questionnaireController.addQuestionnaire()}"
+				action="#{questionnaireController.addQuestionnaire()}"
 				style="margin-left: 1115px;" />
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
@@ -115,7 +115,7 @@
 
 			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true"
 				showEffect="fade" hideEffect="fade">
-				<h:panelGrid columns="2" border="0">
+				<h:panelGrid id="panelGridNewQuestion" columns="2" border="0">
 					<p:outputLabel value="Título: " />
 					<p:inputTextarea id="i-title" rows="5" cols="30"
 						counter="displayTitle"
@@ -182,15 +182,15 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Salvar" icon="ui-icon-disk"
-					update="table-questions"
+				<p:commandButton value="Salvar Pergunta" icon="ui-icon-disk"
+					update="table-questions table-options panelGridNewQuestion"
 					process="@this i-weightOfQuestion i-obligatory i-type i-helpText i-title"
 					action="#{questionnaireController.addQuestion}" />
 			</p:dialog>
 
 			<p:dialog header="Nova Opção" widgetVar="newOption" modal="true"
 				showEffect="fade" hideEffect="fade">
-				<h:panelGrid columns="2" border="0">
+				<h:panelGrid id="panelGridNewoption" columns="2" border="0">
 					<p:outputLabel value="Corpo de Questão: " />
 					<p:inputTextarea id="o-body" rows="5" cols="30"
 						counter="displayTitleOption"
@@ -205,8 +205,9 @@
 						value="#{questionnaireController.option.punctuation}"
 						required="true" requiredMessage="Pontuação Inválido" />
 				</h:panelGrid>
-				<p:commandButton value="Salvar" icon="ui-icon-disk"
-					update="table-options" process="@this o-punctuation o-body"
+				
+				<p:commandButton value="Salvar Opção" icon="ui-icon-disk"
+					update="table-options panelGridNewoption" process="@this o-punctuation o-body"
 					action="#{questionnaireController.addOption}" />
 			</p:dialog>
 		</h:form>
