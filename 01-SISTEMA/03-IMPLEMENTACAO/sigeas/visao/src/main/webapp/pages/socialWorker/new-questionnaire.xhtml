@@ -13,6 +13,8 @@
 	<ui:define name="header">
 		<link rel="stylesheet" type="text/css"
 			href="../../resources/css/styles/panel.css" />
+		<link rel="stylesheet" type="text/css"
+			href="../../resources/css/styles/font.css" />
 		<div id="rectangle">
 			<h:outputLabel id="textRectangle">Novo Questionário</h:outputLabel>
 		</div>
@@ -20,9 +22,9 @@
 
 	<ui:define name="content">
 		<p:growl id="growl" autoUpdate="true" showSummary="true" />
-		<h:form id="form-new-questionnaire" style="font-size: 10pt">
+		<h:form id="form-new-questionnaire">
 			<p:breadCrumb id="breadCrumb"
-				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
+				style="margin-left: 70px; background:transparent; border: transparent; position: relative; font-family:Nunito;">
 				<p:menuitem value="Tela Principal" url="index-social-worker.html" />
 				<p:menuitem value="Questionários" url="questionnaires.html" />
 				<p:menuitem value="Novo Questionário" url="new-questionnaire.html" />
@@ -52,11 +54,11 @@
 
 			<p:commandButton value="Nova Pergunta" icon="ui-icon-plus"
 				process="@this" onclick="PF('dlg2').show();"
-				style="margin-left: 1150px;" />
+				style="margin-left: 1150px; font-family:Nunito;" />
 
 			<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
 				value="#{questionnaireController.questions}" var="question"
-				style="width:1230px; margin-left: 70px; margin-top: 2px;">
+				style="width:1240px; margin-left: 70px; margin-top: 2px; font-family:Nunito;">
 
 				<f:facet name="header">
 					<h:outputText value="Lista de Perguntas" />
@@ -64,12 +66,13 @@
 
 				<p:column headerText="Título" sortBy="#{question.title}"
 					filterBy="#{question.title}">
-					<p:outputLabel value="#{question.title}" />
+					<p:outputLabel value="#{question.title}"
+						style="font-family:Nunito;" />
 				</p:column>
 
 				<p:column headerText="Tipo" style="width: 150px"
 					filterBy="#{question.type}" sortBy="#{question.type}">
-					<p:outputLabel value="#{question.type}" />
+					<p:outputLabel value="#{question.type}" style="font-family:Nunito;" />
 				</p:column>
 
 				<p:column headerText="Alternativas" style="width: 100px">
@@ -79,13 +82,15 @@
 
 				<p:column headerText="Obrigatória" style="width: 150px"
 					filterBy="#{question.obligatory}" sortBy="#{question.obligatory}">
-					<p:outputLabel value="#{question.obligatory}" />
+					<p:outputLabel value="#{question.obligatory}"
+						style="font-family:Nunito;" />
 				</p:column>
 
 				<p:column headerText="Peso" style="width: 150px"
 					filterBy="#{question.weightOfQuestion}"
 					sortBy="#{question.weightOfQuestion}">
-					<p:outputLabel value="#{question.weightOfQuestion}" />
+					<p:outputLabel value="#{question.weightOfQuestion}"
+						style="font-family:Nunito;" />
 				</p:column>
 
 				<p:column headerText="Remover?" style="width: 100px">
@@ -102,75 +107,91 @@
 				value="Salvar Questionário"
 				process="@this completionDate publicationDate title"
 				action="#{questionnaireController.addQuestionnaire()}"
-				style="margin-left: 1115px;" />
+				style="margin-left: 1115px; font-family:Nunito;" />
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
-				style="font-size: 10pt">
-				<p:commandButton value="Sim" type="button" style="margin-left:27%"
+				style="  font-family:Nunito;">
+				<p:commandButton value="Sim" type="button"
+					style="margin-left:27%; font-family:Nunito;"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="Não" type="button" style="position:center"
+				<p:commandButton value="Não" type="button"
+					style="position:center; font-family:Nunito;"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
 
 
 			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true"
-				showEffect="fade" hideEffect="fade">
-				<h:panelGrid id="panelGridNewQuestion" columns="2" border="0">
-					<p:outputLabel value="Título: " />
+				showEffect="fade" hideEffect="fade"
+				style="font-family:Nunito;  ">
+				<h:panelGrid id="panelGridNewQuestion" columns="2" border="0"
+					style="font-family:Nunito;  ">
+					<p:outputLabel value="Título: "
+						style="  font-family:Nunito;" />
 					<p:inputTextarea id="i-title" rows="5" cols="30"
 						counter="displayTitle"
 						value="#{questionnaireController.question.title}" required="true"
 						requiredMessage="Título Inválido" maxlength="200"
-						counterTemplate="{0} caracteres restantes." autoResize="false" />
+						counterTemplate="{0} caracteres restantes." autoResize="false"
+						style="  font-family:Nunito;" />
 					<br />
 					<h:outputText id="displayTitle" />
 
-					<p:outputLabel value="Texto de Ajuda: " />
+					<p:outputLabel value="Texto de Ajuda: "
+						style="  font-family:Nunito;" />
 					<p:inputTextarea id="i-helpText" rows="5" cols="30"
 						counter="display"
 						value="#{questionnaireController.question.helpText}"
 						maxlength="50" counterTemplate="{0} caracteres restantes."
-						autoResize="false" />
+						autoResize="false" style="  font-family:Nunito;" />
 					<br />
 					<h:outputText id="display" />
 
-					<p:outputLabel value="Obrigatória: " />
+					<p:outputLabel value="Obrigatória: "
+						style="  font-family:Nunito;" />
 					<p:selectBooleanCheckbox id="i-obligatory"
 						value="#{questionnaireController.question.obligatory}" />
 
-					<p:outputLabel value="Peso: " />
+					<p:outputLabel value="Peso: "
+						style="  font-family:Nunito;" />
 					<p:inputText id="i-weightOfQuestion" type="number"
 						value="#{questionnaireController.question.weightOfQuestion}"
-						required="true" requiredMessage="Peso Inválido" />
+						required="true" requiredMessage="Peso Inválido"
+						style="  font-family:Nunito;" />
 
-					<p:outputLabel value="Tipo: " />
+					<p:outputLabel value="Tipo: "
+						style="  font-family:Nunito;" />
 					<p:selectOneMenu id="i-type" required="true"
 						requiredMessage="Tipo Inválido"
 						value="#{questionnaireController.question.type}">
-						<f:selectItem itemLabel="Selecione um tipo" itemValue="" />
-						<f:selectItems value="#{questionnaireController.typesQuestion}" />
+						<f:selectItem itemLabel="Selecione um tipo" itemValue=""
+							style="  font-family:Nunito;" />
+						<f:selectItems value="#{questionnaireController.typesQuestion}"
+							style="  font-family:Nunito;" />
 					</p:selectOneMenu>
 
 				</h:panelGrid>
 
 				<p:dataTable id="table-options" emptyMessage="Nenhuma opção"
 					value="#{questionnaireController.options}" var="option"
-					style="width:500px; margin-top: 2px;">
+					style="width:500px; margin-top: 2px; font-family:Nunito;">
 
 					<f:facet name="header">
-						<h:outputText value="Lista de Opções" />
+						<h:outputText value="Lista de Opções"
+							style="  font-family:Nunito;" />
 						<p:commandButton value="Adcionar Opção" icon="ui-icon-plus"
-							process="@this" onclick="PF('newOption').show();" />
+							process="@this" onclick="PF('newOption').show();"
+							style="left:100px; font-family:Nunito;" />
 					</f:facet>
 
 					<p:column headerText="Corpo de Opção" sortBy="#{option.body}"
 						filterBy="#{option.body}">
-						<p:outputLabel value="#{option.body}" />
+						<p:outputLabel value="#{option.body}" style="font-family:Nunito;" />
 					</p:column>
 
 					<p:column headerText="Pontuação" style="width: 150px"
 						filterBy="#{option.punctuation}" sortBy="#{option.punctuation}">
-						<p:outputLabel value="#{option.punctuation}" />
+						<p:outputLabel value="#{option.punctuation}"
+							style="font-family:Nunito;" />
 					</p:column>
 
 					<p:column headerText="Remover?" style="width: 100px">
@@ -185,30 +206,37 @@
 				<p:commandButton value="Salvar Pergunta" icon="ui-icon-disk"
 					update="table-questions table-options panelGridNewQuestion"
 					process="@this i-weightOfQuestion i-obligatory i-type i-helpText i-title"
-					action="#{questionnaireController.addQuestion}" />
+					action="#{questionnaireController.addQuestion}"
+					style="font-family:Nunito;" />
 			</p:dialog>
 
 			<p:dialog header="Nova Opção" widgetVar="newOption" modal="true"
-				showEffect="fade" hideEffect="fade">
-				<h:panelGrid id="panelGridNewoption" columns="2" border="0">
-					<p:outputLabel value="Corpo de Questão: " />
+				showEffect="fade" hideEffect="fade" style="font-family:Nunito;">
+				<h:panelGrid id="panelGridNewoption" columns="2" border="0"
+					style="font-family:Nunito;">
+					<p:outputLabel value="Corpo de Questão: "
+						style="font-family:Nunito;" />
 					<p:inputTextarea id="o-body" rows="5" cols="30"
 						counter="displayTitleOption"
 						value="#{questionnaireController.option.body}" required="true"
 						requiredMessage="Corpo Inválido" maxlength="100"
-						counterTemplate="{0} caracteres restantes." autoResize="false" />
+						counterTemplate="{0} caracteres restantes." autoResize="false"
+						style="font-family:Nunito;" />
 					<br />
 					<h:outputText id="displayTitleOption" />
 
-					<p:outputLabel value="Pontuação: " />
+					<p:outputLabel value="Pontuação: " style="font-family:Nunito;" />
 					<p:inputText id="o-punctuation" type="number"
 						value="#{questionnaireController.option.punctuation}"
-						required="true" requiredMessage="Pontuação Inválido" />
+						required="true" requiredMessage="Pontuação Inválido"
+						style="font-family:Nunito;" />
 				</h:panelGrid>
-				
+
 				<p:commandButton value="Salvar Opção" icon="ui-icon-disk"
-					update="table-options panelGridNewoption" process="@this o-punctuation o-body"
-					action="#{questionnaireController.addOption}" />
+					update="table-options panelGridNewoption"
+					process="@this o-punctuation o-body"
+					action="#{questionnaireController.addOption}"
+					style="font-family:Nunito;" />
 			</p:dialog>
 		</h:form>
 	</ui:define>

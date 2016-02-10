@@ -1,11 +1,13 @@
 #j_username {
-	margin-top: 5px;
+	width: 200px;
+	margin-top: 2px;
 	border-radius: 10px;
 	border-style: inset;
 }
 
 #j_password {
-	margin-top: 5px;
+	width: 200px;
+	margin-top: 2px;
 	border-radius: 10px;
 	border-style: inset;
 }

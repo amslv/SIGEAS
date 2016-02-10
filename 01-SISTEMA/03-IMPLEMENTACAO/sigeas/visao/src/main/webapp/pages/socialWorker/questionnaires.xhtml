@@ -5,6 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	template="/pages/socialWorker/menu-template-social-worker.xhtml">
 
 
@@ -14,6 +15,8 @@
 	<ui:define name="header">
 		<link rel="stylesheet" type="text/css"
 			href="../../resources/css/styles/panel.css" />
+		<link rel="stylesheet" type="text/css"
+			href="../../resources/css/styles/font.css" />
 		<div id="rectangle">
 			<h:outputLabel id="textRectangle">Questionários</h:outputLabel>
 		</div>
@@ -21,76 +24,83 @@
 
 	<ui:define name="content">
 		<p:growl id="growl" autoUpdate="true" showSummary="true" />
-		<h:form id="form-register-social" style="font-size: 10pt">
+		<h:form id="form-register-social">
 			<p:breadCrumb id="breadCrumb"
-				style="margin-left: 70px; background:transparent; border: transparent; position: relative;">
+				style="margin-left: 70px; background:transparent; border: transparent; position: relative; font-family:Nunito;">
 				<p:menuitem value="Tela Principal" url="index-social-worker.html" />
 				<p:menuitem value="Questionários" url="questionnaires.html" />
 			</p:breadCrumb>
 			<p:commandButton value="Novo Questionário" icon="ui-icon-plus"
-				action="new-questionnaire.html" style="margin-left: 1091px;" />
+				action="new-questionnaire.html"
+				style="margin-left: 1121px; font-family:Nunito;" />
 
-			<p:panel header="Lista de Questionários" id="panel-assistences"
-				style="width:1200px; margin-left: 70px; margin-top: 2px; background:transparent;">
-				<p:dataTable id="table-questionnaires"
-					emptyMessage="Nenhum questionário."
-					value="#{questionnaireController.questionnaires}"
-					var="questionnaire">
+			<p:dataTable id="table-questionnaires"
+				emptyMessage="Nenhum questionário."
+				value="#{questionnaireController.questionnaires}"
+				var="questionnaire"
+				style="width:1240px; margin-left: 70px; margin-top: 2px; background:transparent; font-family:Nunito;">
 
-					<p:column headerText="Título">
-						<p:outputLabel value="#{questionnaire.title}" />
-					</p:column>
+				<f:facet name="header">
+					<h:outputText value="Lista de Questionários" />
+				</f:facet>
 
-					<p:column headerText="Publicado" style="width: 100px">
-						<p:outputLabel value="#{questionnaire.published}" />
-					</p:column>
+				<p:column headerText="Título">
+					<p:outputLabel value="#{questionnaire.title}"
+						style="font-family:Nunito;" />
+				</p:column>
 
-					<p:column headerText="Visualizar" style="width: 100px">
-						<p:commandButton icon="ui-icon-extlink"
-							action="testeBD.html" actionListener="#{questionnaireController.setaObjeto(questionnaire)}" style="width:32px;" />
-					</p:column>
+				<p:column headerText="Publicado" style="width: 100px">
+					<p:outputLabel value="#{questionnaire.published}"
+						style="font-family:Nunito;" />
+				</p:column>
 
-					<p:column headerText="Data de Publicação" style="width: 100px">
-						<p:outputLabel value="#{questionnaire.publicationDate}" />
-					</p:column>
+				<p:column headerText="Visualizar" style="width: 100px">
+					<p:commandButton icon="ui-icon-extlink" action="testeBD.html"
+						actionListener="#{questionnaireController.setaObjeto(questionnaire)}"
+						style="width:32px;" />
+				</p:column>
 
-					<p:column headerText="Data de Conclusão" style="width: 100px">
-						<p:outputLabel value="#{questionnaire.completionDate}" />
-					</p:column>
+				<p:column headerText="Data de Publicação" style="width: 120px">
+					<p:outputLabel value="#{questionnaire.publicationDate}"
+						style="font-family:Nunito;" />
+				</p:column>
 
-					<p:column headerText="Publicar?" style="width: 100px">
-						<p:commandButton
-							actionListener="#{questionnaireController.publicQuestionnaire(questionnaire)}"
-							update="table-questionnaires" process="@this" icon="ui-icon-extlink">
-							<p:confirm header="Confirmar Publicação"
-								message="Deseja mesmo publicar questionário?"
-								icon="ui-icon-alert" />
-						</p:commandButton>
-					</p:column>
+				<p:column headerText="Data de Conclusão" style="width: 120px">
+					<p:outputLabel value="#{questionnaire.completionDate}"
+						style="font-family:Nunito;" />
+				</p:column>
 
-					<!-- Dialog com confirmacao -->
-					<p:column headerText="Remover?" style="width: 100px">
-						<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
-							actionListener="#{questionnaireController.removeQuestionnaire(questionnaire)}"
-							update="table-questionnaires">
-							<p:confirm header="Confirmar Exclusão"
-								message="Deseja mesmo excluir este questionário?"
-								icon="ui-icon-alert" />
-						</p:commandButton>
+				<p:column headerText="Publicar?" style="width: 100px">
+					<p:commandButton
+						actionListener="#{questionnaireController.publicQuestionnaire(questionnaire)}"
+						update="table-questionnaires" process="@this"
+						icon="ui-icon-extlink">
+						<p:confirm header="Confirmar Publicação"
+							message="Deseja mesmo publicar questionário?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
 
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
-							style="font-size: 10pt">
-							<p:commandButton value="Sim" type="button"
-								style="margin-left:27%" styleClass="ui-confirmdialog-yes"
-								icon="ui-icon-check" />
-							<p:commandButton value="Não" type="button"
-								style="position:center" styleClass="ui-confirmdialog-no"
-								icon="ui-icon-close" />
-						</p:confirmDialog>
-					</p:column>
-					<!-- Fim Dialog -->
-				</p:dataTable>
-			</p:panel>
+				<!-- Dialog com confirmacao -->
+				<p:column headerText="Remover?" style="width: 100px">
+					<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
+						actionListener="#{questionnaireController.removeQuestionnaire(questionnaire)}"
+						update="table-questionnaires">
+						<p:confirm header="Confirmar Exclusão"
+							message="Deseja mesmo excluir este questionário?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						style="font-size: 10pt">
+						<p:commandButton value="Sim" type="button" style="margin-left:27%"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button" style="position:center"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+				<!-- Fim Dialog -->
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

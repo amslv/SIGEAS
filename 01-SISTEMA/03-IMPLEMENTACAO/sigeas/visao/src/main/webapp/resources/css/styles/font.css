@@ -20,6 +20,14 @@
     font-size: 15pt;
 }
 
+#form-register-social {
+    font-size: 11pt;
+}
+
+#form-new-questionnaire {
+	font-size: 11pt;
+}
+
 /* Fonte do placeholder */
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 	font-family: "Nunito", sans-serif;
