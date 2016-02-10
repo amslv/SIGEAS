@@ -30,6 +30,15 @@
 
 	<dependencyManagement>
 		<dependencies>
+		
+		<dependency>
+	<groupId>org.primefaces.extensions</groupId>
+	<artifactId>primefaces-extensions</artifactId>
+	<version>4.0.0</version>
+</dependency>
+
+
+ 
 			<dependency>
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>

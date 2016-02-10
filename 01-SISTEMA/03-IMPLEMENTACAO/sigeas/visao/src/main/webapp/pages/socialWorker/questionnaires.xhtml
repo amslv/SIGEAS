@@ -46,9 +46,9 @@
 						<p:outputLabel value="#{questionnaire.published}" />
 					</p:column>
 
-					<p:column headerText="Perguntas" style="width: 100px">
+					<p:column headerText="Visualizar" style="width: 100px">
 						<p:commandButton icon="ui-icon-extlink"
-							onclick="PF('perguntas').show();" style="width:32px;" />
+							action="testeBD.html" actionListener="#{questionnaireController.setaObjeto(questionnaire)}" style="width:32px;" />
 					</p:column>
 
 					<p:column headerText="Data de Publicação" style="width: 100px">

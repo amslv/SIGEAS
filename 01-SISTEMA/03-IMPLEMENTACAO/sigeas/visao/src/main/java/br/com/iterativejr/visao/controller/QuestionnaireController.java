@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -119,6 +120,19 @@ public class QuestionnaireController {
 		}
 	}
 
+	public void setaObjeto (Questionnaire questionnaire){
+		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
+		for (Question question : searchAllQuestionsFromQuestionnaire) {
+			question.setOptions(questionnaireService.searchOptionsByQuesting(question.getId()));;
+		}
+		try {
+			questionnaire.setQuestions(searchAllQuestionsFromQuestionnaire);
+			QUESTION = questionnaire;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		questionnaireService.apagar(questionnaire);
 		questionnaires = findAll();
@@ -195,4 +209,5 @@ public class QuestionnaireController {
 	public void setOptions(List<Option> options) {
 		this.optionsOfQuestion = options;
 	}
+	public static Questionnaire QUESTION;
 }
