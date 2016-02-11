@@ -4,6 +4,7 @@
 package br.com.iterativejr.service.negocio.impl;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,16 +146,17 @@ public class QuestionnaireServiceImpl extends
 	@Override
 	public void validaDatas(Questionnaire questionnaire) {
 		System.out.println("passou");
-//		Calendar instance = Calendar.getInstance();
-//		if (instance.after(questionnaire.getPublicationDate())) {
-//			throw new SigeasException("Data de publicação inválida");
-//		}
-//		if (instance.after(questionnaire.getCompletionDate())) {
-//			throw new SigeasException("Data de conclusão inválida");
-//		}
-//		instance.setTime(questionnaire.getPublicationDate());
-//		if (instance.after(questionnaire.getCompletionDate())) {
-//			throw new SigeasException("Data de conclusão inválida");
-//		}
+		Calendar instance = Calendar.getInstance();
+		instance.add(Calendar.DAY_OF_MONTH, -1);
+		Date time = instance.getTime();
+		if (time.compareTo(questionnaire.getPublicationDate()) >= 0) {
+			throw new SigeasException("Insira uma data de publicação posterior a atual");
+		}
+		if (time.compareTo(questionnaire.getCompletionDate()) >= 0) {
+			throw new SigeasException("Insira uma data de conclusão posterior a atual");
+		}
+		if (questionnaire.getPublicationDate().compareTo(questionnaire.getCompletionDate()) >= 0) {
+			throw new SigeasException("Insira uma data de conclusão posterior a data de publicação");
+		}
 	}
 }

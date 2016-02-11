@@ -105,9 +105,13 @@
 			<br />
 			<p:commandButton id="btSaveQuestionnaire" icon="ui-icon-disk"
 				value="Salvar Questionário"
-				process="@this completionDate publicationDate title"
 				action="#{questionnaireController.addQuestionnaire()}"
-				style="margin-left: 1115px; font-family:Nunito;" />
+				process="@this completionDate publicationDate title"
+				style="margin-left: 1115px; font-family:Nunito;">
+				<p:confirm header="Confirmar Cadastro"
+					message="Deseja realmente salvar questionário?"
+					icon="ui-icon-alert" />
+			</p:commandButton>
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 				style="  font-family:Nunito;">
@@ -121,12 +125,10 @@
 
 
 			<p:dialog header="Nova Pergunta" widgetVar="dlg2" modal="true"
-				showEffect="fade" hideEffect="fade"
-				style="font-family:Nunito;  ">
+				showEffect="fade" hideEffect="fade" style="font-family:Nunito;  ">
 				<h:panelGrid id="panelGridNewQuestion" columns="2" border="0"
 					style="font-family:Nunito;  ">
-					<p:outputLabel value="Título: "
-						style="  font-family:Nunito;" />
+					<p:outputLabel value="Título: " style="  font-family:Nunito;" />
 					<p:inputTextarea id="i-title" rows="5" cols="30"
 						counter="displayTitle"
 						value="#{questionnaireController.question.title}" required="true"
@@ -146,20 +148,17 @@
 					<br />
 					<h:outputText id="display" />
 
-					<p:outputLabel value="Obrigatória: "
-						style="  font-family:Nunito;" />
+					<p:outputLabel value="Obrigatória: " style="  font-family:Nunito;" />
 					<p:selectBooleanCheckbox id="i-obligatory"
 						value="#{questionnaireController.question.obligatory}" />
 
-					<p:outputLabel value="Peso: "
-						style="  font-family:Nunito;" />
+					<p:outputLabel value="Peso: " style="  font-family:Nunito;" />
 					<p:inputText id="i-weightOfQuestion" type="number"
 						value="#{questionnaireController.question.weightOfQuestion}"
 						required="true" requiredMessage="Peso Inválido"
 						style="  font-family:Nunito;" />
 
-					<p:outputLabel value="Tipo: "
-						style="  font-family:Nunito;" />
+					<p:outputLabel value="Tipo: " style="  font-family:Nunito;" />
 					<p:selectOneMenu id="i-type" required="true"
 						requiredMessage="Tipo Inválido"
 						value="#{questionnaireController.question.type}">
