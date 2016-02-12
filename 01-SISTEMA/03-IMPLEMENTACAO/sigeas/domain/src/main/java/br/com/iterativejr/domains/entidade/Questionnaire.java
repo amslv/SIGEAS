@@ -30,7 +30,7 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity 
-@NamedQueries({@NamedQuery(name = "Questionnaire.searchAllQuestionsFromQuestionnaire", query = "SELECT questao from Questionnaire questionario inner join questionario.questions questao where questionario.id = :idQuestionnaire")})
+@NamedQueries({@NamedQuery(name = "Questionnaire.searchAllQuestionsFromQuestionnaire", query = "SELECT questao from Questionnaire questionario inner join questionario.questions questao where questionario.id = :idQuestionnaire"), @NamedQuery(name = "Questionnaire.searchAllQuestinnairesPublished", query = "SELECT u FROM Questionnaire u where published = TRUE")})
 public class Questionnaire extends EntidadeBasica {
 // = 202
 	/**
@@ -261,14 +261,16 @@ public class Questionnaire extends EntidadeBasica {
 		questions.remove(question);
 	}
 
-	/**
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Questionnaire [id=" + id + ", title=" + title + ", questions="
-				+ "" + ", Published=" + published + ", publicationDate="
+				+ questions + ", published=" + published + ", publicationDate="
 				+ publicationDate + ", completionDate=" + completionDate + "]";
 	}
+
+
 
 }

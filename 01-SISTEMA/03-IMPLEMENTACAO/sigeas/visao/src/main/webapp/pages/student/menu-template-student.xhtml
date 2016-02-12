@@ -7,28 +7,66 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- inicia o style css dos paineis -->
-<link rel="stylesheet" type="text/css"
-	href="../../resources/css/styles/menu-lateral-student.css" />
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- inicia o style css dos paineis -->
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/styles/menu-lateral-student.css" />
 
-<link rel="stylesheet" type="text/css"
-	href="../../resources/css/styles/background.css" />
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/styles/background.css" />
 
-<h:outputScript library="primefaces" name="jquery/jquery.js"
-	target="head" />
-<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
-	target="head" />
-<script src="../../resources/javascript/script-menu-lateral-student.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+		target="head" />
+	<script src="../../resources/javascript/script-menu-lateral-student.js"></script>
 
-<title><ui:insert name="title">Menu</ui:insert></title>
-</head>
+	<title><ui:insert name="title">Menu</ui:insert></title>
+</h:head>
 
 <body id="body-init">
 	<div id="side" onclick="return true">
-
 		<!-- Icone do SIGEAS expandido no menu-->
+		<img id="icon-sigeas-login"
+			src="../../resources/images/icon/logo/sigeas-icon-117x158.png"
+			style="position: relative; top: 20px; left: 51%;" />
+
+		<div id='cssmenu1' style="left: 37%; top: 5%;">
+			<ul>
+				<li class='inscriptions'><a href='#'>Inscrições</a>
+					<ul>
+						<li><a href='inscriptions.html'>Inscrever-me <img id="icon-sigeas-login"
+								src="../../resources/images/icon/icon_more.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+						<li><a href='#'>Acompanhamento <img
+								id="icon-sigeas-login"
+								src="../../resources/images/icon/icon_follow.png"
+								style="position: absolute; left: 83%; top: 9px;" /></a></li>
+					</ul></li>
+				<li><form action="../../logout.html" method="post">
+						<input type="submit" value="Log out" />
+					</form></li>
+
+			</ul>
+		</div>
+		<div id='cssmenu1' style="left: 37%; top: 50%;">
+			<ul>
+				<li class='help'><a href='#'>Ajuda</a></li>
+				<li class='about'><a href='#'>Sobre Nós</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="header">
+		<ui:insert name="header" />
+	</div>
+
+	<div id="content">
+		<ui:insert name="content" />
+	</div>
+	<!-- <div id="side" onclick="return true">
+
 		<img id="icon-sigeas-login"
 			src="../../resources/images/icon/logo/sigeas-icon-117x158.png"
 			style="position: relative; top: 20px; left: 51%;" />
@@ -68,7 +106,7 @@
 
 	<div id="content" style="position: relative; left: 14%;">
 		<ui:insert name="content" />
-	</div>
+	</div> -->
 </body>
 
 </html>

@@ -59,6 +59,13 @@ public class Question extends EntidadeBasica {
 	@NotNull
 	@Column
 	private String title;
+	
+	/**
+	 * 
+	 */
+	@Column
+	private String answer;
+	
 	/**
 	 * Texto de ajuda
 	 */
@@ -115,8 +122,6 @@ public class Question extends EntidadeBasica {
 		super();
 		this.title = title;
 		this.helpText = helpText;
-		this.type = type;
-		// this.options = options;
 		this.obligatory = obligatory;
 		this.weightOfQuestion = weightOfQuestion;
 	}
@@ -148,6 +153,21 @@ public class Question extends EntidadeBasica {
 	@Override
 	public Long getId() {
 		return id;
+	}
+
+	
+	/**
+	 * @return the answer
+	 */
+	public String getAnswer() {
+		return answer;
+	}
+
+	/**
+	 * @param answer the answer to set
+	 */
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 	/**
@@ -273,7 +293,7 @@ public class Question extends EntidadeBasica {
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", title=" + title + ", helpText="
-				+ helpText + ", type=" + "" + ", options=" + ""
+				+ helpText + ", type=" + "" + ", answer=" +answer+ ""
 				+ ", obligatory=" + obligatory + ", weightOfQuestion="
 				+ weightOfQuestion + "]";
 	}

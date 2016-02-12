@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.faces.model.SelectItem;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class QuestionProperty implements Serializable {
 	 */
 	private static final long serialVersionUID = -3472241265977641562L;
 	private String name;
+	private String[] selectedCheck;
+	private List<String> checks;
     private Object value;
     private boolean required;
     private List<SelectItem> selectItems;  
@@ -36,7 +39,10 @@ public class QuestionProperty implements Serializable {
         this.required = required;
     }
     
-    
+
+    public void addChecks(String check){
+    	checks.add(check);
+    }
 
     /**
 	 * @param name
@@ -59,7 +65,21 @@ public class QuestionProperty implements Serializable {
         this.required = required;
     }
 
-    public String getName() {
+    /**
+	 * @param string
+	 * @param obligatory
+	 * @param pffan
+	 */
+	public QuestionProperty(String name, Boolean required,
+			List<String> checks) {
+		super();
+		this.name = name;
+		this.required = required;
+		this.checks = checks;
+	}
+
+
+	public String getName() {
         return name;
     }
 
@@ -110,14 +130,53 @@ public class QuestionProperty implements Serializable {
         this.required = required;
     }
 
+	
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "BookProperty [name=" + name + ", value=" + value
-				+ ", required=" + required + "]";
+		return "QuestionProperty [name=" + name + ", selectedCheck="
+				+ Arrays.toString(selectedCheck) + ", checks=" + checks
+				+ ", value=" + value + ", required=" + required
+				+ "]";
 	}
+
+
+	/**
+	 * @return the selectedCheck
+	 */
+	public String[] getSelectedCheck() {
+		return selectedCheck;
+	}
+
+
+	/**
+	 * @param selectedCheck the selectedCheck to set
+	 */
+	public void setSelectedCheck(String[] selectedCheck) {
+		this.selectedCheck = selectedCheck;
+	}
+
+
+	/**
+	 * @return the checks
+	 */
+	public List<String> getChecks() {
+		return checks;
+	}
+
+
+	/**
+	 * @param checks the checks to set
+	 */
+	public void setChecks(List<String> checks) {
+		this.checks = checks;
+	}
+	
+	
     
     
 }

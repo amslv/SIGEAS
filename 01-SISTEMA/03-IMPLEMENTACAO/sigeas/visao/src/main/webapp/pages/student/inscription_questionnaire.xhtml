@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/pages/student/menu-template-student.xhtml">
+
+	<ui:define name="title">Inscrição</ui:define>
+
+	<ui:define name="header">
+		<link rel="stylesheet" type="text/css"
+			href="../../resources/css/styles/panel.css" />
+		<div id="rectangle">
+			<h:outputLabel id="textRectangle">Inscrição</h:outputLabel>
+		</div>
+	</ui:define>
+
+	<ui:define name="content">
+
+
+		<img id="icon-sigeas-login" src="../../resources/images/ifpb-logo.png"
+			style="position: relative; left: 43%; width: 20%; margin-top: 3%;" />
+
+		<h1 style="position: relative; margin-left: 29%; margin-top: 3%;">POLÍTICA
+			DE ASSISTÊNCIA ESTUDANTIL - CAMPUS MONTEIRO</h1>
+		<h1 style="position: relative; margin-left: 39%; margin-top: 3%;">QUESTIONÁRIO
+			SOCIOECONÔMICO</h1>
+		<h2 style="position: relative; margin-left: 25%; margin-top: 3%;">
+			Caro aluno, preencha TODO o formulário e APRESENTE A DOCUMENTAÇÃO
+			solicitada, para que não haja <br>prejuízo na avaliação de seu
+				pedido.</br>
+		</h2>
+		<h:form id="mainForm" prependId="false"
+			style="margin-left: 23%; width:58%; margin-top: 3%; margin-botton:3%">
+
+			<h:panelGroup id="dynaFormGroup">
+				<p:messages id="messages" showSummary="true" />
+
+				<pe:dynaForm id="dynaForm" value="#{questionnaireController.model}"
+					var="data">
+					<pe:dynaFormControl type="input" for="txt">
+						<p:inputText id="txt" value="#{data.value}"
+							required="#{data.required}" style=" width:720px" />
+					</pe:dynaFormControl>
+
+					<pe:dynaFormControl type="radiochoice">
+						<p:selectOneRadio layout="pageDirection" value="#{data.value}"
+							required="#{data.required}">
+							<f:selectItems value="#{data.selectItems}" />
+						</p:selectOneRadio>
+					</pe:dynaFormControl>
+
+					<pe:dynaFormControl type="booleanchoice">
+						<p:selectManyCheckbox layout="pageDirection" value="#{data.selectedCheck}"
+							required="#{data.required}">
+							<f:selectItems value="#{data.checks}" />
+						</p:selectManyCheckbox>
+					</pe:dynaFormControl>
+
+					<pe:dynaFormControl type="textarea" for="tarea">
+						<p:inputTextarea id="tarea" style=" width:720px"
+							value="#{data.value}" required="#{data.required}"
+							autoResize="false" />
+					</pe:dynaFormControl>
+
+					<pe:dynaFormControl type="offset">
+						<p:spinner id="inputOffset" value="#{data.value}"
+							required="#{data.required}" min="0" max="99">
+
+						</p:spinner>
+					</pe:dynaFormControl>
+
+					<f:facet name="buttonBar">
+						<p:commandButton value="Submit"
+							action="#{questionnaireController.submitForm}" process="dynaForm"
+							update=":mainForm:dynaFormGroup :mainForm:inputValues"
+							oncomplete=""/>
+					</f:facet>
+				</pe:dynaForm>
+			</h:panelGroup>
+
+			<p:dialog header="Input values" widgetVar="inputValuesWidget">
+				<p:dataList id="inputValues"
+					value="#{questionnaireController.questionProperties}"
+					var="bookProperty" style="margin:10px;">
+				</p:dataList>
+			</p:dialog>
+
+			<h:outputScript id="dynaFormScript" target="body">  
+/* <![CDATA[ */ 
+    function handleComplete(xhr, status, args) { 
+        if(args && args.isValid) { 
+            PF('inputValuesWidget').show(); 
+        } else { 
+            PF('inputValuesWidget').hide(); 
+        } 
+    } 
+/* ]]> */  </h:outputScript>
+
+			<h:outputStylesheet id="dynaFormCSS">  
+    /* note: trick with colspan is needed for IE8 */  
+    .pe-dynaform-cell input,  
+    .pe-dynaform-cell textarea,  
+    .pe-dynaform-cell[colspan="1"] input,  
+    .pe-dynaform-cell[colspan="1"] textarea {  
+        width: 150px;  
+    }  
+    
+    .pe-dynaform-label {  
+        font-size:180%; 
+        text-align: left;
+    }  
+  
+    /* note: trick with colspan is needed for IE8 */  
+    .pe-dynaform-cell.calendar input,  
+    .pe-dynaform-cell[colspan="1"].calendar input {  
+        width: 120px;  
+    }  
+  
+    .pe-dynaform-cell.select .ui-selectonemenu {  
+        width: 157px !important;  
+    }  
+  
+    .pe-dynaform-cell.select .ui-selectonemenu .ui-selectonemenu-label {  
+        width: 130px !important;  
+    }  
+</h:outputStylesheet>
+
+
+
+
+			<p:commandButton value="Cancelar" style="margin-left:400px;"
+				action="inscriptions.html" />
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

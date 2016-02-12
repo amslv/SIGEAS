@@ -44,6 +44,12 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 	 * @return
 	 */
 	List <Question> searchAllQuestions (); 
+	
+	/**
+	 * 
+	 * @return
+	 */
+	List <Questionnaire> searchAllQuestinnairesPublished (); 
 	/**
 	 * 
 	 * @param idQuestionnaire

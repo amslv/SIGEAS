@@ -5,7 +5,6 @@ package br.com.iterativejr.data.dao;
 
 import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import br.com.iterativejr.domains.entidade.Option;
@@ -53,5 +52,11 @@ public interface QuestionnaireDao extends GenericDao<Questionnaire, Long>{
 	 * @return
 	 */
 	List <Option> searchOptionsByQuesting (@NotNull Long id);
+	
+	/**
+	 * 
+	 * @return lista de todos os questionários abertos
+	 */
+	List<Questionnaire> searchAllQuestinnairesPublished();
 	
 }

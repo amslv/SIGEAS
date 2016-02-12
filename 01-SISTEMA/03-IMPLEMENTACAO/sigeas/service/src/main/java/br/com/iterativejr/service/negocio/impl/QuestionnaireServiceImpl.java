@@ -97,6 +97,10 @@ public class QuestionnaireServiceImpl extends
 
 	}
 
+	/**
+	 * Publica questionario
+	 * 
+	 */
 	@Override
 	public void publicQuestionnaire(Questionnaire questionnaire) {
 		QuestionnaireDao questionnaireDao = (QuestionnaireDao) this.dao;
@@ -104,6 +108,9 @@ public class QuestionnaireServiceImpl extends
 		questionnaireDao.atualizar(questionnaire);
 	}
 
+	/**
+	 * AddOpcaoEmquestao
+	 */
 	@Override
 	public Question addOptionInQuestion(Question question, Option option)
 			throws SigeasException {
@@ -117,6 +124,9 @@ public class QuestionnaireServiceImpl extends
 		return question;
 	}
 
+	/**
+	 * AddQuestaoEmQuestioanrio
+	 */
 	@Override
 	public Questionnaire addQuestionInQuestionnaire(
 			Questionnaire questionnaire, Question question)
@@ -143,6 +153,9 @@ public class QuestionnaireServiceImpl extends
 		return questionnaire;
 	}
 
+	/**
+	 * Valida datas
+	 */
 	@Override
 	public void validaDatas(Questionnaire questionnaire) {
 		System.out.println("passou");
@@ -150,13 +163,29 @@ public class QuestionnaireServiceImpl extends
 		instance.add(Calendar.DAY_OF_MONTH, -1);
 		Date time = instance.getTime();
 		if (time.compareTo(questionnaire.getPublicationDate()) >= 0) {
-			throw new SigeasException("Insira uma data de publicação posterior a atual");
+			throw new SigeasException(
+					"Insira uma data de publicação posterior a atual");
 		}
 		if (time.compareTo(questionnaire.getCompletionDate()) >= 0) {
-			throw new SigeasException("Insira uma data de conclusão posterior a atual");
+			throw new SigeasException(
+					"Insira uma data de conclusão posterior a atual");
 		}
-		if (questionnaire.getPublicationDate().compareTo(questionnaire.getCompletionDate()) >= 0) {
-			throw new SigeasException("Insira uma data de conclusão posterior a data de publicação");
+		if (questionnaire.getPublicationDate().compareTo(
+				questionnaire.getCompletionDate()) >= 0) {
+			throw new SigeasException(
+					"Insira uma data de conclusão posterior a data de publicação");
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.com.iterativejr.service.negocio.QuestionnaireService#
+	 * searchAllQuestinnairesPublished()
+	 */
+	@Override
+	public List<Questionnaire> searchAllQuestinnairesPublished() {
+		QuestionnaireDao questionnaireDao = (QuestionnaireDao) this.dao;
+		return questionnaireDao.searchAllQuestinnairesPublished();
 	}
 }

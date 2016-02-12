@@ -85,5 +85,20 @@ public class QuestionnaireDaoImpl extends GenericDaoImpl<Questionnaire, Long> im
 		return resultado;
 	}
 
+
+	/** (non-Javadoc)
+	 * @see br.com.iterativejr.data.dao.QuestionnaireDao#searchAllQuestinnairesPublished()
+	 */
+	@Override
+	public List<Questionnaire> searchAllQuestinnairesPublished() {
+		Query query = this.entityManager
+				.createNamedQuery("Questionnaire.searchAllQuestinnairesPublished");
+
+		@SuppressWarnings("unchecked")
+		List<Questionnaire> resultado = query.getResultList();
+
+		return resultado;
+	}
+
 	
 }
