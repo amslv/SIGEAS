@@ -71,7 +71,6 @@ public class InscriptionServiceImpl extends
 	public void studentAlreadyAnswered(String registration,
 			Long idQuestionnaire) throws SigeasException {
 		InscriptionDao inscriptionDao = (InscriptionDao) this.dao;
-		System.out.println(inscriptionDao.studentAlreadyAnswered(registration,	idQuestionnaire));
 		if (inscriptionDao.studentAlreadyAnswered(registration,	idQuestionnaire)) {
 			throw new SigeasException("Você já está inscrito neste questionário");
 		}

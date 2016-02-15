@@ -20,7 +20,7 @@
 		</div>
 	</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="content" >
 		<p:growl id="growl" autoUpdate="true" showSummary="true" />
 		<h:form id="form-new-questionnaire">
 			<p:breadCrumb id="breadCrumb"
@@ -172,7 +172,7 @@
 				</h:panelGrid>
 
 				<p:dataTable id="table-options" emptyMessage="Nenhuma opção"
-					value="#{questionnaireController.options}" var="option" 
+					value="#{questionnaireController.options}" var="option"
 					paginator="true" rows="2" paginatorPosition="bottom"
 					style="width:500px; margin-top: 2px; font-family:Nunito;">
 

@@ -65,12 +65,34 @@ public interface InscriptionService extends GenericService<Inscription, Long>{
 	 */
 	Double calculatePunctuation(Long idQuestionnaire, String registration);
 	
+	/**
+	 * 
+	 * @param idQuestionnaire
+	 * @param registration
+	 * @return
+	 */
 	Inscription searchForQuestionnaireAndRegistration(Long idQuestionnaire, String registration);
 
+	/**
+	 * 
+	 * @param idQuestionnaire
+	 * @return
+	 */
 	List<Inscription> getPreClassification(Long idQuestionnaire);
 
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
 	List<Inscription> getInscriptionsOfUser(String username);
 
+	/**
+	 * 
+	 * @param username
+	 * @param questionnaire
+	 */
 	void removeInscriptionOfUser(String username, Questionnaire questionnaire);
+	
 	
 }

@@ -32,6 +32,11 @@
 		<authentication-provider>
 			<user-service>
 				<user name="jimi" password="123" authorities="ROLE_STUDENT" />
+				<user name="jimi1" password="123" authorities="ROLE_STUDENT" />
+				<user name="jimi2" password="123" authorities="ROLE_STUDENT" />
+				<user name="jimi3" password="123" authorities="ROLE_STUDENT" />
+				<user name="jimi4" password="123" authorities="ROLE_STUDENT" />
+				<user name="jimi5" password="123" authorities="ROLE_STUDENT" />
 				<user name="ana" password="123" authorities="ROLE_SOCIAL_WORKER" />
 				<user name="gabi" password="123" authorities="ROLE_FINANCIAL_WORKER" />
 			</user-service>

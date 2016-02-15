@@ -32,7 +32,7 @@
 			</p:breadCrumb>
 			<p:commandButton value="Novo Questionário" icon="ui-icon-plus"
 				action="new-questionnaire.html"
-				style="margin-left: 1121px; font-family:Nunito;" />
+				style="margin-left: 1121px; font-family:Nunito; position: relative;" />
 
 			<p:dataTable id="table-questionnaires"
 				emptyMessage="Nenhum questionário."
@@ -85,7 +85,7 @@
 				<p:column headerText="Pré-classificação" style="width: 100px">
 					<p:commandButton icon="ui-icon-arrow-4-diag"
 						actionListener="#{questionnaireController.getPreClassification(questionnaire)}"
-						process="@this" onclick="PF('preClassificacao').show();" />
+						process="@this" oncomplete="PF('preClassificacao').show();" update=":form-register-social:dialog" />
 				</p:column>
 
 				<!-- Dialog com confirmacao -->
@@ -108,11 +108,11 @@
 				</p:column>
 				<!-- Fim Dialog -->
 			</p:dataTable>
-
-			<p:dialog header="Pré-Classificação" widgetVar="preClassificacao"
-				modal="true" showEffect="fade" hideEffect="fade"
+			
+			<p:dialog id="dialog" header="Pré-Classificação" widgetVar="preClassificacao"
+				modal="true" showEffect="fade" hideEffect="fade" ajax="true"
 				style="font-family:Nunito;">
-				<p:dataTable id="table-options"
+				<p:dataTable id="table-options" ajax="true"
 					emptyMessage="Não houveram inscritos até o momento."
 					scrollable="true" scrollHeight="500"
 					value="#{questionnaireController.inscriptionsWithPunctuation}"
@@ -138,6 +138,7 @@
 					</p:column>
 				</p:dataTable>
 			</p:dialog>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

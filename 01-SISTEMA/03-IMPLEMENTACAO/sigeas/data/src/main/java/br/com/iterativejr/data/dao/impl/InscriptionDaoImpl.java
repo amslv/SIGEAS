@@ -43,7 +43,6 @@ public class InscriptionDaoImpl extends GenericDaoImpl<Inscription, Long> implem
 		query.setParameter("registration", registration);
 		query.setParameter("idQuestionnaire", idQuestionnaire);
 		Long result = (Long) query.getSingleResult();
-		System.out.println(result);
 		return result != 0;
 	}
 

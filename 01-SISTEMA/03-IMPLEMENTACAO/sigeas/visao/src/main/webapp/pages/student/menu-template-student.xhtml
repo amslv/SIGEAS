@@ -15,7 +15,9 @@
 
 	<link rel="stylesheet" type="text/css"
 		href="../../resources/css/styles/background.css" />
-
+<!-- CSS DO MENU FLUTUANTE -->
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/styles/floating-menu.css" />
 	<h:outputScript library="primefaces" name="jquery/jquery.js"
 		target="head" />
 	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
@@ -26,7 +28,7 @@
 </h:head>
 
 <body id="body-init">
-	<div id="side" onclick="return true">
+	<div id="side" onclick="return true" style="z-index:999">
 		<!-- Icone do SIGEAS expandido no menu-->
 		<img id="icon-sigeas-login"
 			src="../../resources/images/icon/logo/sigeas-icon-117x158.png"
@@ -44,9 +46,7 @@
 								src="../../resources/images/icon/icon_follow.png"
 								style="position: absolute; left: 83%; top: 9px;" /></a></li>
 					</ul></li>
-				<li><form action="../../logout.html" method="post">
-						<input type="submit" value="Log out" />
-					</form></li>
+				
 
 			</ul>
 		</div>
@@ -57,6 +57,29 @@
 			</ul>
 		</div>
 	</div>
+
+
+	<!-- MENU FLUTUANTE -->
+	
+		<div class="float-nav">
+		<a href="#" class="menu-btn">
+			<ul>
+				<li class="icon-user"></li>
+			
+			</ul>
+			
+		</a>
+	</div>
+	
+
+	<div class="main-nav">
+		<ul>
+			<li><a href="#">Minha conta</a></li>
+			<li><a href="../../logout.html">Sair</a></li>
+		</ul>
+	</div>
+
+	<script src="../../resources/javascript/script-floating-menu.js"></script>
 
 	<div id="header">
 		<ui:insert name="header" />

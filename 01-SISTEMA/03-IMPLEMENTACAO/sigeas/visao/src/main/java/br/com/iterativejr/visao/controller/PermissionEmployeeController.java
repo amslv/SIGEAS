@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.iterativejr.domains.entidade.PermissionEmployee;
 import br.com.iterativejr.service.negocio.PermissionEmployeeService;
+import br.com.iterativejr.visao.controller.util.JsfUtil;
 
 /**
  * 
@@ -68,6 +69,7 @@ public class PermissionEmployeeController {
 	public void removeEmployee(PermissionEmployee employee){
 		employeeService.apagar(employee);
 		permissionsEmployee=findAll();
+		JsfUtil.addSuccessMessage("Usuário removido com sucesso.");
 	}
 	
 	/**
@@ -155,6 +157,9 @@ public class PermissionEmployeeController {
 		if (!contem){
 			employeeService.criar(new PermissionEmployee(matricula, nome));
 			permissionsEmployee=findAll();
+			JsfUtil.addSuccessMessage("Usuário cadastrado com sucesso.");
+		}else{
+			JsfUtil.addErrorMessage("Usuário já cadastrado");
 		}
 	}
 	

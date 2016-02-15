@@ -247,8 +247,9 @@ public class QuestionnaireController {
 	}
 
 	public List<Inscription> getPreClassification(Questionnaire questionnaire) {
-		System.out.println("Passou para pegar a pré-classificação do questionário com título" + questionnaire.getTitle());
+		inscriptionsWithPunctuation = null;
 		inscriptionsWithPunctuation = inscriptionService.getPreClassification(questionnaire.getId());
+		System.out.println("Chegou");
 		return inscriptionsWithPunctuation;
 	}
 
@@ -289,8 +290,7 @@ public class QuestionnaireController {
 	public String submitForm() {
 		FacesMessage.Severity sev = FacesContext.getCurrentInstance()
 				.getMaximumSeverity();
-		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR
-				.compareTo(sev) >= 0));
+		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));
 
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.addCallbackParam("isValid", !hasErrors);
@@ -306,6 +306,7 @@ public class QuestionnaireController {
 	private void saveInscription(Inscription inscription) {
 		try {
 			inscriptionService.studentAlreadyAnswered(inscription.getRegistration(), inscription.getIdQuestionnaire());
+			inscription.setId(null);
 			inscriptionService.criar(inscription);
 			JsfUtil.addSuccessMessage("Inscrição realizada com sucesso");
 		} catch (Exception e) {
@@ -375,6 +376,7 @@ public class QuestionnaireController {
 		return answers;
 	}
 
+	
 	public void selectQuestionnaire(Questionnaire questionnaire) {
 
 		model = new DynaFormModel();
@@ -453,6 +455,7 @@ public class QuestionnaireController {
 		}
 	}
 
+	
 	public List<Inscription> getInscriptionsWithPunctuation() {
 		return inscriptionsWithPunctuation;
 	}
