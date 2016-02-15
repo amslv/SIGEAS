@@ -58,6 +58,7 @@
 
 			<p:dataTable id="table-questions" emptyMessage="Nenhuma pergunta"
 				value="#{questionnaireController.questions}" var="question"
+				paginator="true" rows="7" paginatorPosition="bottom"
 				style="width:1240px; margin-left: 70px; margin-top: 2px; font-family:Nunito;">
 
 				<f:facet name="header">
@@ -93,7 +94,7 @@
 						style="font-family:Nunito;" />
 				</p:column>
 
-				<p:column headerText="Remover?" style="width: 100px">
+				<p:column headerText="Remover" style="width: 100px">
 					<p:commandButton
 						actionListener="#{questionnaireController.removeQuestion(question)}"
 						update="table-questions" process="@this" icon="ui-icon-trash">
@@ -171,7 +172,8 @@
 				</h:panelGrid>
 
 				<p:dataTable id="table-options" emptyMessage="Nenhuma opção"
-					value="#{questionnaireController.options}" var="option"
+					value="#{questionnaireController.options}" var="option" 
+					paginator="true" rows="2" paginatorPosition="bottom"
 					style="width:500px; margin-top: 2px; font-family:Nunito;">
 
 					<f:facet name="header">
@@ -187,13 +189,13 @@
 						<p:outputLabel value="#{option.body}" style="font-family:Nunito;" />
 					</p:column>
 
-					<p:column headerText="Pontuação" style="width: 150px"
+					<p:column headerText="Pontuação" style="width: 120px"
 						filterBy="#{option.punctuation}" sortBy="#{option.punctuation}">
 						<p:outputLabel value="#{option.punctuation}"
 							style="font-family:Nunito;" />
 					</p:column>
 
-					<p:column headerText="Remover?" style="width: 100px">
+					<p:column headerText="Remover" style="width: 80px">
 						<p:commandButton
 							actionListener="#{questionnaireController.removeOption(option)}"
 							update="table-options" process="@this" icon="ui-icon-trash">

@@ -21,8 +21,8 @@ import org.primefaces.extensions.model.dynaform.DynaFormRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 
+import br.com.iterativejr.domains.entidade.Answer;
 import br.com.iterativejr.domains.entidade.Inscription;
 import br.com.iterativejr.domains.entidade.Option;
 import br.com.iterativejr.domains.entidade.Question;
@@ -59,35 +59,37 @@ public class QuestionnaireController {
 	@Qualifier("questionnaireService")
 	private QuestionnaireService questionnaireService;
 
-	
 	@Autowired
 	@Qualifier("inscriptionService")
 	private InscriptionService inscriptionService;
-	
+
 	private List<Question> questions;
-	
+
 	private Question question;
-	
+
 	private DynaFormModel model = new DynaFormModel();;
-	
+
 	private List<Option> optionsOfQuestion;
-	
+
 	private Option option;
 
 	private Questionnaire questionnaire;
-	
+
 	private Questionnaire questionnaireSected;
 
 	private QuestionTypeEnum[] typesQuestion;
-	
+
 	private List<Questionnaire> questionnaires;
 
+	private Inscription inscription;
 	
+	private List<Inscription> inscriptionsWithPunctuation;
+
 	/**
 	 * Inicia dados
 	 */
 	@PostConstruct
-	public void init() { 
+	public void init() {
 		questions = new ArrayList<Question>();
 		optionsOfQuestion = new ArrayList<Option>();
 		question = new Question();
@@ -95,11 +97,13 @@ public class QuestionnaireController {
 		questionnaire = new Questionnaire();
 		typesQuestion = QuestionTypeEnum.values();
 		questionnaires = findAll();
+		inscription = new Inscription();
 	}
 
 	public void addQuestion() {
 		try {
-			questionnaireService.addQuestionInQuestionnaire(questionnaire, question);
+			questionnaireService.addQuestionInQuestionnaire(questionnaire,
+					question);
 			questions.add(question);
 			restartQuestion();
 			JsfUtil.addSuccessMessage("Pergunta adicionada com sucesso");
@@ -109,7 +113,7 @@ public class QuestionnaireController {
 	}
 
 	public void addOption() {
-		
+
 		try {
 			questionnaireService.addOptionInQuestion(question, option);
 			option.setQuestion(question);
@@ -127,7 +131,7 @@ public class QuestionnaireController {
 		this.question = new Question();
 		JsfUtil.addSuccessMessage("Pergunta removida com sucesso");
 	}
-	
+
 	public void removeOption(Option option) {
 		optionsOfQuestion.remove(option);
 		question.removeOption(option);
@@ -150,29 +154,31 @@ public class QuestionnaireController {
 		return pag;
 	}
 
-	public void setaObjeto (Questionnaire questionnaire){
-		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
+	public void setaObjeto(Questionnaire questionnaire) {
+		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService
+				.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
 		for (Question question : searchAllQuestionsFromQuestionnaire) {
-			question.setOptions(questionnaireService.searchOptionsByQuesting(question.getId()));;
+			question.setOptions(questionnaireService
+					.searchOptionsByQuesting(question.getId()));
 		}
 		try {
 			questionnaire.setQuestions(searchAllQuestionsFromQuestionnaire);
 			QUESTION = questionnaire;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
-	
-	public List<Questionnaire> getAllPublished (){
+
+	public List<Questionnaire> getAllPublished() {
 		return questionnaireService.searchAllQuestinnairesPublished();
 	}
-	
+
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		questionnaireService.apagar(questionnaire);
 		questionnaires = findAll();
 		JsfUtil.addSuccessMessage("Questionário removido com sucesso");
 	}
-	
+
 	private List<Questionnaire> findAll() {
 		return questionnaireService.buscarTodos();
 	}
@@ -216,7 +222,7 @@ public class QuestionnaireController {
 	public void setQuestionnaires(List<Questionnaire> questionnaires) {
 		this.questionnaires = questionnaires;
 	}
-	
+
 	public void publicQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaireService.publicQuestionnaire(questionnaire);
 	}
@@ -229,7 +235,7 @@ public class QuestionnaireController {
 		option = new Option();
 		return "questionnaires.xhtml";
 	}
-	
+
 	private void restartQuestion() {
 		question = new Question();
 		optionsOfQuestion = new ArrayList<Option>();
@@ -238,6 +244,12 @@ public class QuestionnaireController {
 
 	public Option getOption() {
 		return option;
+	}
+
+	public List<Inscription> getPreClassification(Questionnaire questionnaire) {
+		System.out.println("Passou para pegar a pré-classificação do questionário com título" + questionnaire.getTitle());
+		inscriptionsWithPunctuation = inscriptionService.getPreClassification(questionnaire.getId());
+		return inscriptionsWithPunctuation;
 	}
 
 	public void setOption(Option option) {
@@ -251,165 +263,202 @@ public class QuestionnaireController {
 	public void setOptions(List<Option> options) {
 		this.optionsOfQuestion = options;
 	}
-	
+
 	public static Questionnaire QUESTION;
-	
+
 	public DynaFormModel getModel() {
 		return model;
 	}
 
 	public List<QuestionProperty> getquestionProperties() {
-		
+
 		if (model == null) {
 			return null;
 		}
 
 		List<QuestionProperty> questionProperties = new ArrayList<QuestionProperty>();
 		for (DynaFormControl dynaFormControl : model.getControls()) {
-			
-			questionProperties.add((QuestionProperty) dynaFormControl.getData());
+
+			questionProperties
+					.add((QuestionProperty) dynaFormControl.getData());
 		}
 
 		return questionProperties;
 	}
 
 	public String submitForm() {
-		 FacesMessage.Severity sev = FacesContext.getCurrentInstance().getMaximumSeverity();  
-	        boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));  
-	  
-	        RequestContext requestContext = RequestContext.getCurrentInstance();  
-	        requestContext.addCallbackParam("isValid", !hasErrors);  
-	  
-	       // List<QuestionProperty> getquestionProperties = getquestionProperties ();
-	       // String quest = setPropQuestionnaire (getquestionProperties);
-	       // System.out.println(quest);
-	        //inscriptionService.criar(new Inscription(questionnaireSected.getId(), quest));
-	       
-	        
-	        
-	        return "inscriptions.html"; 
+		FacesMessage.Severity sev = FacesContext.getCurrentInstance()
+				.getMaximumSeverity();
+		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR
+				.compareTo(sev) >= 0));
+
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		requestContext.addCallbackParam("isValid", !hasErrors);
+
+		List<QuestionProperty> getquestionProperties = getquestionProperties();
+		List<Answer> answers = setPropQuestionnaire(getquestionProperties);
+		inscription.setIdQuestionnaire(questionnaireSected.getId());
+		inscription.setAnswers(answers);
+		saveInscription(inscription);
+		return "inscriptions.html";
 	}
-	
-	
-	
+
+	private void saveInscription(Inscription inscription) {
+		try {
+			inscriptionService.studentAlreadyAnswered(inscription.getRegistration(), inscription.getIdQuestionnaire());
+			inscriptionService.criar(inscription);
+			JsfUtil.addSuccessMessage("Inscrição realizada com sucesso");
+		} catch (Exception e) {
+			JsfUtil.addErrorMessage(e.getMessage());
+		}
+	}
+
 	/**
 	 * @param getquestionProperties
 	 * @return
 	 */
-	private String setPropQuestionnaire( List<QuestionProperty> getquestionProperties) {
-		String answers="";
-		
+	private List<Answer> setPropQuestionnaire(
+			List<QuestionProperty> getquestionProperties) {
+		List<Answer> answers = new ArrayList<Answer>();
+
 		for (QuestionProperty questionProperty : getquestionProperties) {
-			answers = answers + "{"+questionProperty+"}";
-		}
-		/*for (int i = 0; i < questionnaireSected.getQuestions().size(); i++) {
-			Question atual = questionnaireSected.getQuestions().get(i);
-			QuestionProperty property = getquestionProperties.get(i);
-			if (atual.getType().equals(QuestionTypeEnum.PARAGRAPH)||atual.getType().equals(QuestionTypeEnum.TEXT)){
-				atual.setAnswer((String)property.getValue());
-				answers = answers + "[]"
-			}else if (atual.getType().equals(QuestionTypeEnum.CHECKBOX)){
-				String[] selectedCheck = property.getSelectedCheck();
-				List<Option> options = atual.getOptions();
-				for (Option option : options) {
-					if (contains (selectedCheck, option.getBody())){
-						option.setMarked(true);
-					}
+			Question question = new Question();
+			List<Question> questions2 = questionnaireSected.getQuestions();
+			for (Question question1 : questions2) {
+				if (question1.getId().equals(Long.valueOf(questionProperty.getName()))) {
+					question = question1;
 				}
-				
-			}else if (atual.getType().equals(QuestionTypeEnum.RADIO)){
-				List<Option> options = atual.getOptions();
-				for (Option option : options) {
-					if ((option.getBody()).equals(property.getValue())){
-						option.setMarked(true);
-					}
-				}
-			}else if (atual.getType().equals(QuestionTypeEnum.SPINNER)){
-				atual.setAnswer((String)property.getValue());
 			}
-		}*/
+			Answer answer = new Answer();
+			String answersOfQuestion = "";
+			Double punctuationOptions = 0d;
+			if (questionProperty.getValue() != null) {
+				answersOfQuestion = answersOfQuestion
+						+ String.valueOf(questionProperty.getValue());
+				if (question.getType().equals(QuestionTypeEnum.SPINNER)) {
+					punctuationOptions = -1d;
+				}
+				if (question.getType().equals(QuestionTypeEnum.RADIO)) {
+					for (Option option : question.getOptions()) {
+						if (String.valueOf(questionProperty.getValue()).equals(option.getBody())) {
+							punctuationOptions = punctuationOptions + option.getPunctuation();
+						}
+					}
+				}
+			} else {
+				if (questionProperty.getSelectedCheck() != null
+						&& questionProperty.getSelectedCheck().length != 0) {
+					for (String selectItem : questionProperty
+							.getSelectedCheck()) {
+						answersOfQuestion = answersOfQuestion + selectItem
+								+ "/";
+						for (Option option : question.getOptions()) {
+							if (selectItem.equals(option.getBody())) {
+								punctuationOptions = punctuationOptions + option.getPunctuation();
+							}
+						}
+					}
+				}
+			}
+
+			if (!answersOfQuestion.equals("")) {
+				answer.setWeightOfQuestion(question.getWeightOfQuestion());
+				answer.setPunctuationOption(punctuationOptions);
+				answer.setIdQuestion(Long.valueOf(questionProperty.getName()));
+				answer.setBody(answersOfQuestion);
+				answer.setInscription(inscription);
+
+				answers.add(answer);
+
+			}
+		}
 		return answers;
 	}
 
-	/**
-	 * @param selectedCheck
-	 * @param body
-	 * @return
-	 */
-	private boolean contains(String[] selectedCheck, String body) {
-		for (String string : selectedCheck) {
-			if (string.equals(body)){
-				return true;
-			}
-		}
-		return false;
-	}
+	public void selectQuestionnaire(Questionnaire questionnaire) {
 
-	public void selectQuestionnaire(Questionnaire questionnaire){
-		
 		model = new DynaFormModel();
-		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
+		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService
+				.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
 		for (Question question : searchAllQuestionsFromQuestionnaire) {
-			question.setOptions(questionnaireService.searchOptionsByQuesting(question.getId()));;
+			question.setOptions(questionnaireService
+					.searchOptionsByQuesting(question.getId()));
+			;
 		}
 		try {
 			questionnaire.setQuestions(searchAllQuestionsFromQuestionnaire);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		List<Question> questions = questionnaire.getQuestions();
 		questionnaireSected = questionnaire;
 		for (int i = 0; i < questions.size(); i++) {
 			DynaFormRow row1 = model.createRegularRow();
-			//Coloca titulo da pergunta
-			DynaFormLabel label11 = row1.addLabel((i+1)+" - "+questions.get(i).getTitle());
-			//caso seja um paragrafo
-			if (questions.get(i).getType().equals(QuestionTypeEnum.PARAGRAPH)){
+			// Coloca titulo da pergunta
+			DynaFormLabel label11 = row1.addLabel((i + 1) + " - "
+					+ questions.get(i).getTitle());
+			// caso seja um paragrafo
+			if (questions.get(i).getType().equals(QuestionTypeEnum.PARAGRAPH)) {
 				DynaFormRow row = model.createRegularRow();
-				DynaFormControl control12 = row.addControl(new QuestionProperty(questions.get(i).getId()+"",
-						questions.get(i).getObligatory()), "input");
+				DynaFormControl control12 = row.addControl(
+						new QuestionProperty(questions.get(i).getId() + "",
+								questions.get(i).getObligatory()), "input");
 				label11.setForControl(control12);
-			}
-			else if (questions.get(i).getType().equals(QuestionTypeEnum.TEXT)){
+			} else if (questions.get(i).getType().equals(QuestionTypeEnum.TEXT)) {
 				DynaFormRow row = model.createRegularRow();
-				DynaFormControl control12 = row.addControl(new QuestionProperty(questions.get(i).getId()+"",
-						questions.get(i).getObligatory()), "textarea");
+				DynaFormControl control12 = row.addControl(
+						new QuestionProperty(questions.get(i).getId() + "",
+								questions.get(i).getObligatory()), "textarea");
 				label11.setForControl(control12);
-			}
-			else if (questions.get(i).getType().equals(QuestionTypeEnum.RADIO)){
-				List<SelectItem> pffan = new ArrayList<SelectItem>();  
+			} else if (questions.get(i).getType()
+					.equals(QuestionTypeEnum.RADIO)) {
+				List<SelectItem> pffan = new ArrayList<SelectItem>();
 				List<Option> options = questions.get(i).getOptions();
-				
+
 				for (Option option4 : options) {
-					pffan.add(new SelectItem(option4.getBody(), option4.getBody()));  
+					pffan.add(new SelectItem(option4.getBody(), option4
+							.getBody()));
 				}
-				
+
 				DynaFormRow row = model.createRegularRow();
-				
-				row.addControl(new QuestionProperty(questions.get(i).getId()+"", questions.get(i).getObligatory(), pffan), "radiochoice", 1, 1);
-				
-			}else if (questions.get(i).getType().equals(QuestionTypeEnum.CHECKBOX)){
-				List<String> pffan = new ArrayList<String>(); 
+
+				row.addControl(new QuestionProperty(questions.get(i).getId()
+						+ "", questions.get(i).getObligatory(), pffan),
+						"radiochoice", 1, 1);
+
+			} else if (questions.get(i).getType()
+					.equals(QuestionTypeEnum.CHECKBOX)) {
+				List<String> pffan = new ArrayList<String>();
 				List<Option> options = questions.get(i).getOptions();
 				for (Option option4 : options) {
-					pffan.add(option4.getBody());  
-				} 
-				
-				DynaFormRow row = model.createRegularRow(); 
-				
-				
-				row.addControl(new QuestionProperty(questions.get(i).getId()+"", questions.get(i).getObligatory(), pffan), "booleanchoice", 1, 1);
-				
-				
-			}else if (questions.get(i).getType().equals(QuestionTypeEnum.SPINNER)){
+					pffan.add(option4.getBody());
+				}
+
 				DynaFormRow row = model.createRegularRow();
-				DynaFormControl control12 = row.addControl(new QuestionProperty(questions.get(i).getId()+"",
-						questions.get(i).getObligatory()), "offset");
+
+				row.addControl(new QuestionProperty(questions.get(i).getId()
+						+ "", questions.get(i).getObligatory(), pffan),
+						"booleanchoice", 1, 1);
+
+			} else if (questions.get(i).getType()
+					.equals(QuestionTypeEnum.SPINNER)) {
+				DynaFormRow row = model.createRegularRow();
+				DynaFormControl control12 = row.addControl(
+						new QuestionProperty(questions.get(i).getId() + "",
+								questions.get(i).getObligatory()), "offset");
 				label11.setForControl(control12);
-				
+
 			}
-			
-			
+
 		}
+	}
+
+	public List<Inscription> getInscriptionsWithPunctuation() {
+		return inscriptionsWithPunctuation;
+	}
+
+	public void setInscriptionsWithPunctuation(
+			List<Inscription> inscriptionsWithPunctuation) {
+		this.inscriptionsWithPunctuation = inscriptionsWithPunctuation;
 	}
 }

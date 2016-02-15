@@ -37,7 +37,8 @@
 			<p:dataTable id="table-questionnaires"
 				emptyMessage="Nenhum questionário."
 				value="#{questionnaireController.questionnaires}"
-				var="questionnaire"
+				var="questionnaire" paginator="true" rows="10"
+				paginatorPosition="bottom"
 				style="width:1240px; margin-left: 70px; margin-top: 2px; background:transparent; font-family:Nunito;">
 
 				<f:facet name="header">
@@ -70,7 +71,7 @@
 						style="font-family:Nunito;" />
 				</p:column>
 
-				<p:column headerText="Publicar?" style="width: 100px">
+				<p:column headerText="Publicar" style="width: 100px">
 					<p:commandButton
 						actionListener="#{questionnaireController.publicQuestionnaire(questionnaire)}"
 						update="table-questionnaires" process="@this"
@@ -79,6 +80,12 @@
 							message="Deseja mesmo publicar questionário?"
 							icon="ui-icon-alert" />
 					</p:commandButton>
+				</p:column>
+
+				<p:column headerText="Pré-classificação" style="width: 100px">
+					<p:commandButton icon="ui-icon-arrow-4-diag"
+						actionListener="#{questionnaireController.getPreClassification(questionnaire)}"
+						process="@this" onclick="PF('preClassificacao').show();" />
 				</p:column>
 
 				<!-- Dialog com confirmacao -->
@@ -101,6 +108,36 @@
 				</p:column>
 				<!-- Fim Dialog -->
 			</p:dataTable>
+
+			<p:dialog header="Pré-Classificação" widgetVar="preClassificacao"
+				modal="true" showEffect="fade" hideEffect="fade"
+				style="font-family:Nunito;">
+				<p:dataTable id="table-options"
+					emptyMessage="Não houveram inscritos até o momento."
+					scrollable="true" scrollHeight="500"
+					value="#{questionnaireController.inscriptionsWithPunctuation}"
+					var="inscription"
+					style="width:500px; margin-top: 2px; font-family:Nunito;">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Alunos Pré-classificada"
+							style="font-family:Nunito;" />
+					</f:facet>
+
+					<p:column headerText="Matrícula"
+						filterBy="#{inscription.registration}">
+						<p:outputLabel value="#{inscription.registration}"
+							style="font-family:Nunito;" />
+					</p:column>
+
+					<p:column headerText="Pontuação" style="width: 150px"
+						filterBy="#{inscription.punctuation}"
+						sortBy="#{inscription.punctuation}">
+						<p:outputLabel value="#{inscription.punctuation}"
+							style="font-family:Nunito;" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

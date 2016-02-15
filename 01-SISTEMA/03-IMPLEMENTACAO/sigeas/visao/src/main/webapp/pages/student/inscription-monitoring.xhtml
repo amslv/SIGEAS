@@ -9,7 +9,7 @@
 	template="/pages/student/menu-template-student.xhtml">
 
 
-	<ui:define name="title">Inscrições</ui:define>
+	<ui:define name="title">Acompanhamento</ui:define>
 
 
 	<ui:define name="header">
@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css"
 			href="../../resources/css/styles/font.css" />
 		<div id="rectangle">
-			<h:outputLabel id="textRectangle">Inscrições</h:outputLabel>
+			<h:outputLabel id="textRectangle">Acompanhamento de Inscrições</h:outputLabel>
 		</div>
 	</ui:define>
 
@@ -29,18 +29,19 @@
 				style="margin-left: 70px; background:transparent; border: transparent; position: relative; font-family:Nunito;">
 				<p:menuitem value="Tela Principal" url="index-student.html" />
 				<p:menuitem value="Inscrições" url="inscriptions.html" />
+				<p:menuitem value="Acompanhamento" url="inscription-monitoring.html" />
 			</p:breadCrumb>
 
 
-			<p:dataTable id="table-questionnaires"
+			<p:dataTable id="table-inscriptions"
 				emptyMessage="Nenhum questionário aberto"
-				value="#{questionnaireController.getAllPublished()}"
+				value="#{inscriptionController.questionnairesAnswered}"
 				var="questionnaire"
-				paginator="true" rows="8" paginatorPosition="bottom"
+				paginator="true" rows="10" paginatorPosition="bottom"
 				style="width:1240px; margin-left: 70px; margin-top: 20px; background:transparent; font-family:Nunito;">
 
 				<f:facet name="header">
-					<h:outputText value="Lista de Questionários disponíveis" />
+					<h:outputText value="Lista de Inscrições" />
 				</f:facet>
 
 				<p:column headerText="Título">
@@ -48,22 +49,28 @@
 						style="font-family:Nunito;" />
 				</p:column>
 
-				<p:column headerText="Inscrever-se" style="width: 100px">
-					<p:commandButton icon="ui-icon-extlink" action="inscription_questionnaire.html"
-						actionListener="#{questionnaireController.selectQuestionnaire(questionnaire)}" style="width:32px;" />
-				</p:column>
-
-				<p:column headerText="Data de Publicação" style="width: 120px">
-					<p:outputLabel value="#{questionnaire.publicationDate}"
-						style="font-family:Nunito;" />
-				</p:column>
-
 				<p:column headerText="Data de Conclusão" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.completionDate}"
 						style="font-family:Nunito;" />
 				</p:column>
+				
+				<p:column headerText="Cancelar?" style="width: 100px">
+					<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
+						actionListener="#{inscriptionController.removeInscription(questionnaire)}"
+						update="table-inscriptions">
+						<p:confirm header="Confirmar Cancelamento"
+							message="Deseja mesmo cancelar esta inscrição?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
 
-				<!-- Fim Dialog -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						style="font-size: 10pt">
+						<p:commandButton value="Sim" type="button" style="margin-left:27%"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button" style="position:center"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

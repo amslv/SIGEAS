@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import br.com.iterativejr.data.dao.QuestionnaireDao;
@@ -101,6 +102,7 @@ public class QuestionnaireServiceImpl extends
 	 * Publica questionario
 	 * 
 	 */
+	@Transactional
 	@Override
 	public void publicQuestionnaire(Questionnaire questionnaire) {
 		QuestionnaireDao questionnaireDao = (QuestionnaireDao) this.dao;
@@ -148,6 +150,12 @@ public class QuestionnaireServiceImpl extends
 				throw new SigeasException(
 						"Este tipo de pergunta não aceita opções. Por favor, exclua-as");
 			}
+			if (!question.getType().equals(QuestionTypeEnum.SPINNER)) {
+				if (question.getWeightOfQuestion() != 0) {
+					throw new SigeasException(
+							"Perguntas do tipo Texto e Paragrafo servem somente para observações. Por favor, insira peso igual a 0");
+				}
+			}
 		}
 		questionnaire.addQuestion(question);
 		return questionnaire;
@@ -188,4 +196,5 @@ public class QuestionnaireServiceImpl extends
 		QuestionnaireDao questionnaireDao = (QuestionnaireDao) this.dao;
 		return questionnaireDao.searchAllQuestinnairesPublished();
 	}
+
 }

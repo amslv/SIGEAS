@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.iterativejr.data.dao.InscriptionDao;
 import br.com.iterativejr.domains.entidade.Inscription;
 import br.com.iterativejr.domains.entidade.Questionnaire;
+import br.com.iterativejr.service.negocio.legacies.validations.SigeasException;
 
 /**
  * <p>
@@ -41,13 +42,35 @@ public interface InscriptionService extends GenericService<Inscription, Long>{
 	 * @param registration
 	 * @return
 	 */
-	Boolean studentAlreadyAnswered(String registration);
+	void studentAlreadyAnswered(String registration, Long idQuestionnaire) throws SigeasException;
 
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
-	List<Questionnaire> questionnaireAnswered(Long id);
+	List<Long> questionnairesAnswered(String registration);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<String> inscriptionsOfQuestionnaire(Long idQuestionnaire);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Double calculatePunctuation(Long idQuestionnaire, String registration);
+	
+	Inscription searchForQuestionnaireAndRegistration(Long idQuestionnaire, String registration);
+
+	List<Inscription> getPreClassification(Long idQuestionnaire);
+
+	List<Inscription> getInscriptionsOfUser(String username);
+
+	void removeInscriptionOfUser(String username, Questionnaire questionnaire);
 	
 }

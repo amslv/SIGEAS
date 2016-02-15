@@ -3,17 +3,19 @@
  */
 package br.com.iterativejr.domains.entidade;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -34,9 +36,16 @@ import org.springframework.security.core.userdetails.User;
  * @author <a href="https://github.com/JoaquimCMH">Joaquim Maia</a>
  *
  */
-// buscar todos questionarios respondidos por Questionário
-// verificar se o aluno já respondeu o questionário
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "Inscription.getInscriptionsOfUser", query = "SELECT u FROM Inscription u WHERE u.registration = :registration"),
+		@NamedQuery(name = "Inscription.studentAlreadyAnswered", query = "SELECT count(*) FROM Inscription u where u.registration = :registration and u.idQuestionnaire = :idQuestionnaire"),
+		@NamedQuery(name = "Inscription.questionnairesAnswered", query = "SELECT u.idQuestionnaire FROM Inscription u where u.registration = :registration"),
+		@NamedQuery(name = "Inscription.inscriptionsOfQuestionnaire", query = "SELECT u.registration FROM Inscription u where u.idQuestionnaire = :idQuestionnaire"),
+		@NamedQuery(name = "Inscription.deleteAnswers", query = "DELETE FROM Answer WHERE inscription_id=(SELECT u.id FROM Inscription u WHERE u.registration = :registration and u.idQuestionnaire = :idQuestionnaire)"),
+		@NamedQuery(name = "Inscription.cancelarInscricao", query = "DELETE FROM Inscription u WHERE u.registration = :registration and u.idQuestionnaire = :idQuestionnaire"),
+		@NamedQuery(name = "Inscription.searchForQuestionnaireAndRegistration", query = "SELECT u FROM Inscription u WHERE u.registration = :registration and u.idQuestionnaire = :idQuestionnaire"),
+		@NamedQuery(name = "Inscription.selectAnswers", query ="SELECT u FROM Answer u WHERE u.inscription = (SELECT i.id FROM Inscription i WHERE i.registration = :registration and i.idQuestionnaire = :idQuestionnaire)")})
 public class Inscription extends EntidadeBasica {
 
 	/**
@@ -49,25 +58,41 @@ public class Inscription extends EntidadeBasica {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PE_PRDID_GENERATOR")
 	@Column(name = "inscription_id")
 	private Long id;
+
+	@NotNull
 	@Column
 	private Long idQuestionnaire;
 	
-	@Column
-	private String answers;
-	
+	@NotNull
 	@Column
 	private String registration;
+	
+	@Column
+	private Double punctuation;
+	
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "inscription")
+	private List<Answer> answers;
 
 	/**
 	 * @param questionnaire
 	 * @param student
 	 */
-	public Inscription(Long idQuestionnaire, String answers) {
+	public Inscription() {
 		super();
-		this.answers = answers;
+	}
+
+	public Inscription(Long idQuestionnaire) {
+		super();
 		this.idQuestionnaire = idQuestionnaire;
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	    registration = user.getUsername(); 
+		this.registration = getActualRegistration();
+	}
+
+
+
+	private String getActualRegistration() {
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		return user.getUsername();
 	}
 
 	/**
@@ -80,8 +105,6 @@ public class Inscription extends EntidadeBasica {
 		return id;
 	}
 
-	
-
 	/**
 	 * @return the idQuestionnaire
 	 */
@@ -90,9 +113,11 @@ public class Inscription extends EntidadeBasica {
 	}
 
 	/**
-	 * @param idQuestionnaire the idQuestionnaire to set
+	 * @param idQuestionnaire
+	 *            the idQuestionnaire to set
 	 */
 	public void setIdQuestionnaire(Long idQuestionnaire) {
+		this.registration = getActualRegistration();
 		this.idQuestionnaire = idQuestionnaire;
 	}
 
@@ -130,21 +155,19 @@ public class Inscription extends EntidadeBasica {
 		this.id = id;
 	}
 
-	/**
-	 * @return the answers
-	 */
-	public String getAnswers() {
+	public Double getPunctuation() {
+		return punctuation;
+	}
+
+	public void setPunctuation(Double punctuation) {
+		this.punctuation = punctuation;
+	}
+
+	public List<Answer> getAnswers() {
 		return answers;
 	}
 
-	/**
-	 * @param answers the answers to set
-	 */
-	public void setAnswers(String answers) {
+	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
-
-
-
-	
 }

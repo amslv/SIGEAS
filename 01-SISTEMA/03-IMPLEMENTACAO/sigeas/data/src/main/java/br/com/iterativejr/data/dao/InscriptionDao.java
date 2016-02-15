@@ -5,8 +5,8 @@ package br.com.iterativejr.data.dao;
 
 import java.util.List;
 
+import br.com.iterativejr.domains.entidade.Answer;
 import br.com.iterativejr.domains.entidade.Inscription;
-import br.com.iterativejr.domains.entidade.Questionnaire;
 
 /**
  * <p>
@@ -26,8 +26,16 @@ import br.com.iterativejr.domains.entidade.Questionnaire;
  */
 public interface InscriptionDao extends GenericDao<Inscription, Long>{
 
-	Boolean studentAlreadyAnswered (String registration);
+	Boolean studentAlreadyAnswered(String registration, Long idQuestionnaire);
+
+	List<Long> questionnairesAnswered(String registration);
 	
-	List<Questionnaire> questionnaireAnswered (Long id);
+	List<String> inscriptionsOfQuestionnaire(Long id);
+
+	List<Answer> calculatePunctuation(Long idQuestionnaire, String registration);
 	
+	Inscription searchForQuestionnaireAndRegistration(Long idQuestionnaire, String registration);
+
+	List<Inscription> getInscriptionsOfUser(String registration);
+
 }

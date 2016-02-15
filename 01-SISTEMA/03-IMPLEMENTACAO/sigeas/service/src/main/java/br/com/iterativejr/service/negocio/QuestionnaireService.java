@@ -90,4 +90,5 @@ public interface QuestionnaireService extends GenericService<Questionnaire, Long
 	 * @return
 	 */
 	void validaDatas(Questionnaire questionnaire);
+
 }

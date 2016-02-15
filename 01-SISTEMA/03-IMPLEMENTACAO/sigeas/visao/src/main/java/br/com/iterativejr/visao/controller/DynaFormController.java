@@ -3,24 +3,8 @@
  */
 package br.com.iterativejr.visao.controller;
 
-import org.primefaces.context.RequestContext;
-import org.primefaces.extensions.model.dynaform.DynaFormControl;
-import org.primefaces.extensions.model.dynaform.DynaFormLabel;
-import org.primefaces.extensions.model.dynaform.DynaFormModel;
-import org.primefaces.extensions.model.dynaform.DynaFormRow;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-
-import br.com.iterativejr.domains.entidade.Option;
-import br.com.iterativejr.domains.entidade.Question;
-import br.com.iterativejr.domains.entidade.Questionnaire;
-import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
-import br.com.iterativejr.service.negocio.QuestionnaireService;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +13,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.extensions.model.dynaform.DynaFormControl;
+import org.primefaces.extensions.model.dynaform.DynaFormLabel;
+import org.primefaces.extensions.model.dynaform.DynaFormModel;
+import org.primefaces.extensions.model.dynaform.DynaFormRow;
+
+import br.com.iterativejr.domains.entidade.Option;
+import br.com.iterativejr.domains.entidade.Question;
+import br.com.iterativejr.domains.entidade.Questionnaire;
+import br.com.iterativejr.domains.entidade.enums.QuestionTypeEnum;
 
 /**
  * DynaFormController

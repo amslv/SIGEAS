@@ -8,5 +8,6 @@
 		<class>br.com.iterativejr.domains.entidade.Questionnaire</class>
 		<class>br.com.iterativejr.domains.entidade.Option</class>
 		<class>br.com.iterativejr.domains.entidade.Inscription</class>
+		<class>br.com.iterativejr.domains.entidade.Answer</class>
 	</persistence-unit>
 </persistence>

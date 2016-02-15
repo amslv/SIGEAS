@@ -10,10 +10,8 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.iterativejr.data.dao.InscriptionDao;
-import br.com.iterativejr.data.dao.QuestionnaireDao;
+import br.com.iterativejr.domains.entidade.Answer;
 import br.com.iterativejr.domains.entidade.Inscription;
-import br.com.iterativejr.domains.entidade.Question;
-import br.com.iterativejr.domains.entidade.Questionnaire;
 
 /**
  * <p>
@@ -38,22 +36,71 @@ public class InscriptionDaoImpl extends GenericDaoImpl<Inscription, Long> implem
 	 * @see br.com.iterativejr.data.dao.InscriptionDao#studentAlreadyAnswered(java.lang.String)
 	 */
 	@Override
-	public Boolean studentAlreadyAnswered(String registration) {
-		return null;
+	public Boolean studentAlreadyAnswered(String registration,
+			Long idQuestionnaire) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.studentAlreadyAnswered");
+		query.setParameter("registration", registration);
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+		Long result = (Long) query.getSingleResult();
+		System.out.println(result);
+		return result != 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.iterativejr.data.dao.InscriptionDao#questionnaireAnswered(java.lang.Long)
-	 */
 	@Override
-	public List<Questionnaire> questionnaireAnswered(Long id) {
+	public List<Long> questionnairesAnswered(String registration) {
 		Query query = this.entityManager
-				.createNamedQuery("Inscription.questionnaireAnswered");
-
+				.createNamedQuery("Inscription.questionnairesAnswered");
+		query.setParameter("registration", registration);
+		
 		@SuppressWarnings("unchecked")
-		List<Questionnaire> resultado = query.getResultList();
-
+		List<Long> resultado = query.getResultList(); 
 		return resultado;
+	}
+
+	@Override
+	public List<String> inscriptionsOfQuestionnaire(Long idQuestionnaire) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.inscriptionsOfQuestionnaire");
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+		
+		@SuppressWarnings("unchecked")
+		List<String> resultado = query.getResultList(); 
+		return resultado;
+	}
+
+	@Override
+	public List<Answer> calculatePunctuation(Long idQuestionnaire, String registration) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.selectAnswers");
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+		query.setParameter("registration", registration);
+		
+		@SuppressWarnings("unchecked")
+		List<Answer> resultList = query.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public Inscription searchForQuestionnaireAndRegistration(Long idQuestionnaire, String registration) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.searchForQuestionnaireAndRegistration");
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+		query.setParameter("registration", registration);
+		
+		Inscription resultList = (Inscription) query.getSingleResult();
+		return resultList;
+	}
+
+	@Override
+	public List<Inscription> getInscriptionsOfUser(String registration) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.getInscriptionsOfUser");
+		query.setParameter("registration", registration);
+		
+		@SuppressWarnings("unchecked")
+		List<Inscription> resultList = query.getResultList();
+		return resultList;
 	}
 
 }
