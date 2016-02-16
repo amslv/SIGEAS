@@ -70,6 +70,8 @@ public class QuestionnaireController {
 	private DynaFormModel model = new DynaFormModel();;
 
 	private List<Option> optionsOfQuestion;
+	
+	private List<Option> optionsOfQuestionAux;
 
 	private Option option;
 
@@ -115,7 +117,6 @@ public class QuestionnaireController {
 	}
 
 	public void addOption() {
-
 		try {
 			questionnaireService.addOptionInQuestion(question, option);
 			option.setQuestion(question);
@@ -256,6 +257,15 @@ public class QuestionnaireController {
 
 	public Option getOption() {
 		return option;
+	}
+	
+	public List<Option> getOptionOfQuestion(Question question) {
+		for (Question question2 : questions) {
+			if (question2.equals(question)) {
+				optionsOfQuestionAux = question2.getOptions();
+			}
+		}
+		return optionsOfQuestionAux;
 	}
 
 	public List<Inscription> getPreClassification(Questionnaire questionnaire) {
@@ -500,4 +510,14 @@ public class QuestionnaireController {
 		}
 		return answersOfInscriptions;
 	}
+
+	public List<Option> getOptionsOfQuestionAux() {
+		return optionsOfQuestionAux;
+	}
+
+	public void setOptionsOfQuestionAux(List<Option> optionsOfQuestionAux) {
+		this.optionsOfQuestionAux = optionsOfQuestionAux;
+	}
+
+
 }

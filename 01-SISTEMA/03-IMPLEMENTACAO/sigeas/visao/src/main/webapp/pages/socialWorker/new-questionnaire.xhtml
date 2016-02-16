@@ -77,8 +77,10 @@
 				</p:column>
 
 				<p:column headerText="Alternativas" style="width: 100px">
-					<p:commandButton icon="ui-icon-extlink"
-						onclick="PF('dlg2').show();" style="width:32px;" />
+					<p:commandButton icon="ui-icon-arrow-4-diag"
+						actionListener="#{questionnaireController.getOptionOfQuestion(question)}"
+						process="@this" oncomplete="PF('optionsOfQuestion').show();"
+						update=":form-new-questionnaire:dialogOptionsOfQuestion" />
 				</p:column>
 
 				<p:column headerText="Obrigatória" style="width: 150px"
@@ -147,7 +149,7 @@
 					<p:spinner id="i-weightOfQuestion"
 						value="#{questionnaireController.question.weightOfQuestion}"
 						required="true" requiredMessage="Peso Inválido" min="0" max="99"
-						style="  font-family:Nunito;"/>
+						style="  font-family:Nunito;" />
 
 					<p:outputLabel value="Tipo: " style="  font-family:Nunito;" />
 					<p:selectOneMenu id="i-type" required="true"
@@ -220,7 +222,7 @@
 					<p:spinner id="o-punctuation"
 						value="#{questionnaireController.option.punctuation}"
 						required="true" requiredMessage="Pontuação Inválida" min="0"
-						style="  font-family:Nunito;"/>
+						style="  font-family:Nunito;" />
 				</h:panelGrid>
 
 				<p:commandButton value="Salvar Opção" icon="ui-icon-disk"
@@ -229,6 +231,36 @@
 					action="#{questionnaireController.addOption}"
 					style="font-family:Nunito;" />
 			</p:dialog>
+			
+			<p:dialog id="dialogOptionsOfQuestion" header="Respostas" widgetVar="optionsOfQuestion"
+				modal="true" showEffect="fade" hideEffect="fade" ajax="true"
+				style="font-family:Nunito;">
+				<p:dataTable id="table-options1" ajax="true"
+					emptyMessage="Este tipo de questão não permite opções."
+					value="#{questionnaireController.optionsOfQuestionAux}"
+					var="option"
+					paginator="true" rows="2" paginatorPosition="bottom"
+					style="width:500px; margin-top: 2px; font-family:Nunito;">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Opções"
+							style="font-family:Nunito;" />
+					</f:facet>
+
+					<p:column headerText="Corpo" sortBy="#{option.body}"
+						filterBy="#{option.body}">
+						<p:outputLabel value="#{option.body}" style="font-family:Nunito;" />
+					</p:column>
+
+					<p:column headerText="Peso"
+						style="width: 160px" sortBy="#{option.punctuation}"
+						filterBy="#{option.punctuation}">
+						<p:outputLabel value="#{option.punctuation}"
+							style="font-family:Nunito;" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
