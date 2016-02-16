@@ -75,18 +75,18 @@
 					</p:outputLabel>
 				</p:column>
 
-				<p:column headerText="Publicar" style="width: 100px">
+				<p:column headerText="Publicar/Ocultar" style="width: 150px">
 					<p:commandButton
 						actionListener="#{questionnaireController.publicQuestionnaire(questionnaire)}"
 						update="table-questionnaires" process="@this"
 						icon="ui-icon-extlink">
 						<p:confirm header="Confirmar Publicação"
-							message="Deseja mesmo publicar/despublicar questionário?"
+							message="Deseja mesmo publicar/ocultar questionário?"
 							icon="ui-icon-alert" />
 					</p:commandButton>
 				</p:column>
 
-				<p:column headerText="Pré-classificação" style="width: 100px">
+				<p:column headerText="Pré-classificação" style="width: 120px">
 					<p:commandButton icon="ui-icon-arrow-4-diag"
 						actionListener="#{questionnaireController.getPreClassification(questionnaire)}"
 						process="@this" oncomplete="PF('preClassificacao').show();"
@@ -102,7 +102,6 @@
 							message="Deseja mesmo excluir este questionário?"
 							icon="ui-icon-alert" />
 					</p:commandButton>
-
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 						style="font-size: 10pt">
 						<p:commandButton value="Sim" type="button" style="margin-left:27%"

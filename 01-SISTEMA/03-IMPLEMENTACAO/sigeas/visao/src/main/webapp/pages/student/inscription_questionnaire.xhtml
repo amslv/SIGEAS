@@ -43,35 +43,33 @@
 				<pe:dynaForm id="dynaForm" value="#{questionnaireController.model}"
 					var="data">
 					<pe:dynaFormControl type="input" for="txt">
-						<p:inputText id="txt" value="#{data.value}"
+						<p:inputText id="txt" value="#{data.value}" requiredMessage="Campo obrigatório"
 							required="#{data.required}" style=" width:720px" />
 					</pe:dynaFormControl>
 
 					<pe:dynaFormControl type="radiochoice">
 						<p:selectOneRadio layout="pageDirection" value="#{data.value}"
-							required="#{data.required}">
+							required="#{data.required}" requiredMessage="Campo obrigatório">
 							<f:selectItems value="#{data.selectItems}" />
 						</p:selectOneRadio>
 					</pe:dynaFormControl>
 
 					<pe:dynaFormControl type="booleanchoice">
 						<p:selectManyCheckbox layout="pageDirection" value="#{data.selectedCheck}"
-							required="#{data.required}">
+							required="#{data.required}" requiredMessage="Campo obrigatório">
 							<f:selectItems value="#{data.checks}" />
 						</p:selectManyCheckbox>
 					</pe:dynaFormControl>
 
 					<pe:dynaFormControl type="textarea" for="tarea">
 						<p:inputTextarea id="tarea" style=" width:720px"
-							value="#{data.value}" required="#{data.required}"
+							value="#{data.value}" required="#{data.required}" requiredMessage="Campo obrigatório"
 							autoResize="false" />
 					</pe:dynaFormControl>
 
 					<pe:dynaFormControl type="offset">
 						<p:spinner id="inputOffset" value="#{data.value}"
-							required="#{data.required}" min="0" max="99">
-
-						</p:spinner>
+							required="#{data.required}" min="0" max="99" requiredMessage="Campo obrigatório"/>
 					</pe:dynaFormControl>
 
 					<f:facet name="buttonBar">

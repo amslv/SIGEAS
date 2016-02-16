@@ -156,7 +156,7 @@ public class QuestionnaireController {
 		return pag;
 	}
 
-	public void setObjeto(Questionnaire questionnaire) {
+	public void setaObjeto(Questionnaire questionnaire) {
 		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService
 				.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
 		for (Question question : searchAllQuestionsFromQuestionnaire) {
@@ -206,7 +206,7 @@ public class QuestionnaireController {
 	public void setQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaire = questionnaire;
 	}
-
+	
 	public Question getQuestion() {
 		return question;
 	}
