@@ -4,45 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
-import br.com.iterativejr.domains.entidade.AppUser;
 import br.com.iterativejr.domains.entidade.enums.RoleName;
-import br.com.iterativejr.service.negocio.legacies.providers.LoginProvider;
 
-/**
- * <p>
- * <b> Custom Authentication </b>
- * </p>
- *
- * @author <a href="https://github.com/LuizAntonioPS">Luiz Pereira</a>
- *
- */
-@Component
-public class CustomAuthenticationProvider implements AuthenticationProvider {
-
-	/**
-	 * Construtor do AuthenticationProvider
-	 * @param authentication autenticacao
-	 */
-	@Override
-	public Authentication authenticate(Authentication authentication)
-			throws AuthenticationException {
-
-		String role = new LoginProvider().login(authentication.getName(),(String) authentication.getCredentials());
-		Collection<GrantedAuthority> authorities = getAuthorities(role);
-		
-		User appUser = new AppUser(authentication.getName(),(String) authentication.getCredentials(), true, true, true,	true, authorities);
-
-		return new UsernamePasswordAuthenticationToken(appUser,	(String) authentication.getCredentials(), authorities);
-	}
+@Validated
+@Service("loginService")
+public class LoginServiceImpl {
 
 	/**
 	 * Retrieves a collection of {@link GrantedAuthority} based on a numerical
@@ -92,14 +63,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 		return authorities;
 	}
-
-	/**
-	 * Recupera supports
-	 * @return suporte true, sempre 
-	 */
-	@Override
-	public boolean supports(Class<?> arg0) {
-		return true;
-	}
-
 }

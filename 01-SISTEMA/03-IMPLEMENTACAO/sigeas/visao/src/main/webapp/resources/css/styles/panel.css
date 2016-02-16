@@ -22,3 +22,9 @@
 	left: 40%;
 	color: #5a7d60;
 }
+
+.panel-loginFailure {
+	top: 25%;
+	left: 42%;
+	position: absolute;
+}

@@ -5,23 +5,60 @@
 	font-size: 95%;
 }
 
+#alertLoginFaiure {
+	font-family: "Nunito", sans-serif;
+	font-size: 20pt;
+	color: white;
+}
+
+#alertLoginFaiure {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: 0%;
+	position: relative;
+}
+
+#alertLoginFaiureLink {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: -17%;
+	position: relative;
+}
+
+#alertAccessDenied {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: 8%;
+	position: relative;
+}
+
+#alertAccessDeniedLink {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: -10%;
+	position: relative;
+}
 #alertLogin {
-    font-family: "Nunito", sans-serif;
-    font-size: 15pt;
+	font-family: "Nunito", sans-serif;
+	font-size: 15pt;
 }
 
 #alertSuccess {
-    font-family: "Nunito", sans-serif;
-    font-size: 15pt;
+	font-family: "Nunito", sans-serif;
+	font-size: 15pt;
 }
 
 #alertInput {
-    font-family: "Nunito", sans-serif;
-    font-size: 15pt;
+	font-family: "Nunito", sans-serif;
+	font-size: 15pt;
 }
 
 #form-register-social {
-    font-size: 11pt;
+	font-size: 11pt;
 }
 
 #form-new-questionnaire {
@@ -32,12 +69,15 @@
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 	font-family: "Nunito", sans-serif;
 }
+
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 	font-family: "Nunito", sans-serif;
 }
+
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
 	font-family: "Nunito", sans-serif;
 }
+
 :placeholder-shown {
 	font-family: "Nunito", sans-serif;
 }

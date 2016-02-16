@@ -9,15 +9,15 @@
 
 <h:head>
 	<link rel="stylesheet" type="text/css"
-		href="../../resources/css/styles/background.css" />
+		href="./resources/css/styles/background.css" />
 	<link rel="stylesheet" type="text/css"
-		href="../../resources/css/styles/font.css" />
+		href="./resources/css/styles/font.css" />
 	<link rel="stylesheet" type="text/css"
-		href="../../resources/css/styles/image.css" />
+		href="./resources/css/styles/image.css" />
 	<link rel="stylesheet" type="text/css"
-		href="../../resources/css/styles/panel.css" />
+		href="./resources/css/styles/panel.css" />
 	<!-- Seta o titulo na guia -->
-	<title><ui:insert name="title">Acesso Negado</ui:insert></title>
+	<title><ui:insert name="title">Falha no Login</ui:insert></title>
 </h:head>
 
 
@@ -27,9 +27,9 @@
 		<h:panelGrid columns="1" cellpadding="1"
 			styleClass="panel-loginFailure">
 			<img id="icon-sigeas-loginFailure"
-				src="../../resources/images/icon/logo/sigeas-icon-117x158.png" />
-			<p:outputLabel id="alertAccessDenied">Acesso Negado!</p:outputLabel>
-			<p:outputLabel id="alertAccessDeniedLink">Clique <p:link href="/logout.html">aqui</p:link> e faça login.</p:outputLabel>
+				src="./resources/images/icon/logo/sigeas-icon-117x158.png" />
+			<p:outputLabel id="alertLoginFaiure">Erro ao efetuar login.</p:outputLabel>
+			<p:outputLabel id="alertLoginFaiureLink">Clique <p:link onclick="history.go(-1)">aqui</p:link> e tente novamente.</p:outputLabel>
 		</h:panelGrid>
 	</form>
 </h:body>

@@ -198,10 +198,12 @@ public class StudentAuthenticationQAcademico extends IAuthenticator {
 	public static boolean isSessionEnded() {
 		HtmlPage pg = (HtmlPage) instance.getWebClient().getCurrentWindow()
 				.getEnclosedPage();
-		DomText acssNegado = pg
-				.getFirstByXPath("//font[@color='#FF0000' and @size='2']/text()");
-		if (acssNegado != null && acssNegado.asText() != null)
-			return acssNegado.asText().equals("Acesso Negado");
+		if (pg != null) {
+			DomText acssNegado = pg
+					.getFirstByXPath("//font[@color='#FF0000' and @size='2']/text()");
+			if (acssNegado != null && acssNegado.asText() != null)
+				return acssNegado.asText().equals("Acesso Negado");
+		}
 		return false;
 	}
 
