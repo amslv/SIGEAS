@@ -57,10 +57,34 @@
 						</p:column>
 
 						<p:column headerText="Remover Acesso" style="width: 160px">
-							<p:commandButton id="btRemove" process="@this" update="panel-assistences"
-								icon="ui-icon ui-icon-trash"
-								actionListener="#{permissionEmployeeController.removeEmployee(socialWorker)}"
-								ajax="false" style="width:32px; text-align:center " />
+						
+							
+								
+								
+							
+							
+							
+							<p:commandButton id="btRemove" icon="ui-icon ui-icon-trash"
+						actionListener="#{permissionEmployeeController.removeEmployee(socialWorker)}"
+						update="table-assistences">
+						<p:confirm header="Confirmar Exclusão"
+							message="Deseja mesmo excluir este funcionário?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						style="font-size: 10pt">
+						<p:commandButton value="Sim" type="button" style="margin-left:27%"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button" style="position:center"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+							
+							
+								
+								
+								
+								
 						</p:column>
 					</p:dataTable>
 				</p:panel>

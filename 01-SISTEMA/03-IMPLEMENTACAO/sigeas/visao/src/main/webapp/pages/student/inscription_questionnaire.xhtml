@@ -75,14 +75,18 @@
 					</pe:dynaFormControl>
 
 					<f:facet name="buttonBar">
-						<p:commandButton value="Submit"
+						<p:commandButton value="Salvar" style="margin-rigth:10%; "
 							action="#{questionnaireController.submitForm}" process="dynaForm"
 							update=":mainForm:dynaFormGroup :mainForm:inputValues"
 							oncomplete=""/>
+							<p:commandButton value="Cancel" immediate="true" action="inscriptions.html" />
+							
 					</f:facet>
 				</pe:dynaForm>
 			</h:panelGroup>
-
+			
+			
+			
 			<p:dialog header="Input values" widgetVar="inputValuesWidget">
 				<p:dataList id="inputValues"
 					value="#{questionnaireController.questionProperties}"
@@ -133,9 +137,8 @@
 
 
 
-			<p:commandButton value="Cancelar" style="margin-left:400px;"
-				action="inscriptions.html" />
 		</h:form>
+
 
 
 	</ui:define>
