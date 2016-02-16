@@ -202,9 +202,6 @@ public class Option extends EntidadeBasica {
 			if (!body.equals(option.getBody())) {
 				return false;
 			}
-			if (!punctuation.equals(option.getPunctuation())) {
-				return false;
-			}
 			return true;
 		}
 	}

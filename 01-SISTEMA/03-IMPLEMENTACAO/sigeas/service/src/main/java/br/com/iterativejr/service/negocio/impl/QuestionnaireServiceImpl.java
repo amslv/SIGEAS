@@ -106,12 +106,12 @@ public class QuestionnaireServiceImpl extends
 	@Override
 	public void publicQuestionnaire(Questionnaire questionnaire) {
 		QuestionnaireDao questionnaireDao = (QuestionnaireDao) this.dao;
-		if (!questionnaire.getPublished()) {
-			questionnaire.setPublished(true);
-			questionnaireDao.atualizar(questionnaire);
+		if (questionnaire.getPublished()) {
+			questionnaire.setPublished(false);
 		} else {
-			throw new SigeasException("Questionário já está publicado");
+			questionnaire.setPublished(true);
 		}
+		questionnaireDao.atualizar(questionnaire);
 	}
 
 	/**

@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css"
 			href="../../resources/css/styles/font.css" />
 		<div id="rectangle">
-			<h:outputLabel id="textRectangle">Inscrições</h:outputLabel>
+			<h:outputLabel id="textRectangle">Inscrever-me</h:outputLabel>
 		</div>
 	</ui:define>
 
@@ -28,7 +28,8 @@
 			<p:breadCrumb id="breadCrumb"
 				style="margin-left: 70px; background:transparent; border: transparent; position: relative; font-family:Nunito;">
 				<p:menuitem value="Tela Principal" url="index-student.html" />
-				<p:menuitem value="Inscrições" url="inscriptions.html" />
+				<p:menuitem value="Inscrições" url="#" />
+				<p:menuitem value="Inscrever-me" url="inscriptions.html" />
 			</p:breadCrumb>
 
 
@@ -40,7 +41,7 @@
 				style="width:1240px; margin-left: 70px; margin-top: 20px; background:transparent; font-family:Nunito;">
 
 				<f:facet name="header">
-					<h:outputText value="Lista de Questionários disponíveis" />
+					<h:outputText value="Lista de Questionários Disponíveis" />
 				</f:facet>
 
 				<p:column headerText="Título">
@@ -55,12 +56,16 @@
 
 				<p:column headerText="Data de Publicação" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.publicationDate}"
-						style="font-family:Nunito;" />
+						style="font-family:Nunito;" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+03:00"/>
+					</p:outputLabel>
 				</p:column>
 
 				<p:column headerText="Data de Conclusão" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.completionDate}"
-						style="font-family:Nunito;" />
+						style="font-family:Nunito;" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+03:00"/>
+					</p:outputLabel>
 				</p:column>
 
 				<!-- Fim Dialog -->

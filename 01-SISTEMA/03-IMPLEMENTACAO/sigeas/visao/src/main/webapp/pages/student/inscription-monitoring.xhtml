@@ -28,13 +28,13 @@
 			<p:breadCrumb id="breadCrumb"
 				style="margin-left: 70px; background:transparent; border: transparent; position: relative; font-family:Nunito;">
 				<p:menuitem value="Tela Principal" url="index-student.html" />
-				<p:menuitem value="Inscrições" url="inscriptions.html" />
+				<p:menuitem value="Inscrições" url="#" />
 				<p:menuitem value="Acompanhamento" url="inscription-monitoring.html" />
 			</p:breadCrumb>
 
 
 			<p:dataTable id="table-inscriptions"
-				emptyMessage="Nenhum questionário aberto"
+				emptyMessage="Nenhuma inscrição realizada."
 				value="#{inscriptionController.questionnairesAnswered}"
 				var="questionnaire"
 				paginator="true" rows="10" paginatorPosition="bottom"
@@ -51,7 +51,9 @@
 
 				<p:column headerText="Data de Conclusão" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.completionDate}"
-						style="font-family:Nunito;" />
+						style="font-family:Nunito;" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+03:00"/>
+					</p:outputLabel>
 				</p:column>
 				
 				<p:column headerText="Cancelar?" style="width: 100px">

@@ -83,7 +83,7 @@
 
 				<p:column headerText="Obrigatória" style="width: 150px"
 					filterBy="#{question.obligatory}" sortBy="#{question.obligatory}">
-					<p:outputLabel value="#{question.obligatory}"
+					<p:outputLabel value="#{question.obligatory? 'Sim' : 'Não'}"
 						style="font-family:Nunito;" />
 				</p:column>
 

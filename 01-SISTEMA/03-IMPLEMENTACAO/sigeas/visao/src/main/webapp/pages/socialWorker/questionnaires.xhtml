@@ -51,7 +51,7 @@
 				</p:column>
 
 				<p:column headerText="Publicado" style="width: 100px">
-					<p:outputLabel value="#{questionnaire.published}"
+					<p:outputLabel value="#{questionnaire.published? 'Sim' : 'Não'}"
 						style="font-family:Nunito;" />
 				</p:column>
 
@@ -63,12 +63,16 @@
 
 				<p:column headerText="Data de Publicação" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.publicationDate}"
-						style="font-family:Nunito;" />
+						style="font-family:Nunito;">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT +03:00"/>
+					</p:outputLabel>
 				</p:column>
 
 				<p:column headerText="Data de Conclusão" style="width: 120px">
 					<p:outputLabel value="#{questionnaire.completionDate}"
-						style="font-family:Nunito;" />
+						style="font-family:Nunito;" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+03:00"/>
+					</p:outputLabel>
 				</p:column>
 
 				<p:column headerText="Publicar" style="width: 100px">
@@ -77,7 +81,7 @@
 						update="table-questionnaires" process="@this"
 						icon="ui-icon-extlink">
 						<p:confirm header="Confirmar Publicação"
-							message="Deseja mesmo publicar questionário?"
+							message="Deseja mesmo publicar/despublicar questionário?"
 							icon="ui-icon-alert" />
 					</p:commandButton>
 				</p:column>
