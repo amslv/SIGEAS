@@ -85,7 +85,8 @@
 				<p:column headerText="Pré-classificação" style="width: 100px">
 					<p:commandButton icon="ui-icon-arrow-4-diag"
 						actionListener="#{questionnaireController.getPreClassification(questionnaire)}"
-						process="@this" oncomplete="PF('preClassificacao').show();" update=":form-register-social:dialog" />
+						process="@this" oncomplete="PF('preClassificacao').show();"
+						update=":form-register-social:dialog" />
 				</p:column>
 
 				<!-- Dialog com confirmacao -->
@@ -108,15 +109,16 @@
 				</p:column>
 				<!-- Fim Dialog -->
 			</p:dataTable>
-			
-			<p:dialog id="dialog" header="Pré-Classificação" widgetVar="preClassificacao"
-				modal="true" showEffect="fade" hideEffect="fade" ajax="true"
-				style="font-family:Nunito;">
+
+			<p:dialog id="dialog" header="Pré-Classificação"
+				widgetVar="preClassificacao" modal="true" showEffect="fade"
+				hideEffect="fade" ajax="true" style="font-family:Nunito;">
 				<p:dataTable id="table-options" ajax="true"
 					emptyMessage="Não houveram inscritos até o momento."
-					scrollable="true" scrollHeight="500"
+					scrollable="true"
 					value="#{questionnaireController.inscriptionsWithPunctuation}"
-					var="inscription"
+					var="inscription" paginator="true" rows="10"
+					paginatorPosition="bottom"
 					style="width:500px; margin-top: 2px; font-family:Nunito;">
 
 					<f:facet name="header">
@@ -124,16 +126,57 @@
 							style="font-family:Nunito;" />
 					</f:facet>
 
-					<p:column headerText="Matrícula"
-						filterBy="#{inscription.registration}">
+					<p:column headerText="Matrícula">
 						<p:outputLabel value="#{inscription.registration}"
 							style="font-family:Nunito;" />
 					</p:column>
 
 					<p:column headerText="Pontuação" style="width: 150px"
-						filterBy="#{inscription.punctuation}"
 						sortBy="#{inscription.punctuation}">
 						<p:outputLabel value="#{inscription.punctuation}"
+							style="font-family:Nunito;" />
+					</p:column>
+
+					<p:column headerText="Respostas" style="width: 100px">
+						<p:commandButton icon="ui-icon-arrow-4-diag"
+							actionListener="#{questionnaireController.getAnswers(inscription)}"
+							process="@this" oncomplete="PF('answer').show();"
+							update=":form-register-social:answers" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+
+			<p:dialog id="answers" header="Respostas" widgetVar="answer"
+				modal="true" showEffect="fade" hideEffect="fade" ajax="true"
+				style="font-family:Nunito;">
+				<p:dataTable id="table-options1" ajax="true"
+					emptyMessage="Não houveram respostas." scrollable="true" paginator="true" rows="10"
+					paginatorPosition="bottom"
+					value="#{questionnaireController.answersOfInscriptions}"
+					var="answer"
+					style="width:500px; margin-top: 2px; font-family:Nunito;">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Respostas de Aluno"
+							style="font-family:Nunito;" />
+					</f:facet>
+
+					<p:column headerText="Corpo" sortBy="#{answer.body}"
+						filterBy="#{answer.body}">
+						<p:outputLabel value="#{answer.body}" style="font-family:Nunito;" />
+					</p:column>
+
+					<p:column headerText="Pontuação de Opção Escolhida"
+						style="width: 160px" sortBy="#{answer.punctuationOption}"
+						filterBy="#{answer.punctuationOption}">
+						<p:outputLabel value="#{answer.punctuationOption}"
+							style="font-family:Nunito;" />
+					</p:column>
+
+					<p:column headerText="Pontuação de Questão" style="width: 150px"
+						sortBy="#{answer.weightOfQuestion}"
+						filterBy="#{answer.weightOfQuestion}">
+						<p:outputLabel value="#{answer.weightOfQuestion}"
 							style="font-family:Nunito;" />
 					</p:column>
 				</p:dataTable>

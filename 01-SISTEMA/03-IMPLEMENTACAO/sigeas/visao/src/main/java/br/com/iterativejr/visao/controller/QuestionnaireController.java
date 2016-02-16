@@ -85,6 +85,8 @@ public class QuestionnaireController {
 
 	private List<Inscription> inscriptionsWithPunctuation;
 
+	private List<Answer> answersOfInscriptions;
+
 	/**
 	 * Inicia dados
 	 */
@@ -154,7 +156,7 @@ public class QuestionnaireController {
 		return pag;
 	}
 
-	public void setaObjeto(Questionnaire questionnaire) {
+	public void setObjeto(Questionnaire questionnaire) {
 		List<Question> searchAllQuestionsFromQuestionnaire = questionnaireService
 				.searchAllQuestionsFromQuestionnaire(questionnaire.getId());
 		for (Question question : searchAllQuestionsFromQuestionnaire) {
@@ -176,7 +178,8 @@ public class QuestionnaireController {
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		if (!questionnaire.getPublished()) {
 			questionnaireService.apagar(questionnaire);
-			inscriptionService.cancelInscriptionsOfQuestionnaire(questionnaire.getId());
+			inscriptionService.cancelInscriptionsOfQuestionnaire(questionnaire
+					.getId());
 			questionnaires = findAll();
 			JsfUtil.addSuccessMessage("Questionário removido com sucesso");
 		} else {
@@ -229,7 +232,11 @@ public class QuestionnaireController {
 	}
 
 	public void publicQuestionnaire(Questionnaire questionnaire) {
-		this.questionnaireService.publicQuestionnaire(questionnaire);
+		try {
+			this.questionnaireService.publicQuestionnaire(questionnaire);
+		} catch (SigeasException e) {
+			JsfUtil.addErrorMessage(e.getMessage());
+		}
 	}
 
 	private String restartQuestionnaire() {
@@ -255,7 +262,6 @@ public class QuestionnaireController {
 		inscriptionsWithPunctuation = null;
 		inscriptionsWithPunctuation = inscriptionService
 				.getPreClassification(questionnaire.getId());
-		System.out.println("Chegou");
 		return inscriptionsWithPunctuation;
 	}
 
@@ -474,5 +480,24 @@ public class QuestionnaireController {
 	public void setInscriptionsWithPunctuation(
 			List<Inscription> inscriptionsWithPunctuation) {
 		this.inscriptionsWithPunctuation = inscriptionsWithPunctuation;
+	}
+
+	public List<Answer> getAnswersOfInscriptions() {
+		return answersOfInscriptions;
+	}
+
+	public void setAnswersOfInscriptions(List<Answer> answersOfInscriptions) {
+		this.answersOfInscriptions = answersOfInscriptions;
+	}
+
+	public List<Answer> getAnswers(Inscription inscription) {
+		answersOfInscriptions = null;
+		answersOfInscriptions = new ArrayList<Answer>();
+		Inscription inscriptionSearch = inscriptionService.buscarPorId(inscription.getId());
+		List<Answer> answers = inscriptionSearch.getAnswers();
+		for (Answer answer : answers) {
+			answersOfInscriptions.add(answer);
+		}
+		return answersOfInscriptions;
 	}
 }
