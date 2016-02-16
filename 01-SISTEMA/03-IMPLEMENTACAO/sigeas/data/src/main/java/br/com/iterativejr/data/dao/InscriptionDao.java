@@ -38,4 +38,6 @@ public interface InscriptionDao extends GenericDao<Inscription, Long>{
 
 	List<Inscription> getInscriptionsOfUser(String registration);
 
+	List<Inscription> getInscriptionsOfQuestionnaire(Long idQuestionnaire);
+
 }

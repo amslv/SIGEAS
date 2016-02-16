@@ -86,6 +86,13 @@ public interface InscriptionService extends GenericService<Inscription, Long>{
 	 * @return
 	 */
 	List<Inscription> getInscriptionsOfUser(String username);
+	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	List<Inscription> getInscriptionsOfQuestionnaire(Long idQuestionnaire);
 
 	/**
 	 * 
@@ -93,6 +100,11 @@ public interface InscriptionService extends GenericService<Inscription, Long>{
 	 * @param questionnaire
 	 */
 	void removeInscriptionOfUser(String username, Questionnaire questionnaire);
-	
+
+	/**
+	 * 
+	 * @param id
+	 */
+	void cancelInscriptionsOfQuestionnaire(Long id);
 	
 }

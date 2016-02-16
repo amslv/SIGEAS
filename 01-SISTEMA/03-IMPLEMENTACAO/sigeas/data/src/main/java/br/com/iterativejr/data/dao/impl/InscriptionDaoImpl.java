@@ -102,4 +102,16 @@ public class InscriptionDaoImpl extends GenericDaoImpl<Inscription, Long> implem
 		return resultList;
 	}
 
+
+	@Override
+	public List<Inscription> getInscriptionsOfQuestionnaire(Long idQuestionnaire) {
+		Query query = this.entityManager
+				.createNamedQuery("Inscription.getInscriptionsOfQuestionnaire");
+		query.setParameter("idQuestionnaire", idQuestionnaire);
+		
+		@SuppressWarnings("unchecked")
+		List<Inscription> resultList = query.getResultList();
+		return resultList;
+	}
+
 }

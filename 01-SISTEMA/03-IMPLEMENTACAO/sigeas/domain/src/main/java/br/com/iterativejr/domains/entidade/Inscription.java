@@ -39,6 +39,7 @@ import org.springframework.security.core.userdetails.User;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "Inscription.getInscriptionsOfUser", query = "SELECT u FROM Inscription u WHERE u.registration = :registration"),
+		@NamedQuery(name = "Inscription.getInscriptionsOfQuestionnaire", query = "SELECT u FROM Inscription u WHERE u.idQuestionnaire = :idQuestionnaire"),
 		@NamedQuery(name = "Inscription.studentAlreadyAnswered", query = "SELECT count(*) FROM Inscription u where u.registration = :registration and u.idQuestionnaire = :idQuestionnaire"),
 		@NamedQuery(name = "Inscription.questionnairesAnswered", query = "SELECT u.idQuestionnaire FROM Inscription u where u.registration = :registration"),
 		@NamedQuery(name = "Inscription.inscriptionsOfQuestionnaire", query = "SELECT u.registration FROM Inscription u where u.idQuestionnaire = :idQuestionnaire"),

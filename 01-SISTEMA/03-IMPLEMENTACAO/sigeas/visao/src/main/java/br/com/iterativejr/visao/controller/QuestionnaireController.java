@@ -176,6 +176,7 @@ public class QuestionnaireController {
 	public void removeQuestionnaire(Questionnaire questionnaire) {
 		if (!questionnaire.getPublished()) {
 			questionnaireService.apagar(questionnaire);
+			inscriptionService.cancelInscriptionsOfQuestionnaire(questionnaire.getId());
 			questionnaires = findAll();
 			JsfUtil.addSuccessMessage("Questionário removido com sucesso");
 		} else {

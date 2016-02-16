@@ -142,6 +142,13 @@ public class InscriptionServiceImpl extends
 		return inscriptionDao.getInscriptionsOfUser(registration);
 		
 	}
+	
+	@Transactional
+	@Override
+	public List<Inscription> getInscriptionsOfQuestionnaire(Long idQuestionnaire) {
+		InscriptionDao inscriptionDao = (InscriptionDao) this.dao;
+		return inscriptionDao.getInscriptionsOfQuestionnaire(idQuestionnaire);
+	}
 
 	@Transactional
 	@Override
@@ -152,7 +159,17 @@ public class InscriptionServiceImpl extends
 				inscriptionDao.apagar(inscription);
 			}
 		}
-		
+	}
+
+	@Transactional
+	@Override
+	public void cancelInscriptionsOfQuestionnaire(Long idQuestionnaire) {
+		InscriptionDao inscriptionDao = (InscriptionDao) this.dao;
+		for (Inscription inscription : getInscriptionsOfQuestionnaire(idQuestionnaire)) {
+			if (inscription.getIdQuestionnaire().equals(idQuestionnaire)) {
+				inscriptionDao.apagar(inscription);
+			}
+		}
 	}
 
 }
