@@ -42,6 +42,23 @@
 	left: -10%;
 	position: relative;
 }
+
+#alertPageNotFound {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: 0%;
+	position: relative;
+}
+
+#alertPageNotFoundLink {
+	font-family: "Nunito", sans-serif;
+	font-size: 16pt;
+	color: white;
+	left: 0%;
+	position: relative;
+}
+
 #alertLogin {
 	font-family: "Nunito", sans-serif;
 	font-size: 15pt;
