@@ -82,7 +82,7 @@ public class QuestionnaireController {
 	private List<Questionnaire> questionnaires;
 
 	private Inscription inscription;
-	
+
 	private List<Inscription> inscriptionsWithPunctuation;
 
 	/**
@@ -174,9 +174,13 @@ public class QuestionnaireController {
 	}
 
 	public void removeQuestionnaire(Questionnaire questionnaire) {
-		questionnaireService.apagar(questionnaire);
-		questionnaires = findAll();
-		JsfUtil.addSuccessMessage("Questionário removido com sucesso");
+		if (!questionnaire.getPublished()) {
+			questionnaireService.apagar(questionnaire);
+			questionnaires = findAll();
+			JsfUtil.addSuccessMessage("Questionário removido com sucesso");
+		} else {
+			JsfUtil.addErrorMessage("Não é possível remover um questionário durante seu período de publicação.");
+		}
 	}
 
 	private List<Questionnaire> findAll() {
@@ -248,7 +252,8 @@ public class QuestionnaireController {
 
 	public List<Inscription> getPreClassification(Questionnaire questionnaire) {
 		inscriptionsWithPunctuation = null;
-		inscriptionsWithPunctuation = inscriptionService.getPreClassification(questionnaire.getId());
+		inscriptionsWithPunctuation = inscriptionService
+				.getPreClassification(questionnaire.getId());
 		System.out.println("Chegou");
 		return inscriptionsWithPunctuation;
 	}
@@ -290,7 +295,8 @@ public class QuestionnaireController {
 	public String submitForm() {
 		FacesMessage.Severity sev = FacesContext.getCurrentInstance()
 				.getMaximumSeverity();
-		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR.compareTo(sev) >= 0));
+		boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR
+				.compareTo(sev) >= 0));
 
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.addCallbackParam("isValid", !hasErrors);
@@ -305,7 +311,9 @@ public class QuestionnaireController {
 
 	private void saveInscription(Inscription inscription) {
 		try {
-			inscriptionService.studentAlreadyAnswered(inscription.getRegistration(), inscription.getIdQuestionnaire());
+			inscriptionService.studentAlreadyAnswered(
+					inscription.getRegistration(),
+					inscription.getIdQuestionnaire());
 			inscription.setId(null);
 			inscriptionService.criar(inscription);
 			JsfUtil.addSuccessMessage("Inscrição realizada com sucesso");
@@ -326,7 +334,8 @@ public class QuestionnaireController {
 			Question question = new Question();
 			List<Question> questions2 = questionnaireSected.getQuestions();
 			for (Question question1 : questions2) {
-				if (question1.getId().equals(Long.valueOf(questionProperty.getName()))) {
+				if (question1.getId().equals(
+						Long.valueOf(questionProperty.getName()))) {
 					question = question1;
 				}
 			}
@@ -341,8 +350,10 @@ public class QuestionnaireController {
 				}
 				if (question.getType().equals(QuestionTypeEnum.RADIO)) {
 					for (Option option : question.getOptions()) {
-						if (String.valueOf(questionProperty.getValue()).equals(option.getBody())) {
-							punctuationOptions = punctuationOptions + option.getPunctuation();
+						if (String.valueOf(questionProperty.getValue()).equals(
+								option.getBody())) {
+							punctuationOptions = punctuationOptions
+									+ option.getPunctuation();
 						}
 					}
 				}
@@ -355,7 +366,8 @@ public class QuestionnaireController {
 								+ "/";
 						for (Option option : question.getOptions()) {
 							if (selectItem.equals(option.getBody())) {
-								punctuationOptions = punctuationOptions + option.getPunctuation();
+								punctuationOptions = punctuationOptions
+										+ option.getPunctuation();
 							}
 						}
 					}
@@ -376,7 +388,6 @@ public class QuestionnaireController {
 		return answers;
 	}
 
-	
 	public void selectQuestionnaire(Questionnaire questionnaire) {
 
 		model = new DynaFormModel();
@@ -455,7 +466,6 @@ public class QuestionnaireController {
 		}
 	}
 
-	
 	public List<Inscription> getInscriptionsWithPunctuation() {
 		return inscriptionsWithPunctuation;
 	}
